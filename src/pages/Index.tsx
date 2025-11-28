@@ -1,8 +1,8 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Calendar, TrendingUp, Shield, Leaf, Brain, User, MessageCircle, PhoneCall } from "lucide-react";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const Index = () => {
   
@@ -172,7 +172,7 @@ const Index = () => {
         {/* TV static noise overlay */}
         <div className="pointer-events-none absolute inset-0 opacity-5 bg-[repeating-linear-gradient(0deg,rgba(255,255,255,0.06)_0_2px,transparent_2px_4px)]" />
 
-        {/* Interactive 70% Stat with orbiting task pills */}
+        {/* Interactive 70% Stat with responsive chaos background */}
         <div className="relative max-w-5xl mx-auto text-center">
           <motion.h2
             initial={{ opacity: 0, y: 24 }}
@@ -185,36 +185,58 @@ const Index = () => {
           </motion.h2>
 
           <div className="relative inline-block">
-            {/* Orbit ring */}
-            <div className="absolute -inset-24 rounded-full border border-white/10" />
-            {/* Pills orbit */}
-            {[
-              { label: "Roteiro", angle: 0 },
-              { label: "Edição", angle: 90 },
-              { label: "Directs", angle: 180 },
-              { label: "Publi", angle: 270 },
-            ].map((p, i) => (
-              <motion.div
-                key={i}
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                style={{ transformOrigin: "0 0" }}
-              >
-                <div
-                  className="translate-x-[180px] -translate-y-0"
-                  style={{ transform: `translateX(180px) rotate(${p.angle}deg)` }}
-                >
-                  <div className="backdrop-blur-xl bg-white/8 border border-white/15 rounded-full px-3 py-1 text-xs text-slate-300 shadow-[0_0_18px_rgba(0,0,0,0.35)]">
-                    {p.label}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+            {/* Mobile marquee (< 768px) */}
+            <div className="md:hidden absolute inset-0 -z-10 overflow-hidden">
+              <div className="flex gap-6 animate-[marquee_15s_linear_infinite]">
+                {["Edição", "Roteiro", "Agenda", "Vendas", "Directs", "Edição", "Roteiro", "Agenda", "Vendas", "Directs"].map((t, i) => (
+                  <span key={i} className="text-xs text-white/10 font-semibold whitespace-nowrap">{t}</span>
+                ))}
+              </div>
+              <div className="flex gap-6 animate-[marquee_18s_linear_infinite] mt-2">
+                {["Directs", "Vendas", "Agenda", "Roteiro", "Edição", "Directs", "Vendas", "Agenda", "Roteiro", "Edição"].map((t, i) => (
+                  <span key={i} className="text-xs text-white/10 font-semibold whitespace-nowrap">{t}</span>
+                ))}
+              </div>
+            </div>
 
-            {/* Counter up 70% */}
-            <Counter70 />
-            <p className="mt-4 text-xs uppercase tracking-[0.25em] text-slate-400">dos Creators já enfrentaram <span className="text-red-400">Burnout</span>.</p>
+            {/* Desktop orbit (> 768px) */}
+            <div className="hidden md:block absolute -inset-40 -z-10">
+              {/* Orbit ring */}
+              <div className="absolute inset-0 rounded-full border border-white/10" />
+              {/* Pills orbit - increased radius */}
+              {[
+                { label: "Roteiro", angle: 0 },
+                { label: "Edição", angle: 90 },
+                { label: "Directs", angle: 180 },
+                { label: "Publi", angle: 270 },
+              ].map((p, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  style={{ transformOrigin: "0 0" }}
+                >
+                  <div
+                    className="translate-x-[240px]"
+                    style={{ transform: `translateX(240px) rotate(${p.angle}deg)` }}
+                  >
+                    <div className="backdrop-blur-xl bg-white/8 border border-white/15 rounded-full px-3 py-1 text-xs text-slate-300 shadow-[0_0_18px_rgba(0,0,0,0.35)]">
+                      {p.label}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Dark gradient overlay for clarity */}
+            <div className="absolute inset-0 -z-5 bg-[radial-gradient(circle_at_center,transparent_20%,#0a0a0a_80%)]" />
+
+            {/* Counter up 70% - Z-10 focal point */}
+            <div className="relative z-10">
+              <Counter70 />
+            </div>
+            <p className="relative z-10 mt-4 text-xs uppercase tracking-[0.25em] text-slate-400">dos Creators já enfrentaram <span className="text-red-400">Burnout</span>.</p>
           </div>
         </div>
 
@@ -285,41 +307,59 @@ const Index = () => {
         </div>
       </section>
 
-      {/* SECTION 4: THE SOLUTION (Sticky Phone Experience) */}
-      <section className="relative w-full min-h-screen bg-gradient-to-b from-slate-950 to-indigo-950 px-6 py-10 overflow-hidden">
-        <div className="relative max-w-7xl mx-auto grid lg:grid-cols-[1fr_560px_1fr] gap-6">
-          {/* Left/Right columns contain the scroll steps; center column holds the sticky phone */}
-          <div className="space-y-32">
-            {/* Step 1 - Left */}
-            <div className="min-h-screen flex items-center">
-              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ amount: 0.5 }} transition={{ duration: 0.6 }} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-[0_0_30px_-12px_rgba(99,102,241,0.45)] max-w-md ml-auto">
-                <h3 className="text-2xl font-bold tracking-tight">Gestão de Agenda</h3>
-                <p className="mt-2 text-slate-300">Você pede, ela marca.</p>
-              </motion.div>
-            </div>
-            {/* Step 3 - Left */}
-            <div className="min-h-screen flex items-center">
-              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ amount: 0.5 }} transition={{ duration: 0.6 }} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-[0_0_30px_-12px_rgba(99,102,241,0.45)] max-w-md ml-auto">
-                <h3 className="text-2xl font-bold tracking-tight">Inteligência Real</h3>
-                <p className="mt-2 text-slate-300">Táticas validadas, não alucinações.</p>
-              </motion.div>
-            </div>
+      {/* SECTION 4: THE SOLUTION (Fixed Phone com JS) */}
+      <section className="relative w-full bg-gradient-to-b from-slate-950 to-indigo-950">
+        {/* MOBILE: Fixed com JavaScript */}
+        <div className="md:hidden px-6 py-20">
+          {/* Title */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">
+              A Solução <span className="text-emerald-400">InfluIA</span>
+            </h2>
+            <p className="text-slate-400 text-lg">Seu copiloto de IA para criadores</p>
           </div>
 
-          {/* Sticky phone center */}
-          <div className="relative">
-            <div className="sticky top-24">
-              <PhoneSticky />
-            </div>
+          {/* Container com altura para scroll */}
+          <div style={{ height: '500vh', position: 'relative' }}>
+            {/* Phone will be fixed via Portal when scrolling */}
+            <FixedPhoneSection />
           </div>
+        </div>
 
-          <div className="space-y-32">
-            {/* Step 2 - Right */}
-            <div className="min-h-screen flex items-center">
-              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ amount: 0.5 }} transition={{ duration: 0.6 }} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-[0_0_30px_-12px_rgba(37,99,235,0.45)] max-w-md mr-auto">
-                <h3 className="text-2xl font-bold tracking-tight">CRM Automático</h3>
-                <p className="mt-2 text-slate-300">Nunca mais perca um lead.</p>
-              </motion.div>
+        {/* DESKTOP: Sticky Scroll */}
+        <div className="hidden md:block relative max-w-7xl mx-auto px-12 py-32">
+          <div className="grid lg:grid-cols-[1fr_480px_1fr] gap-8">
+            {/* Left column */}
+            <div className="space-y-[60vh]">
+              <div className="min-h-[60vh] flex items-center">
+                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6 }} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-[0_0_30px_-12px_rgba(99,102,241,0.45)] max-w-md ml-auto">
+                  <h3 className="text-2xl font-bold tracking-tight">Gestão de Agenda</h3>
+                  <p className="mt-2 text-slate-300">Você pede, ela marca.</p>
+                </motion.div>
+              </div>
+              <div className="min-h-[60vh] flex items-center">
+                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6 }} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-[0_0_30px_-12px_rgba(99,102,241,0.45)] max-w-md ml-auto">
+                  <h3 className="text-2xl font-bold tracking-tight">Inteligência Real</h3>
+                  <p className="mt-2 text-slate-300">Táticas validadas, não alucinações.</p>
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Sticky phone center */}
+            <div className="relative">
+              <div className="sticky top-24 flex justify-center">
+                <PhoneStickyDesktop />
+              </div>
+            </div>
+
+            {/* Right column */}
+            <div className="space-y-[60vh]">
+              <div className="min-h-[60vh] flex items-center">
+                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6 }} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-[0_0_30px_-12px_rgba(37,99,235,0.45)] max-w-md mr-auto">
+                  <h3 className="text-2xl font-bold tracking-tight">CRM Automático</h3>
+                  <p className="mt-2 text-slate-300">Nunca mais perca um lead.</p>
+                </motion.div>
+              </div>
             </div>
           </div>
         </div>
@@ -435,21 +475,21 @@ const Index = () => {
 };
 
 export default Index;
-// Sticky phone centerpiece with step-reactive chat content
-const PhoneSticky = () => {
+// Sticky phone centerpiece with step-reactive chat content (Desktop)
+const PhoneStickyDesktop = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start center", "end center"] });
-  // Map progress to step thresholds
-  const step1 = useTransform(scrollYProgress, [0.0, 0.33], [1, 0]);
-  const step2 = useTransform(scrollYProgress, [0.33, 0.66], [1, 0]);
-  const step3 = useTransform(scrollYProgress, [0.66, 1.0], [1, 0]);
+  // Map progress to step visibility (fade in and STAY)
+  const step1Opacity = useTransform(scrollYProgress, [0.0, 0.2], [0, 1]);
+  const step2Opacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
+  const step3Opacity = useTransform(scrollYProgress, [0.4, 0.6], [0, 1]);
 
   return (
-    <div ref={containerRef} className="relative mx-auto w-[480px] h-[920px]">
+    <div ref={containerRef} className="relative w-[400px] h-[780px]">
       {/* Phone body */}
       <div className="relative w-full h-full rounded-[40px] bg-black/85 border-2 border-white/15 shadow-[0_60px_160px_-60px_rgba(37,99,235,0.35)]">
         {/* Notch */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-36 h-8 bg-black rounded-b-2xl" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-7 bg-black rounded-b-2xl z-10" />
         {/* Screen */}
         <div className="absolute inset-3 rounded-[34px] bg-slate-950 border border-white/10 overflow-hidden">
           {/* Header */}
@@ -461,33 +501,277 @@ const PhoneSticky = () => {
             </div>
           </div>
           {/* Chat body */}
-          <div className="p-5 space-y-4">
-            {/* Step 1 bubble */}
-            <motion.div style={{ opacity: step1 }} className="flex justify-start">
-              <div className="max-w-[80%] bg-white/5 text-slate-200 px-4 py-3 rounded-2xl rounded-bl-sm border border-white/10">
-                Reunião agendada com investidor para 14h.
+          <div className="p-5 space-y-3">
+            {/* User message */}
+            <motion.div style={{ opacity: step1Opacity }} className="flex justify-end">
+              <div className="max-w-[85%] bg-indigo-600 text-white px-4 py-2 rounded-2xl rounded-br-sm shadow-lg">
+                Marca uma reunião com a Singular amanhã às 14h.
               </div>
             </motion.div>
-            {/* Step 2 bubble */}
-            <motion.div style={{ opacity: step2 }} className="flex justify-start">
-              <div className="max-w-[80%] bg-white/5 text-slate-200 px-4 py-3 rounded-2xl rounded-bl-sm border border-white/10">
-                Lead cadastrado no Pipedrive e follow-up programado.
+            {/* Typing indicator */}
+            <motion.div style={{ opacity: step2Opacity }} className="flex justify-start">
+              <div className="bg-white/10 text-slate-300 px-4 py-2 rounded-2xl rounded-bl-sm border border-white/10">
+                Checando agenda...
               </div>
             </motion.div>
-            {/* Step 3 bubble */}
-            <motion.div style={{ opacity: step3 }} className="flex justify-start">
-              <div className="max-w-[80%] bg-white/5 text-slate-200 px-4 py-3 rounded-2xl rounded-bl-sm border border-white/10">
-                Aqui está o roteiro baseado na técnica AIDA para seu vídeo.
+            {/* Final response */}
+            <motion.div style={{ opacity: step3Opacity }} className="flex justify-start">
+              <div className="max-w-[85%] bg-blue-600 text-white px-4 py-3 rounded-2xl rounded-bl-sm shadow-lg">
+                Feito! Convite enviado e CRM atualizado. Bloqueie sua tarde para preparação.
               </div>
             </motion.div>
           </div>
           {/* Input */}
           <div className="absolute bottom-0 left-0 right-0 p-4 bg-black/30 border-t border-white/10">
-            <div className="h-12 bg-white/5 border border-white/10 rounded-xl" />
+            <div className="h-11 bg-white/5 border border-white/10 rounded-xl" />
           </div>
         </div>
       </div>
     </div>
+  );
+};
+
+// Mobile phone mockup with scroll-reactive chat (Overlay Scrollytelling)
+const PhoneMobileSticky = ({ currentStep }: { currentStep: number }) => {
+  const conversations = [
+    {
+      user: "Quero falar sobre burnout criativo. Me ajuda a estruturar?",
+      typing: "Analisando tema...",
+      ai: "Que tal começar com sua experiência pessoal? Use storytelling + dados de pesquisa. Gancho: 'Acordo às 6h mas não crio nada até as 14h'"
+    },
+    {
+      user: "Monta meu calendário editorial da próxima semana.",
+      typing: "Checando tendências e timing...",
+      ai: "Seg - reel educativo (18h), Qua - carrossel de dicas (12h), Sex - bastidor (20h). Foco: autenticidade."
+    },
+    {
+      user: "Organiza as marcas que ofereceram publi esse mês.",
+      typing: "Categorizando ofertas...",
+      ai: "3 marcas tech (R$ 5-8k), 2 lifestyle (R$ 3k), 1 saúde (R$ 10k). Melhor fit: marca tech alinhada com seu nicho."
+    }
+  ];
+
+  const activeConvo = conversations[currentStep - 1] || conversations[0];
+
+  return (
+    <div style={{ width: '340px', margin: '0 auto' }}>
+      <div className="relative w-full aspect-[9/19] rounded-[36px] bg-gradient-to-br from-slate-900 to-black border-4 border-slate-700 shadow-2xl shadow-indigo-500/30">
+        {/* Notch */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-7 bg-black rounded-b-2xl z-20" />
+        
+        {/* Screen */}
+        <div className="absolute inset-3 rounded-[28px] bg-slate-950 overflow-hidden flex flex-col">
+          {/* Header */}
+          <div className="h-16 px-4 flex items-center gap-3 border-b border-slate-800 bg-slate-900/50 backdrop-blur-sm shrink-0">
+            <div className="h-10 w-10 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center shrink-0">
+              <Brain className="h-5 w-5 text-white" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-sm font-semibold text-white">Influ.IA</p>
+              <p className="text-xs text-emerald-400">● online</p>
+            </div>
+          </div>
+
+          {/* Chat body */}
+          <div className="flex-1 p-4 space-y-3 overflow-hidden min-h-0">
+            {/* User message */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              key={`user-${currentStep}`}
+              className="flex justify-end"
+            >
+              <div className="max-w-[80%] bg-indigo-600 text-white px-4 py-3 rounded-2xl rounded-br-md text-sm font-medium shadow-lg">
+                {activeConvo.user}
+              </div>
+            </motion.div>
+
+            {/* Typing indicator */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              key={`typing-${currentStep}`}
+              className="flex justify-start"
+            >
+              <div className="bg-slate-800 text-slate-300 px-4 py-3 rounded-2xl rounded-bl-md text-sm border border-slate-700">
+                {activeConvo.typing}
+              </div>
+            </motion.div>
+
+            {/* AI response */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.6 }}
+              key={`ai-${currentStep}`}
+              className="flex justify-start"
+            >
+              <div className="max-w-[80%] bg-blue-600 text-white px-4 py-3 rounded-2xl rounded-bl-md text-sm font-medium shadow-lg">
+                {activeConvo.ai}
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Input bar */}
+          <div className="p-3 border-t border-slate-800 bg-slate-900/50 backdrop-blur-sm shrink-0">
+            <div className="h-11 bg-slate-800 border border-slate-700 rounded-xl flex items-center px-4">
+              <MessageCircle className="h-4 w-4 text-slate-500" />
+            </div>
+          </div>
+        </div>
+
+        {/* Power button */}
+        <div className="absolute right-0 top-24 w-1 h-12 bg-slate-700 rounded-l-sm" />
+      </div>
+    </div>
+  );
+};
+
+// Fixed phone section with cards
+const FixedPhoneSection = () => {
+  const [isFixed, setIsFixed] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+      
+      const rect = containerRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // Check if section is in viewport
+      const shouldBeFixed = rect.top <= 0 && rect.bottom >= windowHeight;
+      setIsFixed(shouldBeFixed);
+      
+      if (shouldBeFixed) {
+        const totalScrollHeight = rect.height - windowHeight;
+        const currentScroll = Math.abs(rect.top);
+        const progress = currentScroll / totalScrollHeight;
+        setScrollProgress(Math.min(Math.max(progress, 0), 1));
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const currentStep = scrollProgress < 0.33 ? 1 : scrollProgress < 0.66 ? 2 : 3;
+
+  return (
+    <>
+      {/* Tall container for scrolling */}
+      <div ref={containerRef} style={{ height: '500vh', position: 'relative' }}>
+        {/* Cards that scroll */}
+        <div style={{ position: 'absolute', top: '80vh', left: 0, right: 0, zIndex: 10, padding: '0 1.5rem' }}>
+          <div style={{ marginBottom: '120vh' }}>
+            <FeatureCardMobile
+              icon={Brain}
+              title="Potencialize Suas Ideias Criativas"
+              description="Você tem a ideia, a IA estrutura. Sugestões de ganchos, ângulos narrativos e técnicas de storytelling para turbinar seu conteúdo."
+              step={1}
+            />
+          </div>
+          
+          <div style={{ marginBottom: '120vh' }}>
+            <FeatureCardMobile
+              icon={Calendar}
+              title="Calendário Editorial Inteligente"
+              description="Planeje sua semana baseado em tendências, melhor timing e performance. A IA sugere, você decide."
+              step={2}
+            />
+          </div>
+
+          <div>
+            <FeatureCardMobile
+              icon={TrendingUp}
+              title="Organize Oportunidades de Publi"
+              description="Categorize ofertas de marcas, analise fit com seu nicho e priorize as melhores oportunidades comerciais."
+              step={3}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Fixed phone */}
+      <AnimatePresence>
+        {isFixed && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, x: '-50%', y: '-50%' }}
+            animate={{ opacity: 1, scale: 1, x: '-50%', y: '-50%' }}
+            exit={{ opacity: 0, scale: 0.8, x: '-50%', y: '-50%' }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            style={{
+              position: 'fixed',
+              top: '50%',
+              left: '50%',
+              zIndex: 0,
+              pointerEvents: 'none',
+              width: '90vw',
+              maxWidth: '380px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
+            <PhoneMobileSticky currentStep={currentStep} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+};
+
+// Scroll-triggered phone that updates based on viewport position
+const ScrollTriggerPhone = () => {
+  const [currentStep, setCurrentStep] = useState(1);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const section4Top = document.querySelector('section')?.offsetTop || 0;
+      const relativeScroll = scrollY - section4Top;
+
+      // Update step based on scroll position
+      if (relativeScroll > 800) {
+        setCurrentStep(2);
+      } else {
+        setCurrentStep(1);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return <PhoneMobileSticky currentStep={currentStep} />;
+};
+
+// Mobile feature card with heavy glassmorphism
+const FeatureCardMobile = ({ icon: Icon, title, description, step }: { icon: any; title: string; description: string; step: number }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.3 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="w-full"
+    >
+      <div className="bg-black/70 backdrop-blur-xl border-2 border-white/20 rounded-3xl p-8 shadow-[0_20px_70px_-20px_rgba(79,70,229,0.6)]">
+        <div className="flex items-start gap-5">
+          <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center flex-shrink-0 shadow-lg">
+            <Icon className="h-7 w-7 text-white" />
+          </div>
+          <div>
+            <h3 className="text-2xl font-bold mb-3 text-white">{title}</h3>
+            <p className="text-slate-300 text-base leading-relaxed">{description}</p>
+          </div>
+        </div>
+      </div>
+    </motion.div>
   );
 };
 
@@ -536,23 +820,39 @@ const GlitchPortrait = () => {
   );
 };
 
-// CounterUp to 70% component
+// CounterUp to 70% component with useInView fix
 const Counter70 = () => {
   const ref = useRef<HTMLDivElement | null>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const progress = useTransform(scrollYProgress, [0, 1], [0, 1]);
-  // Map progress to 0..70
-  const value = useTransform(progress, (p) => Math.round(Math.min(70, p * 90))); // faster ramp, capped at 70
+  const isInView = useInView(ref, { once: true });
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+    let start = 0;
+    const end = 70;
+    const duration = 1500; // 1.5 seconds
+    const increment = end / (duration / 16); // 60fps
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= end) {
+        setCount(end);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 16);
+    return () => clearInterval(timer);
+  }, [isInView]);
+
   return (
     <div ref={ref} className="relative">
       <motion.span
-        className="text-[120px] leading-none font-bold tracking-tight bg-gradient-to-b from-red-500 to-red-700 bg-clip-text text-transparent drop-shadow-[0_0_14px_rgba(185,28,28,0.35)]"
+        className="text-[120px] leading-none font-bold tracking-tight text-red-500 drop-shadow-[0_0_14px_rgba(239,68,68,0.45)]"
         initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
+        animate={isInView ? { opacity: 1, scale: 1 } : {}}
         transition={{ duration: 0.8 }}
       >
-        <motion.span style={{}}>{value.get()}</motion.span>%
+        {count}%
       </motion.span>
     </div>
   );

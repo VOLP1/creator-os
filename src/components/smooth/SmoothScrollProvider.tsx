@@ -9,10 +9,13 @@ type Props = {
  * SmoothScrollProvider
  * - Inicializa Lenis (smooth scroll) para toda a aplicação.
  * - Envolve a árvore React em um container que pode ser usado para parallax baseado em scroll.
+ * - DESABILITADO temporariamente para permitir position: sticky funcionar
  */
 const SmoothScrollProvider: React.FC<Props> = ({ children }) => {
   useEffect(() => {
-    // Defer heavy scroll initialization until after initial paint / idle time
+    // LENIS DESABILITADO - quebra position: sticky
+    // Uncomment abaixo para reativar smooth scroll
+    /*
     let lenis: any = null;
     let rafId: number | null = null;
     let idleId: number | null = null;
@@ -35,18 +38,13 @@ const SmoothScrollProvider: React.FC<Props> = ({ children }) => {
           rafId = requestAnimationFrame(raf);
         }
 
-        // start RAF loop
         rafId = requestAnimationFrame(raf);
-      } catch (e) {
-        // ignore initialization errors
-      }
+      } catch (e) {}
     };
 
-    // Prefer requestIdleCallback when available to avoid blocking LCP
     if (typeof (window as any).requestIdleCallback === "function") {
       idleId = (window as any).requestIdleCallback(() => start(), { timeout: 500 });
     } else {
-      // fallback: wait for first paint
       const t = setTimeout(() => start(), 300);
       idleId = Number(t);
     }
@@ -66,9 +64,9 @@ const SmoothScrollProvider: React.FC<Props> = ({ children }) => {
         if (lenis) lenis.destroy();
       } catch (e) {}
     };
+    */
   }, []);
 
-  // data attribute can be used by components to target scroll container if needed
   return <div data-scroll-container>{children}</div>;
 };
 
