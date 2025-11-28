@@ -60,7 +60,7 @@ const Index = () => {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="mt-4 text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-800 bg-clip-text text-transparent"
           >
-            A Tecnologia deve servir à Essência, não substituí-la.
+            Uma ferramenta para criar conteúdo com performance e propósito
           </motion.h1>
 
           {/* Subheadline */}
@@ -70,7 +70,7 @@ const Index = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-4 text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl mx-auto font-medium"
           >
-            A Influ.IA é a resposta do movimento +Creator para o problema cíclico do criador. Regenerando a saúde mental e devolvendo a autonomia através de uma IA que cuida do que te exaure.
+            A InfluIA é sua ferramenta para economizar tempo e ter mais resultados na criação de conteúdo
           </motion.p>
 
           {/* CTAs */}
@@ -87,14 +87,7 @@ const Index = () => {
             >
               <a href="#beta">Testar a Influ.IA (Beta)</a>
             </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="bg-white hover:bg-slate-50 text-slate-700 border-2 border-slate-300 rounded-2xl px-7 py-4 shadow-lg"
-              asChild
-            >
-              <a href="#manifesto">Ver o Manifesto</a>
-            </Button>
+            
           </motion.div>
         </div>
       </section>
@@ -455,7 +448,7 @@ const Index = () => {
                   />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold leading-tight">Agência de<br/>Uma Pessoa Só</h3>
+                  <h3 className="text-2xl font-bold leading-tight">Uma Linha de Produção<br/>de Uma Pessoa Só</h3>
                 </div>
               </motion.div>
               
@@ -466,7 +459,7 @@ const Index = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.5, duration: 0.9 }}
               >
-                Roteiro, filmagem, edição, gestão de agenda, negociação de publis, responder DMs... <span className="text-indigo-700 font-semibold">O criador faz tudo sozinho.</span>
+                Roteiros, filmagens, edição de vídeo, gestão de agendas, negociações... <span className="text-indigo-700 font-semibold">O criador faz tudo sozinho.</span>
               </motion.p>
               
               {/* Card with depth - OPTIMIZED: removed heavy 3D transforms */}
@@ -714,7 +707,7 @@ const Index = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.3, duration: 0.7 }}
               >
-                Para economizar tempo, criadores usam IAs genéricas. <span className="text-amber-400 font-medium">Mas se a essência do criador é criar...</span>
+                Para economizar tempo, criadores usam IAs para trabalhar POR elas: <span className="text-amber-400 font-medium">Mas se a essência do criador é criar...</span>
               </motion.p>
               
               <motion.div 
@@ -841,7 +834,17 @@ const Index = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.3, duration: 0.7 }}
               >
-                Feed tóxico. Desistência. O criador perde sua essência e o público perde interesse.
+                Para quem cria: Fazer conteúdo se torna massante, pouco recompensador.
+              </motion.p>
+
+              <motion.p 
+                className="text-slate-400 text-sm leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 0.7 }}
+              >
+                Para a audiência: Excesso de conteúdo genérico, superficial gera desinteresse e afastamento.
               </motion.p>
               
               <motion.div
@@ -1206,11 +1209,11 @@ const Index = () => {
         <div className="absolute inset-x-0 bottom-0 h-[180px] bg-[radial-gradient(circle_at_bottom,rgba(251,191,36,0.25),transparent_70%)]" />
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.h2 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-900">
-            Não é sobre um app. É sobre o futuro da nossa atenção.
+            Não é sobre um app. É sobre o futuro da mente dos jovens.
           </motion.h2>
           <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.15 }} className="mt-8 text-lg md:text-xl text-slate-300 leading-relaxed">
             Contribuir para a Influ.IA é votar em uma internet onde a tecnologia serve à saúde mental, não à exaustão.
-            Ajude-nos a construir a ferramenta que devolve a vida aos criadores.
+            Apoiando a InfluIA você se torna parte de um movimento que luta para devolver propósito e saúde aos criadores.
           </motion.p>
           <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.3 }} className="mt-10 flex flex-wrap justify-center gap-4">
             <Button size="lg" className="bg-amber-500 hover:bg-amber-400 text-black font-semibold rounded-2xl shadow-[0_0_30px_rgba(251,191,36,0.5)]" asChild>
@@ -1228,8 +1231,7 @@ const Index = () => {
         <div className="absolute inset-x-0 bottom-0 h-[160px] bg-[radial-gradient(circle_at_bottom,rgba(251,191,36,0.15),transparent_75%)]" />
         <div className="relative max-w-4xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="bg-white border-2 border-amber-200 rounded-3xl p-10 shadow-2xl shadow-amber-200/50">
-            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900">Quer apadrinhar o projeto?</h3>
-            <p className="mt-4 text-slate-600 max-w-xl">Para grandes apoios e Investidores Anjo que buscam equity e participação estratégica.</p>
+            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900">Quer apoiar com grandes valores e ter uma chance de ter parte da InfluIA?</h3>
             <div className="mt-6 flex items-center gap-3">
               <div className="h-11 w-11 rounded-2xl bg-emerald-100 border-2 border-emerald-300 flex items-center justify-center">
                 <MessageCircle className="w-6 h-6 text-emerald-700" />
@@ -1239,7 +1241,7 @@ const Index = () => {
               </a>
             </div>
             <div className="mt-4 flex items-center gap-2 text-xs text-slate-500">
-              <PhoneCall className="w-4 h-4" /> <span>Atendimento privado para estruturação estratégica.</span>
+              <PhoneCall className="w-4 h-4" /> <span>Atendimento privado para conhecer a fundo planejamento e estratégias.</span>
             </div>
           </motion.div>
         </div>
@@ -1261,21 +1263,33 @@ const Index = () => {
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2" className="border-slate-200 rounded-xl px-4">
-                <AccordionTrigger className="text-slate-900">O que é uma Startup?</AccordionTrigger>
+                <AccordionTrigger className="text-slate-900">O que exatamente é a Influ.IA? É mais um gerador de conteúdo por Inteligência Artificial</AccordionTrigger>
                 <AccordionContent className="text-slate-600 leading-relaxed">
-                  Uma empresa de base tecnológica desenhada para crescer rápido (escala) em um cenário de incerteza, diferente de uma empresa tradicional.
+                  A Influ.IA é mais do que um gerador. É uma Inteligência de Suporte apoiada pelo movimento +Creator. Foca em automatizar tudo o que exaure o criador (gestão, agenda, parcerias). Nossa tecnologia serve à essência do criador, não a substitui.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3" className="border-slate-200 rounded-xl px-4">
-                <AccordionTrigger className="text-slate-900">O que é Crowdfunding?</AccordionTrigger>
+                <AccordionTrigger className="text-slate-900">Para usar a Influ.IA, o criador precisa ser muito familiarizado com tecnologia?</AccordionTrigger>
                 <AccordionContent className="text-slate-600 leading-relaxed">
-                  Financiamento Coletivo. É como uma "vaquinha", mas para empresas. Você apoia o nascimento do projeto e recebe recompensas ou participação.
+                  Não. Desenvolvemos a operação via WhatsApp e uma interface simplificada. O objetivo é ter baixo atrito: a tecnologia atua nos bastidores para facilitar a vida, e não complicá-la.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-4" className="border-slate-200 rounded-xl px-4">
-                <AccordionTrigger className="text-slate-900">O que é o Algoritmo?</AccordionTrigger>
+                <AccordionTrigger className="text-slate-900">O que significa "Fricção Zero na operação via WhatsApp"?</AccordionTrigger>
                 <AccordionContent className="text-slate-600 leading-relaxed">
-                  São as regras automáticas das redes sociais que decidem quem vê seu post. Hoje, elas forçam o criador a trabalhar sem parar. Nós mudamos isso.
+                  A fricção é a dificuldade ou o esforço que o usuário precisa fazer para usar um produto. Oferecer a operação via WhatsApp significa que o criador pode gerenciar a agenda, parcerias e tarefas sem sair do seu ambiente de trabalho principal. É a máxima facilidade para garantir o uso constante e a adesão.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-5" className="border-slate-200 rounded-xl px-4">
+                <AccordionTrigger className="text-slate-900">Quais são os principais diferenciais da Influ.IA em relação às outras ferramentas de mercado?</AccordionTrigger>
+                <AccordionContent className="text-slate-600 leading-relaxed">
+                  O maior diferencial é a nossa filosofia: o foco não é na criação, mas na gestão eficiente e na essência. Nossas funcionalidades liberam o tempo do criador para que ele se dedique à sua autenticidade.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-6" className="border-slate-200 rounded-xl px-4">
+                <AccordionTrigger className="text-slate-900">O que é Crowdfunding?</AccordionTrigger>
+                <AccordionContent className="text-slate-600 leading-relaxed">
+                  Financiamento Coletivo. É como uma "vaquinha", mas para empresas. Você apoia o nascimento do projeto e recebe recompensas ou participação.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
