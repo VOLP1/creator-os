@@ -148,8 +148,6 @@ const Index = () => {
             {/* Floating organic-tech sculpture */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="relative w-full max-w-md aspect-square">
-                {/* Glass core */}
-                <div className="absolute inset-0 rounded-[40%] bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 shadow-[0_0_50px_rgba(16,185,129,0.25)]" />
                 {/* Leaf veins / circuit */}
                 <div className="absolute inset-6 rounded-[40%] bg-[conic-gradient(from_180deg_at_50%_50%,rgba(16,185,129,0.25),transparent_60%,rgba(99,102,241,0.3))] blur-sm" />
                 {/* Inner glow */}
@@ -167,116 +165,675 @@ const Index = () => {
         </div>
       </section>
 
-      {/* SECTION 3: THE PROBLEM (Digital Noise & Overwhelm) */}
-      <section className="relative w-full bg-[#0a0a0a] px-6 py-32 overflow-hidden">
-        {/* TV static noise overlay */}
-        <div className="pointer-events-none absolute inset-0 opacity-5 bg-[repeating-linear-gradient(0deg,rgba(255,255,255,0.06)_0_2px,transparent_2px_4px)]" />
+      {/* SECTION 3: THE PROBLEM (Cinematic Burnout Journey) */}
+      <section className="relative w-full bg-[#050505] px-6 py-20 md:py-32 overflow-hidden">
+        {/* Animated TV static noise overlay */}
+        <motion.div
+          animate={{ 
+            opacity: [0.02, 0.04, 0.02],
+            scale: [1, 1.02, 1]
+          }}
+          transition={{ 
+            duration: 4, 
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="pointer-events-none absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGQ9Ik0wIDBoMzAwdjMwMEgweiIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=')] animate-pulse" 
+        />
 
-        {/* Interactive 70% Stat with responsive chaos background */}
-        <div className="relative max-w-5xl mx-auto text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-2xl text-slate-400 mb-8"
-          >
-            A Agência de Uma Pessoa Só.
-          </motion.h2>
+        {/* Floating gradient orbs with parallax */}
+        <motion.div
+          className="absolute top-1/4 -left-20 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl"
+          animate={{ 
+            x: [0, 50, 0],
+            y: [0, 30, 0],
+            scale: [1, 1.1, 1]
+          }}
+          transition={{ 
+            duration: 15, 
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/3 -right-20 w-80 h-80 bg-red-600/15 rounded-full blur-3xl"
+          animate={{ 
+            x: [0, -40, 0],
+            y: [0, -50, 0],
+            scale: [1, 1.15, 1]
+          }}
+          transition={{ 
+            duration: 18, 
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
 
-          <div className="relative inline-block">
-            {/* Mobile marquee (< 768px) */}
-            <div className="md:hidden absolute inset-0 -z-10 overflow-hidden">
-              <div className="flex gap-6 animate-[marquee_15s_linear_infinite]">
-                {["Edição", "Roteiro", "Agenda", "Vendas", "Directs", "Edição", "Roteiro", "Agenda", "Vendas", "Directs"].map((t, i) => (
-                  <span key={i} className="text-xs text-white/10 font-semibold whitespace-nowrap">{t}</span>
-                ))}
-              </div>
-              <div className="flex gap-6 animate-[marquee_18s_linear_infinite] mt-2">
-                {["Directs", "Vendas", "Agenda", "Roteiro", "Edição", "Directs", "Vendas", "Agenda", "Roteiro", "Edição"].map((t, i) => (
-                  <span key={i} className="text-xs text-white/10 font-semibold whitespace-nowrap">{t}</span>
-                ))}
-              </div>
-            </div>
-
-            {/* Desktop orbit (> 768px) */}
-            <div className="hidden md:block absolute -inset-40 -z-10">
-              {/* Orbit ring */}
-              <div className="absolute inset-0 rounded-full border border-white/10" />
-              {/* Pills orbit - increased radius */}
-              {[
-                { label: "Roteiro", angle: 0 },
-                { label: "Edição", angle: 90 },
-                { label: "Directs", angle: 180 },
-                { label: "Publi", angle: 270 },
-              ].map((p, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  style={{ transformOrigin: "0 0" }}
-                >
-                  <div
-                    className="translate-x-[240px]"
-                    style={{ transform: `translateX(240px) rotate(${p.angle}deg)` }}
-                  >
-                    <div className="backdrop-blur-xl bg-white/8 border border-white/15 rounded-full px-3 py-1 text-xs text-slate-300 shadow-[0_0_18px_rgba(0,0,0,0.35)]">
-                      {p.label}
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Dark gradient overlay for clarity */}
-            <div className="absolute inset-0 -z-5 bg-[radial-gradient(circle_at_center,transparent_20%,#0a0a0a_80%)]" />
-
-            {/* Counter up 70% - Z-10 focal point */}
-            <div className="relative z-10">
-              <Counter70 />
-            </div>
-            <p className="relative z-10 mt-4 text-xs uppercase tracking-[0.25em] text-slate-400">dos Creators já enfrentaram <span className="text-red-400">Burnout</span>.</p>
-          </div>
-        </div>
-
-        {/* Glitch Separator */}
-        <div className="relative mt-28 mb-16 h-14">
-          <div className="absolute inset-0 [background:repeating-linear-gradient(90deg,#111_0_12px,#181818_12px_24px)]" />
+        <div className="relative max-w-5xl mx-auto">
+          {/* Title with parallax */}
           <motion.div
-            initial={{ clipPath: "polygon(0 60%, 15% 55%, 30% 62%, 50% 50%, 70% 58%, 85% 52%, 100% 60%, 100% 100%, 0 100%)" }}
-            animate={{ clipPath: [
-              "polygon(0 60%, 15% 55%, 30% 62%, 50% 50%, 70% 58%, 85% 52%, 100% 60%, 100% 100%, 0 100%)",
-              "polygon(0 62%, 14% 57%, 32% 64%, 49% 52%, 71% 60%, 86% 54%, 100% 62%, 100% 100%, 0 100%)",
-              "polygon(0 60%, 15% 55%, 30% 62%, 50% 50%, 70% 58%, 85% 52%, 100% 60%, 100% 100%, 0 100%)"
-            ] }}
-            transition={{ duration: 3, repeat: Infinity }}
-            className="absolute inset-0 bg-gradient-to-r from-red-600/35 via-indigo-600/25 to-transparent mix-blend-screen" />
-        </div>
-
-        {/* Glitch Card */}
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-          <div>
-            <motion.h3
+            initial={{ opacity: 0, y: 60, scale: 0.9 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ 
+              duration: 1.2,
+              type: "spring",
+              stiffness: 50
+            }}
+            className="text-center mb-20"
+          >
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent"
+            >
+              O Problema que Ninguém Vê
+            </motion.h2>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="h-1 w-32 mx-auto bg-gradient-to-r from-indigo-500 via-purple-500 to-red-500 rounded-full mb-6"
+            />
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="text-3xl md:text-4xl font-bold tracking-tight"
+              transition={{ duration: 0.9, delay: 0.4 }}
+              className="text-lg md:text-xl text-slate-400"
             >
-              O Atalho que Mata a Arte.
-            </motion.h3>
-            <motion.p
-              initial={{ opacity: 0, y: 18 }}
+              A rotina exaustiva do criador de conteúdo
+            </motion.p>
+          </motion.div>
+
+          {/* MOBILE: Vertical Story Scroll with Cinematic Parallax */}
+          <div className="md:hidden space-y-24">
+            {/* Step 1: Multi-tasking Chaos */}
+            <motion.div
+              initial={{ opacity: 0, y: 80 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ 
+                duration: 0.9,
+                type: "spring",
+                stiffness: 60
+              }}
+              className="space-y-6"
+            >
+              <motion.div 
+                className="flex items-center gap-4 mb-6"
+                initial={{ x: -50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, duration: 0.7 }}
+              >
+                <motion.span 
+                  className="text-5xl font-black text-indigo-500/40"
+                  whileInView={{ 
+                    scale: [1, 1.1, 1],
+                    rotate: [0, 5, 0]
+                  }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                >
+                  01
+                </motion.span>
+                <h3 className="text-2xl font-bold">Agência de Uma Pessoa Só</h3>
+              </motion.div>
+              
+              <motion.p 
+                className="text-slate-400 text-sm leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 0.7 }}
+              >
+                Roteiro, filmagem, edição, gestão de agenda, negociação de publis, responder DMs... O criador faz tudo sozinho.
+              </motion.p>
+              
+              <motion.div 
+                className="relative h-56 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border border-white/10 overflow-hidden shadow-2xl shadow-indigo-900/20"
+                initial={{ scale: 0.9, rotateX: 15 }}
+                whileInView={{ scale: 1, rotateX: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.8, type: "spring" }}
+              >
+                {/* Animated grid background */}
+                <motion.div
+                  className="absolute inset-0 opacity-10"
+                  style={{
+                    backgroundImage: 'linear-gradient(rgba(99, 102, 241, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.3) 1px, transparent 1px)',
+                    backgroundSize: '20px 20px'
+                  }}
+                  animate={{ 
+                    backgroundPosition: ['0px 0px', '20px 20px']
+                  }}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                />
+                
+                <div className="absolute inset-0 flex flex-wrap gap-2 p-4 content-start">
+                  {["Roteiro", "Edição", "Agenda", "Publis", "DMs", "Vendas", "Analytics", "Criação"].map((task, i) => (
+                    <motion.div
+                      key={task}
+                      initial={{ scale: 0, rotate: -180, opacity: 0 }}
+                      whileInView={{ scale: 1, rotate: 0, opacity: 1 }}
+                      transition={{ 
+                        delay: 0.5 + i * 0.1,
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 15
+                      }}
+                      whileHover={{ 
+                        scale: 1.1,
+                        rotate: 5,
+                        transition: { duration: 0.2 }
+                      }}
+                      viewport={{ once: true }}
+                      className="px-4 py-2 bg-indigo-600/20 border border-indigo-500/40 rounded-full text-xs text-indigo-300 font-medium backdrop-blur-sm shadow-lg shadow-indigo-900/30 cursor-pointer"
+                    >
+                      {task}
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* Step 2: Burnout Stat with dramatic reveal */}
+            <motion.div
+              initial={{ opacity: 0, y: 80 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ 
+                duration: 0.9,
+                type: "spring",
+                stiffness: 60
+              }}
+              className="space-y-6"
+            >
+              <motion.div 
+                className="flex items-center gap-4 mb-6"
+                initial={{ x: -50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, duration: 0.7 }}
+              >
+                <motion.span 
+                  className="text-5xl font-black text-red-500/40"
+                  whileInView={{ 
+                    scale: [1, 1.1, 1],
+                    rotate: [0, -5, 0]
+                  }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                >
+                  02
+                </motion.span>
+                <h3 className="text-2xl font-bold">O Resultado é Previsível</h3>
+              </motion.div>
+              
+              <motion.p 
+                className="text-slate-400 text-sm leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 0.7 }}
+              >
+                A sobrecarga leva ao esgotamento mental e criativo.
+              </motion.p>
+              
+              <motion.div 
+                className="relative h-72 rounded-2xl bg-gradient-to-br from-red-950/30 via-slate-950 to-slate-950 border border-red-500/20 flex flex-col items-center justify-center overflow-hidden shadow-2xl shadow-red-900/30"
+                initial={{ scale: 0.9, rotateX: 15 }}
+                whileInView={{ scale: 1, rotateX: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.8, type: "spring" }}
+              >
+                {/* Pulsing warning rings */}
+                <motion.div
+                  className="absolute inset-0 rounded-2xl border-2 border-red-500/30"
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    opacity: [0.3, 0, 0.3]
+                  }}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                <motion.div
+                  className="absolute inset-0 rounded-2xl border-2 border-red-500/20"
+                  animate={{ 
+                    scale: [1, 1.4, 1],
+                    opacity: [0.2, 0, 0.2]
+                  }}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.5
+                  }}
+                />
+                
+                <Counter70 />
+                
+                <motion.p 
+                  className="mt-6 text-xs text-slate-400 text-center px-4 uppercase tracking-widest"
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.8, duration: 0.6 }}
+                >
+                  dos creators já enfrentaram <span className="text-red-400 font-semibold">burnout</span>
+                </motion.p>
+              </motion.div>
+            </motion.div>
+
+            {/* Step 3: The Shortcut with typing animation */}
+            <motion.div
+              initial={{ opacity: 0, y: 80 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ 
+                duration: 0.9,
+                type: "spring",
+                stiffness: 60
+              }}
+              className="space-y-6"
+            >
+              <motion.div 
+                className="flex items-center gap-4 mb-6"
+                initial={{ x: -50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, duration: 0.7 }}
+              >
+                <motion.span 
+                  className="text-5xl font-black text-amber-500/40"
+                  whileInView={{ 
+                    scale: [1, 1.1, 1],
+                    rotate: [0, 5, 0]
+                  }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                >
+                  03
+                </motion.span>
+                <h3 className="text-2xl font-bold">O Atalho Perigoso</h3>
+              </motion.div>
+              
+              <motion.p 
+                className="text-slate-400 text-sm leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 0.7 }}
+              >
+                Para economizar tempo, criadores usam IAs genéricas. <span className="text-amber-400 font-medium">Mas se a essência do criador é criar...</span>
+              </motion.p>
+              
+              <motion.div 
+                className="relative h-64 rounded-2xl bg-gradient-to-br from-amber-950/20 via-slate-950 to-slate-950 border border-amber-500/20 p-6 flex flex-col justify-center shadow-2xl shadow-amber-900/20 overflow-hidden"
+                initial={{ scale: 0.9, rotateX: 15 }}
+                whileInView={{ scale: 1, rotateX: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.8, type: "spring" }}
+              >
+                {/* Scanline effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-500/5 to-transparent h-20"
+                  animate={{ 
+                    y: ['0%', '400%']
+                  }}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                />
+                
+                <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5, duration: 0.7 }}
+                  className="space-y-4 relative z-10"
+                >
+                  <motion.div 
+                    className="flex items-center gap-3 text-sm text-slate-400"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 0.6 }}
+                  >
+                    <motion.div 
+                      className="w-2.5 h-2.5 bg-green-500 rounded-full"
+                      animate={{ 
+                        scale: [1, 1.3, 1],
+                        opacity: [1, 0.5, 1]
+                      }}
+                      transition={{ 
+                        duration: 1.5, 
+                        repeat: Infinity
+                      }}
+                    />
+                    <span>IA genérica gerando roteiro...</span>
+                  </motion.div>
+                  
+                  <motion.div 
+                    className="bg-slate-900/80 border border-slate-800 rounded-xl p-4 text-xs text-slate-500 italic backdrop-blur-sm"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.8, duration: 0.6 }}
+                  >
+                    <motion.span
+                      initial={{ width: 0 }}
+                      whileInView={{ width: "100%" }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 1, duration: 2 }}
+                      className="inline-block overflow-hidden whitespace-nowrap"
+                    >
+                      "Olá pessoal, hoje vou mostrar 5 dicas para aumentar o engajamento..."
+                    </motion.span>
+                  </motion.div>
+                  
+                  <motion.p 
+                    className="text-xs text-red-400 mt-3 font-medium flex items-center gap-2"
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 1.2, duration: 0.5 }}
+                  >
+                    <motion.span
+                      animate={{ rotate: [0, 10, -10, 0] }}
+                      transition={{ duration: 0.5, delay: 1.5 }}
+                    >
+                      ❌
+                    </motion.span>
+                    Superficial. Sem alma. Genérico.
+                  </motion.p>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+
+            {/* Step 4: The Consequence with dramatic entrance */}
+            <motion.div
+              initial={{ opacity: 0, y: 80 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ 
+                duration: 0.9,
+                type: "spring",
+                stiffness: 60
+              }}
+              className="space-y-6"
+            >
+              <motion.div 
+                className="flex items-center gap-4 mb-6"
+                initial={{ x: -50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, duration: 0.7 }}
+              >
+                <motion.span 
+                  className="text-5xl font-black text-red-600/40"
+                  whileInView={{ 
+                    scale: [1, 1.1, 1],
+                    rotate: [0, -5, 0]
+                  }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                >
+                  04
+                </motion.span>
+                <h3 className="text-2xl font-bold">A Consequência</h3>
+              </motion.div>
+              
+              <motion.p 
+                className="text-slate-400 text-sm leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 0.7 }}
+              >
+                Feed tóxico. Desistência. O criador perde sua essência e o público perde interesse.
+              </motion.p>
+              
+              <motion.div
+                initial={{ scale: 0.9, rotateX: 15 }}
+                whileInView={{ scale: 1, rotateX: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.8, type: "spring" }}
+              >
+                <GlitchHoverCard />
+              </motion.div>
+            </motion.div>
+          </div>
+
+          {/* DESKTOP: Enhanced Cinematic Layout */}
+          <div className="hidden md:block">
+            <motion.div 
+              className="text-center mb-24"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.2 }}
+            >
+              <motion.h3
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 0.2 }}
+                className="text-3xl text-slate-400 mb-16 font-light"
+              >
+                A Agência de Uma Pessoa Só.
+              </motion.h3>
+
+              <div className="relative inline-block">
+                {/* Desktop orbit with enhanced animations */}
+                <div className="absolute -inset-40 -z-10">
+                  <motion.div 
+                    className="absolute inset-0 rounded-full border border-white/10"
+                    animate={{ 
+                      scale: [1, 1.05, 1],
+                      opacity: [0.1, 0.2, 0.1]
+                    }}
+                    transition={{ 
+                      duration: 4, 
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                  
+                  {[
+                    { label: "Roteiro", angle: 0, color: "indigo" },
+                    { label: "Edição", angle: 90, color: "purple" },
+                    { label: "Directs", angle: 180, color: "pink" },
+                    { label: "Publi", angle: 270, color: "blue" },
+                  ].map((p, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                      style={{ transformOrigin: "0 0" }}
+                    >
+                      <motion.div
+                        className="translate-x-[240px]"
+                        style={{ transform: `translateX(240px) rotate(${p.angle}deg)` }}
+                        whileHover={{ scale: 1.2 }}
+                      >
+                        <motion.div 
+                          className={`backdrop-blur-xl bg-white/8 border border-${p.color}-500/30 rounded-full px-4 py-2 text-sm text-slate-300 shadow-[0_0_24px_rgba(99,102,241,0.3)] cursor-pointer`}
+                          animate={{ 
+                            y: [0, -5, 0],
+                            boxShadow: [
+                              "0 0 24px rgba(99,102,241,0.3)",
+                              "0 0 32px rgba(99,102,241,0.5)",
+                              "0 0 24px rgba(99,102,241,0.3)"
+                            ]
+                          }}
+                          transition={{ 
+                            duration: 2, 
+                            repeat: Infinity,
+                            delay: i * 0.2
+                          }}
+                        >
+                          {p.label}
+                        </motion.div>
+                      </motion.div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                <div className="absolute inset-0 -z-5 bg-[radial-gradient(circle_at_center,transparent_20%,#050505_80%)]" />
+
+                <motion.div 
+                  className="relative z-10"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    duration: 1,
+                    delay: 0.5,
+                    type: "spring",
+                    stiffness: 100
+                  }}
+                >
+                  <Counter70 />
+                </motion.div>
+                
+                <motion.p 
+                  className="relative z-10 mt-6 text-sm uppercase tracking-[0.3em] text-slate-400"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.8, duration: 0.8 }}
+                >
+                  dos Creators já enfrentaram{" "}
+                  <motion.span 
+                    className="text-red-400 font-semibold"
+                    animate={{ 
+                      textShadow: [
+                        "0 0 10px rgba(248, 113, 113, 0.5)",
+                        "0 0 20px rgba(248, 113, 113, 0.8)",
+                        "0 0 10px rgba(248, 113, 113, 0.5)"
+                      ]
+                    }}
+                    transition={{ 
+                      duration: 2, 
+                      repeat: Infinity
+                    }}
+                  >
+                    Burnout
+                  </motion.span>
+                  .
+                </motion.p>
+              </div>
+            </motion.div>
+
+            {/* Enhanced Glitch Separator */}
+            <div className="relative mt-32 mb-20 h-16">
+              <div className="absolute inset-0 [background:repeating-linear-gradient(90deg,#111_0_12px,#181818_12px_24px)]" />
+              <motion.div
+                initial={{ clipPath: "polygon(0 60%, 15% 55%, 30% 62%, 50% 50%, 70% 58%, 85% 52%, 100% 60%, 100% 100%, 0 100%)" }}
+                animate={{ clipPath: [
+                  "polygon(0 60%, 15% 55%, 30% 62%, 50% 50%, 70% 58%, 85% 52%, 100% 60%, 100% 100%, 0 100%)",
+                  "polygon(0 62%, 14% 57%, 32% 64%, 49% 52%, 71% 60%, 86% 54%, 100% 62%, 100% 100%, 0 100%)",
+                  "polygon(0 60%, 15% 55%, 30% 62%, 50% 50%, 70% 58%, 85% 52%, 100% 60%, 100% 100%, 0 100%)"
+                ] }}
+                transition={{ duration: 3, repeat: Infinity }}
+                className="absolute inset-0 bg-gradient-to-r from-red-600/40 via-indigo-600/30 to-transparent mix-blend-screen" 
+              />
+              
+              {/* Floating particles */}
+              {[...Array(5)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-1 h-1 bg-white/40 rounded-full"
+                  style={{ 
+                    left: `${20 + i * 15}%`,
+                    top: '50%'
+                  }}
+                  animate={{ 
+                    y: [-20, 20, -20],
+                    opacity: [0.2, 0.6, 0.2]
+                  }}
+                  transition={{ 
+                    duration: 2 + i * 0.3,
+                    repeat: Infinity,
+                    delay: i * 0.2
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Enhanced Glitch Card Section */}
+            <motion.div 
+              className="grid md:grid-cols-2 gap-12 items-center"
+              initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.15 }}
-              className="mt-4 text-slate-400 max-w-xl"
+              transition={{ duration: 1 }}
             >
-              Na busca por tempo, economiza-se na alma. Roteiros genéricos geram um feed <span className="text-red-400">tóxico</span>, superficial — o criador perde sua essência.
-            </motion.p>
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, delay: 0.2 }}
+              >
+                <motion.h3
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                  className="text-4xl md:text-5xl font-bold tracking-tight mb-6 bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent"
+                >
+                  O Atalho que Mata a Arte.
+                </motion.h3>
+                
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="h-1 w-24 bg-gradient-to-r from-red-500 to-amber-500 rounded-full mb-6"
+                />
+                
+                <motion.p
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, delay: 0.4 }}
+                  className="text-slate-400 text-lg leading-relaxed max-w-xl"
+                >
+                  Na busca por tempo, economiza-se na alma. Roteiros genéricos geram um feed{" "}
+                  <motion.span 
+                    className="text-red-400 font-semibold"
+                    whileHover={{ 
+                      scale: 1.05,
+                      textShadow: "0 0 10px rgba(248, 113, 113, 0.8)"
+                    }}
+                  >
+                    tóxico
+                  </motion.span>
+                  , superficial — o criador perde sua essência.
+                </motion.p>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, x: 50, rotateY: -15 }}
+                whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, delay: 0.3 }}
+              >
+                <GlitchHoverCard />
+              </motion.div>
+            </motion.div>
           </div>
-          <GlitchHoverCard />
         </div>
       </section>
 
