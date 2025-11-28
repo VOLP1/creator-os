@@ -25,7 +25,7 @@ const Index = () => {
   const solutionBgY = useTransform(solutionScroll, [0, 1], [100, -100]);
 
   return (
-    <main className="min-h-screen bg-[#050505] text-slate-100 overflow-hidden">
+    <main className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-100 text-slate-900 overflow-hidden">
       {/* SECTION 1: THE HERO (Parallax "Neural Roots") */}
       <section ref={heroRef as any} className="relative h-screen flex items-center justify-center px-6 overflow-hidden">
         {/* Parallax background with scale */}
@@ -34,10 +34,10 @@ const Index = () => {
           className="absolute inset-0 will-change-transform"
         >
           <div
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0 bg-cover bg-center opacity-20"
             style={{ backgroundImage: "url('https://images.unsplash.com/photo-1763661478581-54cff2574c9a?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
           />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_10%,#050505_90%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/40 via-white/60 to-slate-50/80" />
         </motion.div>
 
         {/* Content */}
@@ -47,9 +47,9 @@ const Index = () => {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.05 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm text-slate-300 shadow-[0_0_20px_rgba(99,102,241,0.2)]"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-100 border border-indigo-200 text-sm text-indigo-700 shadow-lg shadow-indigo-100/50"
           >
-            <Leaf className="w-4 h-4 text-emerald-400" />
+            <Leaf className="w-4 h-4 text-emerald-600" />
             <span>Uma iniciativa +Creator</span>
           </motion.div>
 
@@ -58,7 +58,7 @@ const Index = () => {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="mt-4 text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+            className="mt-4 text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-800 bg-clip-text text-transparent"
           >
             A Tecnologia deve servir à Essência, não substituí-la.
           </motion.h1>
@@ -68,7 +68,7 @@ const Index = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-4 text-base sm:text-lg md:text-xl text-slate-400 max-w-3xl mx-auto"
+            className="mt-4 text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl mx-auto font-medium"
           >
             A Influ.IA é a resposta do movimento +Creator para o problema cíclico do criador. Regenerando a saúde mental e devolvendo a autonomia através de uma IA que cuida do que te exaure.
           </motion.p>
@@ -82,7 +82,7 @@ const Index = () => {
           >
             <Button
               size="lg"
-              className="bg-indigo-600/90 hover:bg-indigo-500 text-white shadow-[0_0_30px_rgba(99,102,241,0.35)] px-7 py-4 rounded-2xl border border-indigo-500/40"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white shadow-xl shadow-indigo-200/50 px-7 py-4 rounded-2xl border border-indigo-400"
               asChild
             >
               <a href="#beta">Testar a Influ.IA (Beta)</a>
@@ -90,7 +90,7 @@ const Index = () => {
             <Button
               size="lg"
               variant="outline"
-              className="bg-white/5 hover:bg-white/10 text-slate-100 border border-white/15 backdrop-blur-md rounded-2xl px-7 py-4"
+              className="bg-white hover:bg-slate-50 text-slate-700 border-2 border-slate-300 rounded-2xl px-7 py-4 shadow-lg"
               asChild
             >
               <a href="#manifesto">Ver o Manifesto</a>
@@ -100,22 +100,22 @@ const Index = () => {
       </section>
 
       {/* SECTION 2: THE MOVEMENT (Split Screen "Organic Tech") */}
-      <section ref={movementRef as any} className="relative min-h-screen px-6 py-24 overflow-hidden">
+      <section ref={movementRef as any} className="relative min-h-screen px-6 py-24 overflow-hidden bg-gradient-to-b from-slate-100 via-indigo-50 to-white">
         {/* Enhanced Parallax background */}
         <motion.div 
           style={{ y: movementBgY }} 
           className="absolute inset-0 will-change-transform"
         >
           <div
-            className="absolute inset-0 bg-cover bg-center scale-110"
+            className="absolute inset-0 bg-cover bg-center scale-110 opacity-15"
             style={{ backgroundImage: "url('https://images.unsplash.com/photo-1533240332313-0db49b459ad6?auto=format&fit=crop&q=80&w=2000')" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-[#050505]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-indigo-100/60 via-slate-50/80 to-white/90" />
         </motion.div>
         
         {/* Floating particles for depth */}
         <motion.div
-          className="absolute top-32 left-1/4 w-72 h-72 bg-emerald-500/20 rounded-full blur-3xl z-[1]"
+          className="absolute top-32 left-1/4 w-72 h-72 bg-emerald-400/20 rounded-full blur-3xl z-[1]"
           animate={{ 
             x: [0, 80, 0],
             y: [0, 60, 0],
@@ -124,7 +124,7 @@ const Index = () => {
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute bottom-32 right-1/3 w-80 h-80 bg-indigo-500/15 rounded-full blur-3xl z-[1]"
+          className="absolute bottom-32 right-1/3 w-80 h-80 bg-indigo-400/15 rounded-full blur-3xl z-[1]"
           animate={{ 
             x: [0, -60, 0],
             y: [0, -40, 0],
@@ -141,7 +141,7 @@ const Index = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="text-xs tracking-[0.2em] font-semibold text-indigo-400"
+              className="text-xs tracking-[0.2em] font-semibold text-indigo-600"
             >
               O CONTEXTO
             </motion.span>
@@ -150,7 +150,7 @@ const Index = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="mt-3 text-3xl md:text-5xl font-bold tracking-tight"
+              className="mt-3 text-3xl md:text-5xl font-bold tracking-tight text-slate-900"
             >
               Regenerar as redes para salvar quem cria.
             </motion.h2>
@@ -159,17 +159,17 @@ const Index = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="mt-6 space-y-4 text-slate-400"
+              className="mt-6 space-y-4 text-slate-600"
             >
               <p>A internet adoeceu. O que era para ser um espaço de expressão virou uma linha de montagem de ansiedade.</p>
               <p>
-                A <strong className="text-slate-100">+Creator</strong> não é uma empresa, é um movimento. Nossa missão é garantir um futuro com mais saúde mental para jovens e criadores.
+                A <strong className="text-slate-900">+Creator</strong> não é uma empresa, é um movimento. Nossa missão é garantir um futuro com mais saúde mental para jovens e criadores.
               </p>
               <p>
                 A Influ.IA não nasceu em uma sala de reunião focada em lucro. Ela surge como a ferramenta técnica necessária para quebrar o ciclo de exaustão que o sistema impõe.
               </p>
             </motion.div>
-            <div className="mt-6"><Button asChild variant="outline"><a href="/o-movimento">Saiba mais</a></Button></div>
+            <div className="mt-6"><Button asChild variant="outline" className="border-2 border-slate-300 text-slate-700 hover:bg-slate-100"><a href="/o-movimento">Saiba mais</a></Button></div>
           </div>
 
           {/* Right: Visual Concept */}
@@ -184,15 +184,15 @@ const Index = () => {
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="relative w-full max-w-md aspect-square">
                 {/* Leaf veins / circuit */}
-                <div className="absolute inset-6 rounded-[40%] bg-[conic-gradient(from_180deg_at_50%_50%,rgba(16,185,129,0.25),transparent_60%,rgba(99,102,241,0.3))] blur-sm" />
+                <div className="absolute inset-6 rounded-[40%] bg-[conic-gradient(from_180deg_at_50%_50%,rgba(16,185,129,0.3),transparent_60%,rgba(99,102,241,0.35))] blur-sm" />
                 {/* Inner glow */}
-                <div className="absolute inset-12 rounded-[40%] bg-[radial-gradient(circle_at_50%_40%,rgba(99,102,241,0.35),transparent_60%)]" />
+                <div className="absolute inset-12 rounded-[40%] bg-[radial-gradient(circle_at_50%_40%,rgba(99,102,241,0.4),transparent_60%)]" />
                 {/* Subtle float */}
                 <motion.div
                   initial={{ y: 0 }}
                   animate={{ y: [-6, 6, -6] }}
                   transition={{ duration: 6, repeat: Infinity }}
-                  className="absolute -inset-2 rounded-[40%] border border-indigo-500/20"
+                  className="absolute -inset-2 rounded-[40%] border-2 border-indigo-300/30"
                 />
               </div>
             </div>
@@ -201,7 +201,7 @@ const Index = () => {
       </section>
 
       {/* SECTION 3: THE PROBLEM (ULTRA Cinematic Burnout Journey) */}
-      <section ref={problemRef as any} className="relative w-full bg-[#050505] px-6 py-20 md:py-32 overflow-hidden will-change-transform" style={{ perspective: '1000px' }}>
+      <section ref={problemRef as any} className="relative w-full bg-gradient-to-b from-white via-rose-50 to-red-50 px-6 py-20 md:py-32 overflow-hidden will-change-transform" style={{ perspective: '1000px' }}>
         {/* Multi-layer Parallax Background */}
         <motion.div 
           className="absolute inset-0 z-0 will-change-transform"
@@ -209,25 +209,25 @@ const Index = () => {
         >
           {/* Layer 1: Far background (slowest) - OPTIMIZED: reduced blur */}
           <motion.div 
-            className="absolute inset-0 bg-cover bg-center opacity-10 scale-125"
+            className="absolute inset-0 bg-cover bg-center opacity-8 scale-125"
             style={{
               backgroundImage: 'url(https://images.unsplash.com/photo-1499482125586-91609c0b5fd4?w=2000&q=80)',
             }}
             animate={{ 
               scale: [1.25, 1.3, 1.25],
-              opacity: [0.1, 0.15, 0.1]
+              opacity: [0.08, 0.12, 0.08]
             }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           />
           
           {/* Layer 2: Mid depth with vignette */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(5,5,5,0.4)_40%,#050505_90%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-rose-50/60 to-red-50/80" />
           
           {/* Layer 3: Color grading overlay */}
           <motion.div 
-            className="absolute inset-0 bg-gradient-to-b from-[#050505] via-red-950/20 to-[#050505] mix-blend-multiply"
+            className="absolute inset-0 bg-gradient-to-b from-rose-100/40 via-red-100/30 to-rose-50/40"
             animate={{ 
-              opacity: [0.7, 0.85, 0.7]
+              opacity: [0.5, 0.7, 0.5]
             }}
             transition={{ duration: 6, repeat: Infinity }}
           />
@@ -236,28 +236,28 @@ const Index = () => {
         {/* Cinematic Film Grain - OPTIMIZED: slower refresh */}
         <motion.div
           animate={{ 
-            opacity: [0.03, 0.06, 0.03],
+            opacity: [0.02, 0.04, 0.02],
           }}
           transition={{ 
             duration: 0.3, 
             repeat: Infinity,
           }}
-          className="pointer-events-none absolute inset-0 z-[1] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGQ9Ik0wIDBoMzAwdjMwMEgweiIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=')] opacity-50 mix-blend-overlay" 
+          className="pointer-events-none absolute inset-0 z-[1] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGQ9Ik0wIDBoMzAwdjMwMEgweiIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=')] opacity-30 mix-blend-overlay" 
         />
         
-        {/* Volumetric light rays - OPTIMIZED: reduced to 2 */}
+        {/* Volumetric light rays - OPTIMIZED: reduced to 2, lighter colors */}
         <motion.div
-          className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-indigo-500/20 to-transparent z-[1]"
+          className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-indigo-400/15 to-transparent z-[1]"
           animate={{ 
-            opacity: [0.1, 0.3, 0.1],
+            opacity: [0.1, 0.25, 0.1],
             x: [-100, 100, -100]
           }}
           transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
         />
         <motion.div
-          className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-red-500/15 to-transparent z-[1]"
+          className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-rose-400/12 to-transparent z-[1]"
           animate={{ 
-            opacity: [0.1, 0.25, 0.1],
+            opacity: [0.1, 0.2, 0.1],
             x: [100, -100, 100]
           }}
           transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
@@ -267,7 +267,7 @@ const Index = () => {
         {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-white/20 rounded-full z-[2]"
+            className="absolute w-1 h-1 bg-red-400/30 rounded-full z-[2]"
             style={{ 
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -276,7 +276,7 @@ const Index = () => {
             animate={{ 
               y: [0, -100 - Math.random() * 200, 0],
               x: [0, (Math.random() - 0.5) * 100, 0],
-              opacity: [0, 0.4, 0],
+              opacity: [0, 0.3, 0],
               scale: [0, 1, 0]
             }}
             transition={{ 
@@ -290,12 +290,12 @@ const Index = () => {
 
         {/* Atmospheric fog layers - OPTIMIZED: added will-change */}
         <motion.div
-          className="absolute top-1/4 -left-40 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-[100px] z-[2] will-change-transform"
+          className="absolute top-1/4 -left-40 w-[600px] h-[600px] bg-indigo-300/15 rounded-full blur-[100px] z-[2] will-change-transform"
           animate={{ 
             x: [-100, 150, -100],
             y: [0, 80, 0],
             scale: [1, 1.3, 1],
-            opacity: [0.1, 0.2, 0.1]
+            opacity: [0.08, 0.15, 0.08]
           }}
           transition={{ 
             duration: 20, 
@@ -304,12 +304,12 @@ const Index = () => {
           }}
         />
         <motion.div
-          className="absolute bottom-1/4 -right-40 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[120px] z-[2] will-change-transform"
+          className="absolute bottom-1/4 -right-40 w-[500px] h-[500px] bg-rose-300/12 rounded-full blur-[120px] z-[2] will-change-transform"
           animate={{ 
             x: [100, -150, 100],
             y: [0, -100, 0],
             scale: [1, 1.4, 1],
-            opacity: [0.08, 0.18, 0.08]
+            opacity: [0.06, 0.12, 0.06]
           }}
           transition={{ 
             duration: 25, 
@@ -340,7 +340,7 @@ const Index = () => {
               transition={{ duration: 1, delay: 0.4 }}
               className="mb-6"
             >
-              <span className="inline-block px-4 py-1.5 bg-red-950/30 border border-red-500/20 rounded-full text-xs uppercase tracking-[0.3em] text-red-400 font-semibold">
+              <span className="inline-block px-4 py-1.5 bg-red-100 border border-red-300 rounded-full text-xs uppercase tracking-[0.3em] text-red-700 font-semibold shadow-lg">
                 Capítulo III
               </span>
             </motion.div>
@@ -354,7 +354,7 @@ const Index = () => {
               className="text-5xl md:text-7xl font-black mb-6 leading-tight"
             >
               <motion.span
-                className="inline-block bg-gradient-to-r from-white via-red-200 to-indigo-300 bg-clip-text text-transparent"
+                className="inline-block bg-gradient-to-r from-slate-900 via-red-700 to-indigo-800 bg-clip-text text-transparent"
                 animate={{ 
                   backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
                 }}
@@ -382,7 +382,7 @@ const Index = () => {
                 whileInView={{ scaleX: 1, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.2, delay: 1.2 }}
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-indigo-500 to-red-500"
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-indigo-400 to-red-400"
               />
               <motion.div
                 animate={{ 
@@ -394,7 +394,7 @@ const Index = () => {
                   ease: "linear",
                   repeatDelay: 2
                 }}
-                className="absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white to-transparent opacity-50"
+                className="absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/80 to-transparent opacity-70"
               />
             </div>
 
@@ -404,7 +404,7 @@ const Index = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1.2, delay: 1.4 }}
-              className="text-lg md:text-2xl text-slate-400 font-light italic max-w-2xl mx-auto"
+              className="text-lg md:text-2xl text-slate-600 font-light italic max-w-2xl mx-auto"
             >
               "A rotina exaustiva do criador de conteúdo"
             </motion.p>
@@ -460,13 +460,13 @@ const Index = () => {
               </motion.div>
               
               <motion.p 
-                className="text-slate-300 text-base leading-relaxed"
+                className="text-slate-700 text-base leading-relaxed"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5, duration: 0.9 }}
               >
-                Roteiro, filmagem, edição, gestão de agenda, negociação de publis, responder DMs... <span className="text-indigo-400 font-semibold">O criador faz tudo sozinho.</span>
+                Roteiro, filmagem, edição, gestão de agenda, negociação de publis, responder DMs... <span className="text-indigo-700 font-semibold">O criador faz tudo sozinho.</span>
               </motion.p>
               
               {/* Card with depth - OPTIMIZED: removed heavy 3D transforms */}
@@ -481,7 +481,7 @@ const Index = () => {
                 }}
               >
                 {/* Layered background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-950" />
+                <div className="absolute inset-0 bg-gradient-to-br from-white via-indigo-50 to-slate-100" />
                 
                 {/* Animated grid - OPTIMIZED: slower animation */}
                 <motion.div
@@ -518,7 +518,7 @@ const Index = () => {
                         transition: { duration: 0.2 }
                       }}
                       viewport={{ once: true }}
-                      className="relative px-4 py-2 bg-indigo-600/30 border border-indigo-400/50 rounded-full text-sm text-indigo-200 font-medium backdrop-blur-md cursor-pointer"
+                      className="relative px-4 py-2 bg-indigo-100 border border-indigo-300 rounded-full text-sm text-indigo-800 font-medium backdrop-blur-md cursor-pointer shadow-sm"
                       style={{ 
                         boxShadow: '0 8px 20px -8px rgba(99, 102, 241, 0.6), inset 0 1px 0 rgba(255,255,255,0.2)'
                       }}
@@ -583,13 +583,13 @@ const Index = () => {
               </motion.div>
               
               <motion.p 
-                className="text-slate-300 text-base leading-relaxed"
+                className="text-slate-700 text-base leading-relaxed"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5, duration: 0.9 }}
               >
-                A sobrecarga leva ao <span className="text-red-400 font-semibold">esgotamento mental e criativo.</span>
+                A sobrecarga leva ao <span className="text-red-700 font-semibold">esgotamento mental e criativo.</span>
               </motion.p>
               
               {/* Dramatic stat reveal card - OPTIMIZED */}
@@ -604,7 +604,7 @@ const Index = () => {
                 }}
               >
                 {/* Dark red gradient background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-red-950/40 via-slate-950 to-black" />
+                <div className="absolute inset-0 bg-gradient-to-br from-red-100 via-rose-50 to-white" />
                 
                 {/* Animated warning stripes - OPTIMIZED: slower */}
                 <motion.div
@@ -652,7 +652,7 @@ const Index = () => {
                   </motion.div>
                   
                   <motion.p 
-                    className="mt-8 text-sm text-slate-400 text-center px-6 uppercase tracking-[0.3em] font-semibold"
+                    className="mt-8 text-sm text-slate-700 text-center px-6 uppercase tracking-[0.3em] font-semibold"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -1108,25 +1108,25 @@ const Index = () => {
       </section>
 
       {/* SECTION 4: THE SOLUTION (Fixed Phone com JS) */}
-      <section ref={solutionRef as any} className="relative w-full bg-gradient-to-b from-slate-950 to-indigo-950 overflow-hidden">
+      <section ref={solutionRef as any} className="relative w-full bg-gradient-to-b from-indigo-50 via-emerald-50 to-white overflow-hidden">
         {/* Parallax Background Image - Success/Solution */}
         <motion.div 
           className="absolute inset-0 z-0"
           style={{ y: solutionBgY }}
         >
           <div 
-            className="absolute inset-0 bg-cover bg-center opacity-10 scale-110"
+            className="absolute inset-0 bg-cover bg-center opacity-12 scale-110"
             style={{
               backgroundImage: 'url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=2000&q=80)',
             }}
           />
           {/* Gradient overlay with brand colors */}
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/95 via-indigo-950/90 to-indigo-950" />
+          <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/90 via-emerald-50/80 to-white/95" />
         </motion.div>
         
         {/* Animated gradient orbs for depth */}
         <motion.div
-          className="absolute top-1/4 left-1/3 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl z-[1]"
+          className="absolute top-1/4 left-1/3 w-96 h-96 bg-emerald-400/20 rounded-full blur-3xl z-[1]"
           animate={{ 
             x: [0, 60, 0],
             y: [0, -40, 0],
@@ -1135,7 +1135,7 @@ const Index = () => {
           transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-indigo-500/25 rounded-full blur-3xl z-[1]"
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-indigo-400/25 rounded-full blur-3xl z-[1]"
           animate={{ 
             x: [0, -50, 0],
             y: [0, 60, 0],
@@ -1147,10 +1147,10 @@ const Index = () => {
         <div className="md:hidden px-6 py-20 relative z-10">
           {/* Title */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">
-              A Solução <span className="text-emerald-400">InfluIA</span>
+            <h2 className="text-4xl font-bold mb-4 text-slate-900">
+              A Solução <span className="text-emerald-600">InfluIA</span>
             </h2>
-            <p className="text-slate-400 text-lg">Seu copiloto de IA para criadores</p>
+            <p className="text-slate-600 text-lg">Seu copiloto de IA para criadores</p>
           </div>
 
           {/* Container com altura para scroll */}
@@ -1166,15 +1166,15 @@ const Index = () => {
             {/* Left column */}
             <div className="space-y-[60vh]">
               <div className="min-h-[60vh] flex items-center">
-                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6 }} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-[0_0_30px_-12px_rgba(99,102,241,0.45)] max-w-md ml-auto">
-                  <h3 className="text-2xl font-bold tracking-tight">Gestão de Agenda</h3>
-                  <p className="mt-2 text-slate-300">Você pede, ela marca.</p>
+                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6 }} className="bg-white/80 backdrop-blur-xl border-2 border-indigo-200 rounded-2xl p-6 shadow-xl shadow-indigo-200/50 max-w-md ml-auto">
+                  <h3 className="text-2xl font-bold tracking-tight text-slate-900">Gestão de Agenda</h3>
+                  <p className="mt-2 text-slate-600">Você pede, ela marca.</p>
                 </motion.div>
               </div>
               <div className="min-h-[60vh] flex items-center">
-                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6 }} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-[0_0_30px_-12px_rgba(99,102,241,0.45)] max-w-md ml-auto">
-                  <h3 className="text-2xl font-bold tracking-tight">Inteligência Real</h3>
-                  <p className="mt-2 text-slate-300">Táticas validadas, não alucinações.</p>
+                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6 }} className="bg-white/80 backdrop-blur-xl border-2 border-indigo-200 rounded-2xl p-6 shadow-xl shadow-indigo-200/50 max-w-md ml-auto">
+                  <h3 className="text-2xl font-bold tracking-tight text-slate-900">Inteligência Real</h3>
+                  <p className="mt-2 text-slate-600">Táticas validadas, não alucinações.</p>
                 </motion.div>
               </div>
             </div>
@@ -1189,9 +1189,9 @@ const Index = () => {
             {/* Right column */}
             <div className="space-y-[60vh]">
               <div className="min-h-[60vh] flex items-center">
-                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6 }} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-[0_0_30px_-12px_rgba(37,99,235,0.45)] max-w-md mr-auto">
-                  <h3 className="text-2xl font-bold tracking-tight">CRM Automático</h3>
-                  <p className="mt-2 text-slate-300">Nunca mais perca um lead.</p>
+                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6 }} className="bg-white/80 backdrop-blur-xl border-2 border-emerald-200 rounded-2xl p-6 shadow-xl shadow-emerald-200/50 max-w-md mr-auto">
+                  <h3 className="text-2xl font-bold tracking-tight text-slate-900">CRM Automático</h3>
+                  <p className="mt-2 text-slate-600">Nunca mais perca um lead.</p>
                 </motion.div>
               </div>
             </div>
@@ -1200,13 +1200,12 @@ const Index = () => {
       </section>
 
       {/* SECTION 5: THE APPEAL (Why Support?) */}
-      <section className="relative min-h-[70vh] px-6 py-32 flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-[#050505]" />
-        <div className="absolute inset-0 bg-cover bg-center opacity-40" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1495616811223-4d98c6e9d869?auto=format&fit=crop&q=80')" }} />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-[180px] bg-[radial-gradient(circle_at_bottom,rgba(251,191,36,0.35),transparent_70%)] animate-pulse" />
+      <section className="relative min-h-[70vh] px-6 py-32 flex items-center justify-center overflow-hidden bg-gradient-to-b from-white via-amber-50 to-orange-50">
+        <div className="absolute inset-0 bg-cover bg-center opacity-10" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1495616811223-4d98c6e9d869?auto=format&fit=crop&q=80')" }} />
+        <div className="absolute inset-0 bg-gradient-to-t from-orange-50/80 via-amber-50/60 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-[180px] bg-[radial-gradient(circle_at_bottom,rgba(251,191,36,0.25),transparent_70%)]" />
         <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <motion.h2 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight">
+          <motion.h2 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-900">
             Não é sobre um app. É sobre o futuro da nossa atenção.
           </motion.h2>
           <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.15 }} className="mt-8 text-lg md:text-xl text-slate-300 leading-relaxed">
@@ -1225,18 +1224,17 @@ const Index = () => {
       </section>
 
       {/* SECTION 6: THE VIP CONTACT (Angel Investor) */}
-      <section className="relative px-6 py-24">
-        <div className="absolute inset-0 bg-[#050505]" />
-        <div className="absolute inset-x-0 bottom-0 h-[160px] bg-[radial-gradient(circle_at_bottom,rgba(251,191,36,0.25),transparent_75%)]" />
+      <section className="relative px-6 py-24 bg-gradient-to-b from-orange-50 to-slate-50">
+        <div className="absolute inset-x-0 bottom-0 h-[160px] bg-[radial-gradient(circle_at_bottom,rgba(251,191,36,0.15),transparent_75%)]" />
         <div className="relative max-w-4xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-10 shadow-[0_0_50px_-10px_rgba(251,191,36,0.35)]">
-            <h3 className="text-2xl md:text-3xl font-bold tracking-tight">Quer apadrinhar o projeto?</h3>
-            <p className="mt-4 text-slate-400 max-w-xl">Para grandes apoios e Investidores Anjo que buscam equity e participação estratégica.</p>
+          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="bg-white border-2 border-amber-200 rounded-3xl p-10 shadow-2xl shadow-amber-200/50">
+            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900">Quer apadrinhar o projeto?</h3>
+            <p className="mt-4 text-slate-600 max-w-xl">Para grandes apoios e Investidores Anjo que buscam equity e participação estratégica.</p>
             <div className="mt-6 flex items-center gap-3">
-              <div className="h-11 w-11 rounded-2xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center">
-                <MessageCircle className="w-6 h-6 text-emerald-300" />
+              <div className="h-11 w-11 rounded-2xl bg-emerald-100 border-2 border-emerald-300 flex items-center justify-center">
+                <MessageCircle className="w-6 h-6 text-emerald-700" />
               </div>
-              <a href="tel:+5561981772703" className="text-lg font-semibold text-slate-100 hover:text-amber-300 transition">
+              <a href="tel:+5561981772703" className="text-lg font-semibold text-slate-900 hover:text-amber-600 transition">
                 Fale conosco: (61) 98177-2703
               </a>
             </div>
@@ -1248,36 +1246,35 @@ const Index = () => {
       </section>
 
       {/* SECTION 7: EDUCATIONAL FAQ (Accordion) */}
-      <section className="relative px-6 py-32">
-        <div className="absolute inset-0 bg-[#050505]" />
-        <div className="absolute inset-x-0 bottom-0 h-[140px] bg-[radial-gradient(circle_at_bottom,rgba(251,191,36,0.2),transparent_70%)]" />
+      <section className="relative px-6 py-32 bg-slate-50">
+        <div className="absolute inset-x-0 bottom-0 h-[140px] bg-[radial-gradient(circle_at_bottom,rgba(99,102,241,0.15),transparent_70%)]" />
         <div className="relative max-w-5xl mx-auto">
-          <motion.h3 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-3xl md:text-5xl font-bold tracking-tight text-center mb-12">
+          <motion.h3 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-3xl md:text-5xl font-bold tracking-tight text-center mb-12 text-slate-900">
             Perguntas Frequentes & Conceitos
           </motion.h3>
-          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-10 shadow-[0_0_50px_-12px_rgba(251,191,36,0.3)]">
+          <div className="bg-white border-2 border-indigo-200 rounded-3xl p-6 md:p-10 shadow-2xl shadow-indigo-200/40">
             <Accordion type="single" collapsible className="space-y-2">
-              <AccordionItem value="item-1" className="border-white/10 rounded-xl px-4">
-                <AccordionTrigger className="text-slate-100">Quem somos?</AccordionTrigger>
-                <AccordionContent className="text-slate-400 leading-relaxed">
+              <AccordionItem value="item-1" className="border-slate-200 rounded-xl px-4">
+                <AccordionTrigger className="text-slate-900">Quem somos?</AccordionTrigger>
+                <AccordionContent className="text-slate-600 leading-relaxed">
                   Somos a união da Singular (Venture Builder de tecnologia) e do Movimento +Creator (Iniciativa de regeneração digital). Tecnologia com propósito.
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="item-2" className="border-white/10 rounded-xl px-4">
-                <AccordionTrigger className="text-slate-100">O que é uma Startup?</AccordionTrigger>
-                <AccordionContent className="text-slate-400 leading-relaxed">
+              <AccordionItem value="item-2" className="border-slate-200 rounded-xl px-4">
+                <AccordionTrigger className="text-slate-900">O que é uma Startup?</AccordionTrigger>
+                <AccordionContent className="text-slate-600 leading-relaxed">
                   Uma empresa de base tecnológica desenhada para crescer rápido (escala) em um cenário de incerteza, diferente de uma empresa tradicional.
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="item-3" className="border-white/10 rounded-xl px-4">
-                <AccordionTrigger className="text-slate-100">O que é Crowdfunding?</AccordionTrigger>
-                <AccordionContent className="text-slate-400 leading-relaxed">
+              <AccordionItem value="item-3" className="border-slate-200 rounded-xl px-4">
+                <AccordionTrigger className="text-slate-900">O que é Crowdfunding?</AccordionTrigger>
+                <AccordionContent className="text-slate-600 leading-relaxed">
                   Financiamento Coletivo. É como uma "vaquinha", mas para empresas. Você apoia o nascimento do projeto e recebe recompensas ou participação.
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="item-4" className="border-white/10 rounded-xl px-4">
-                <AccordionTrigger className="text-slate-100">O que é o Algoritmo?</AccordionTrigger>
-                <AccordionContent className="text-slate-400 leading-relaxed">
+              <AccordionItem value="item-4" className="border-slate-200 rounded-xl px-4">
+                <AccordionTrigger className="text-slate-900">O que é o Algoritmo?</AccordionTrigger>
+                <AccordionContent className="text-slate-600 leading-relaxed">
                   São as regras automáticas das redes sociais que decidem quem vê seu post. Hoje, elas forçam o criador a trabalhar sem parar. Nós mudamos isso.
                 </AccordionContent>
               </AccordionItem>
@@ -1287,19 +1284,18 @@ const Index = () => {
       </section>
 
       {/* SECTION 8: FOOTER & FINAL CTA */}
-      <footer className="relative px-6 py-32 text-center overflow-hidden">
-        <div className="absolute inset-0 bg-[#050505]" />
-        <div className="absolute inset-x-0 bottom-0 h-[220px] bg-[radial-gradient(circle_at_bottom,rgba(251,191,36,0.4),transparent_75%)] animate-pulse" />
+      <footer className="relative px-6 py-32 text-center overflow-hidden bg-gradient-to-b from-slate-50 via-amber-50 to-orange-100">
+        <div className="absolute inset-x-0 bottom-0 h-[220px] bg-[radial-gradient(circle_at_bottom,rgba(251,191,36,0.3),transparent_75%)]" />
         <div className="relative z-10 max-w-4xl mx-auto">
-          <motion.h2 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-10">
+          <motion.h2 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-10 text-slate-900">
             Faça parte da Regeneração.
           </motion.h2>
           <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.15 }} className="flex flex-col items-center gap-5">
-            <Button size="lg" className="relative bg-amber-500 text-black font-semibold rounded-2xl px-10 py-5 shadow-[0_0_40px_rgba(251,191,36,0.55)]">
-              <span className="absolute inset-0 rounded-2xl animate-pulse bg-amber-400/20" aria-hidden />
+            <Button size="lg" className="relative bg-amber-500 hover:bg-amber-600 text-black font-semibold rounded-2xl px-10 py-5 shadow-2xl shadow-amber-300/60">
+              <span className="absolute inset-0 rounded-2xl bg-amber-400/30" aria-hidden />
               <a href="https://benfeitoria.com" target="_blank" rel="noopener noreferrer">Apoiar na Benfeitoria</a>
             </Button>
-            <a href="#beta-form" className="text-slate-300 text-sm underline decoration-amber-400/40 hover:decoration-amber-300">Formulário Beta</a>
+            <a href="#beta-form" className="text-slate-700 text-sm underline decoration-amber-500/60 hover:decoration-amber-500 font-medium">Formulário Beta</a>
           </motion.div>
           <p className="mt-12 text-xs text-slate-500">© 2025 Influ.IA - Uma empresa Singular.</p>
         </div>

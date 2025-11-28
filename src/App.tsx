@@ -11,7 +11,6 @@ import InfluIA from "@/pages/InfluIA";
 import Apoiar from "@/pages/Apoiar";
 import FAQ from "@/pages/FAQ";
 import Algoritmo from "@/pages/Algoritmo";
-import Header from "@/components/Header";
 
 const queryClient = new QueryClient();
 
@@ -21,7 +20,6 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Header />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/o-movimento" element={<Movimento />} />
