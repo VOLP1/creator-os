@@ -9,21 +9,33 @@ const Index = () => {
 
   const heroRef = useRef<HTMLElement | null>(null);
   const { scrollYProgress: heroScroll } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const heroBgY = useTransform(heroScroll, [0, 1], [0, -60]);
+  const heroBgY = useTransform(heroScroll, [0, 1], [0, -100]);
+  const heroBgScale = useTransform(heroScroll, [0, 1], [1, 1.2]);
 
   const movementRef = useRef<HTMLElement | null>(null);
   const { scrollYProgress: movementScroll } = useScroll({ target: movementRef, offset: ["start end", "end start"] });
-  const movementBgY = useTransform(movementScroll, [0, 1], [0, -80]);
+  const movementBgY = useTransform(movementScroll, [0, 1], [100, -100]);
+
+  const problemRef = useRef<HTMLElement | null>(null);
+  const { scrollYProgress: problemScroll } = useScroll({ target: problemRef, offset: ["start end", "end start"] });
+  const problemBgY = useTransform(problemScroll, [0, 1], [100, -100]);
+
+  const solutionRef = useRef<HTMLElement | null>(null);
+  const { scrollYProgress: solutionScroll } = useScroll({ target: solutionRef, offset: ["start end", "end start"] });
+  const solutionBgY = useTransform(solutionScroll, [0, 1], [100, -100]);
 
   return (
     <main className="min-h-screen bg-[#050505] text-slate-100 overflow-hidden">
       {/* SECTION 1: THE HERO (Parallax "Neural Roots") */}
-      <section ref={heroRef as any} className="relative h-screen flex items-center justify-center px-6">
-        {/* Parallax background */}
-        <motion.div style={{ y: heroBgY }} className="absolute inset-0">
+      <section ref={heroRef as any} className="relative h-screen flex items-center justify-center px-6 overflow-hidden">
+        {/* Parallax background with scale */}
+        <motion.div 
+          style={{ y: heroBgY, scale: heroBgScale }} 
+          className="absolute inset-0 will-change-transform"
+        >
           <div
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1620641788421-7a1c3427a8a6?auto=format&fit=crop&q=80')" }}
+            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1763661478581-54cff2574c9a?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
           />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_10%,#050505_90%)]" />
         </motion.div>
@@ -88,16 +100,39 @@ const Index = () => {
       </section>
 
       {/* SECTION 2: THE MOVEMENT (Split Screen "Organic Tech") */}
-      <section ref={movementRef as any} className="relative min-h-screen px-6 py-24">
-        {/* Parallax background */}
-        <motion.div style={{ y: movementBgY }} className="absolute inset-0">
+      <section ref={movementRef as any} className="relative min-h-screen px-6 py-24 overflow-hidden">
+        {/* Enhanced Parallax background */}
+        <motion.div 
+          style={{ y: movementBgY }} 
+          className="absolute inset-0 will-change-transform"
+        >
           <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1533240332313-0db49b459ad6?auto=format&fit=crop&q=80')" }}
+            className="absolute inset-0 bg-cover bg-center scale-110"
+            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1533240332313-0db49b459ad6?auto=format&fit=crop&q=80&w=2000')" }}
           />
-          <div className="absolute inset-0 bg-black/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-[#050505]" />
         </motion.div>
-
+        
+        {/* Floating particles for depth */}
+        <motion.div
+          className="absolute top-32 left-1/4 w-72 h-72 bg-emerald-500/20 rounded-full blur-3xl z-[1]"
+          animate={{ 
+            x: [0, 80, 0],
+            y: [0, 60, 0],
+            scale: [1, 1.3, 1]
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-32 right-1/3 w-80 h-80 bg-indigo-500/15 rounded-full blur-3xl z-[1]"
+          animate={{ 
+            x: [0, -60, 0],
+            y: [0, -40, 0],
+            scale: [1, 1.2, 1]
+          }}
+          transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
+        />
+        
         <div className="relative z-10 max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-start">
           {/* Left: Sticky Text */}
           <div className="md:sticky md:top-24">
@@ -165,272 +200,479 @@ const Index = () => {
         </div>
       </section>
 
-      {/* SECTION 3: THE PROBLEM (Cinematic Burnout Journey) */}
-      <section className="relative w-full bg-[#050505] px-6 py-20 md:py-32 overflow-hidden">
-        {/* Animated TV static noise overlay */}
-        <motion.div
-          animate={{ 
-            opacity: [0.02, 0.04, 0.02],
-            scale: [1, 1.02, 1]
-          }}
-          transition={{ 
-            duration: 4, 
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="pointer-events-none absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGQ9Ik0wIDBoMzAwdjMwMEgweiIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=')] animate-pulse" 
-        />
-
-        {/* Floating gradient orbs with parallax */}
-        <motion.div
-          className="absolute top-1/4 -left-20 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl"
-          animate={{ 
-            x: [0, 50, 0],
-            y: [0, 30, 0],
-            scale: [1, 1.1, 1]
-          }}
-          transition={{ 
-            duration: 15, 
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          className="absolute bottom-1/3 -right-20 w-80 h-80 bg-red-600/15 rounded-full blur-3xl"
-          animate={{ 
-            x: [0, -40, 0],
-            y: [0, -50, 0],
-            scale: [1, 1.15, 1]
-          }}
-          transition={{ 
-            duration: 18, 
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-
-        <div className="relative max-w-5xl mx-auto">
-          {/* Title with parallax */}
-          <motion.div
-            initial={{ opacity: 0, y: 60, scale: 0.9 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ 
-              duration: 1.2,
-              type: "spring",
-              stiffness: 50
+      {/* SECTION 3: THE PROBLEM (ULTRA Cinematic Burnout Journey) */}
+      <section ref={problemRef as any} className="relative w-full bg-[#050505] px-6 py-20 md:py-32 overflow-hidden will-change-transform" style={{ perspective: '1000px' }}>
+        {/* Multi-layer Parallax Background */}
+        <motion.div 
+          className="absolute inset-0 z-0 will-change-transform"
+          style={{ y: problemBgY }}
+        >
+          {/* Layer 1: Far background (slowest) - OPTIMIZED: reduced blur */}
+          <motion.div 
+            className="absolute inset-0 bg-cover bg-center opacity-10 scale-125"
+            style={{
+              backgroundImage: 'url(https://images.unsplash.com/photo-1499482125586-91609c0b5fd4?w=2000&q=80)',
             }}
-            className="text-center mb-20"
+            animate={{ 
+              scale: [1.25, 1.3, 1.25],
+              opacity: [0.1, 0.15, 0.1]
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+          
+          {/* Layer 2: Mid depth with vignette */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(5,5,5,0.4)_40%,#050505_90%)]" />
+          
+          {/* Layer 3: Color grading overlay */}
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-b from-[#050505] via-red-950/20 to-[#050505] mix-blend-multiply"
+            animate={{ 
+              opacity: [0.7, 0.85, 0.7]
+            }}
+            transition={{ duration: 6, repeat: Infinity }}
+          />
+        </motion.div>
+        
+        {/* Cinematic Film Grain - OPTIMIZED: slower refresh */}
+        <motion.div
+          animate={{ 
+            opacity: [0.03, 0.06, 0.03],
+          }}
+          transition={{ 
+            duration: 0.3, 
+            repeat: Infinity,
+          }}
+          className="pointer-events-none absolute inset-0 z-[1] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGQ9Ik0wIDBoMzAwdjMwMEgweiIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=')] opacity-50 mix-blend-overlay" 
+        />
+        
+        {/* Volumetric light rays - OPTIMIZED: reduced to 2 */}
+        <motion.div
+          className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-indigo-500/20 to-transparent z-[1]"
+          animate={{ 
+            opacity: [0.1, 0.3, 0.1],
+            x: [-100, 100, -100]
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div
+          className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-red-500/15 to-transparent z-[1]"
+          animate={{ 
+            opacity: [0.1, 0.25, 0.1],
+            x: [100, -100, 100]
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+        />
+
+        {/* Depth layers - OPTIMIZED: reduced from 12 to 6 particles */}
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-white/20 rounded-full z-[2]"
+            style={{ 
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              filter: `blur(${Math.random() * 2}px)`
+            }}
+            animate={{ 
+              y: [0, -100 - Math.random() * 200, 0],
+              x: [0, (Math.random() - 0.5) * 100, 0],
+              opacity: [0, 0.4, 0],
+              scale: [0, 1, 0]
+            }}
+            transition={{ 
+              duration: 8 + Math.random() * 10,
+              repeat: Infinity,
+              delay: Math.random() * 5,
+              ease: "linear"
+            }}
+          />
+        ))}
+
+        {/* Atmospheric fog layers - OPTIMIZED: added will-change */}
+        <motion.div
+          className="absolute top-1/4 -left-40 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-[100px] z-[2] will-change-transform"
+          animate={{ 
+            x: [-100, 150, -100],
+            y: [0, 80, 0],
+            scale: [1, 1.3, 1],
+            opacity: [0.1, 0.2, 0.1]
+          }}
+          transition={{ 
+            duration: 20, 
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 -right-40 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[120px] z-[2] will-change-transform"
+          animate={{ 
+            x: [100, -150, 100],
+            y: [0, -100, 0],
+            scale: [1, 1.4, 1],
+            opacity: [0.08, 0.18, 0.08]
+          }}
+          transition={{ 
+            duration: 25, 
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+
+        <div className="relative max-w-5xl mx-auto z-10">
+          {/* Cinematic Title Sequence - OPTIMIZED */}
+          <motion.div
+            initial={{ opacity: 0, scale: 1.3, rotateX: -25 }}
+            whileInView={{ opacity: 1, scale: 1, rotateX: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ 
+              duration: 1.8,
+              type: "spring",
+              stiffness: 40,
+              damping: 15
+            }}
+            className="text-center mb-32"
           >
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
+            {/* Subtitle fade in */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent"
+              transition={{ duration: 1, delay: 0.4 }}
+              className="mb-6"
             >
-              O Problema que Ninguém Vê
-            </motion.h2>
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
+              <span className="inline-block px-4 py-1.5 bg-red-950/30 border border-red-500/20 rounded-full text-xs uppercase tracking-[0.3em] text-red-400 font-semibold">
+                Capítulo III
+              </span>
+            </motion.div>
+
+            {/* Main title with cinematic reveal - OPTIMIZED */}
+            <motion.h2
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="h-1 w-32 mx-auto bg-gradient-to-r from-indigo-500 via-purple-500 to-red-500 rounded-full mb-6"
-            />
+              transition={{ duration: 1.4, delay: 0.6, type: "spring", stiffness: 50 }}
+              className="text-5xl md:text-7xl font-black mb-6 leading-tight"
+            >
+              <motion.span
+                className="inline-block bg-gradient-to-r from-white via-red-200 to-indigo-300 bg-clip-text text-transparent"
+                animate={{ 
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+                }}
+                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                style={{ backgroundSize: '200% auto' }}
+              >
+                O Problema
+              </motion.span>
+              <br />
+              <motion.span
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 0.6, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 1 }}
+                className="text-4xl md:text-5xl text-slate-500 font-light"
+              >
+                que Ninguém Vê
+              </motion.span>
+            </motion.h2>
+
+            {/* Animated divider line */}
+            <div className="relative w-full max-w-md mx-auto h-px my-8 overflow-hidden">
+              <motion.div
+                initial={{ scaleX: 0, opacity: 0 }}
+                whileInView={{ scaleX: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2, delay: 1.2 }}
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-indigo-500 to-red-500"
+              />
+              <motion.div
+                animate={{ 
+                  x: ['-100%', '200%']
+                }}
+                transition={{ 
+                  duration: 3, 
+                  repeat: Infinity,
+                  ease: "linear",
+                  repeatDelay: 2
+                }}
+                className="absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white to-transparent opacity-50"
+              />
+            </div>
+
+            {/* Tagline - OPTIMIZED */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.9, delay: 0.4 }}
-              className="text-lg md:text-xl text-slate-400"
+              transition={{ duration: 1.2, delay: 1.4 }}
+              className="text-lg md:text-2xl text-slate-400 font-light italic max-w-2xl mx-auto"
             >
-              A rotina exaustiva do criador de conteúdo
+              "A rotina exaustiva do criador de conteúdo"
             </motion.p>
           </motion.div>
 
-          {/* MOBILE: Vertical Story Scroll with Cinematic Parallax */}
-          <div className="md:hidden space-y-24">
-            {/* Step 1: Multi-tasking Chaos */}
+          {/* MOBILE: Cinematic Story Cards - OPTIMIZED for performance */}
+          <div className="md:hidden space-y-32">
+            {/* Step 1: Multi-tasking Chaos - OPTIMIZED */}
             <motion.div
-              initial={{ opacity: 0, y: 80 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
+              whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+              viewport={{ once: true, margin: "-50px", amount: 0.3 }}
               transition={{ 
-                duration: 0.9,
+                duration: 1.2,
                 type: "spring",
-                stiffness: 60
+                stiffness: 60,
+                damping: 20
               }}
               className="space-y-6"
             >
+              {/* Scene number with lens flare - OPTIMIZED */}
               <motion.div 
-                className="flex items-center gap-4 mb-6"
-                initial={{ x: -50, opacity: 0 }}
+                className="flex items-center gap-4 mb-8"
+                initial={{ x: -100, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.2, duration: 0.7 }}
+                transition={{ delay: 0.3, duration: 1 }}
               >
-                <motion.span 
-                  className="text-5xl font-black text-indigo-500/40"
-                  whileInView={{ 
-                    scale: [1, 1.1, 1],
-                    rotate: [0, 5, 0]
-                  }}
-                  transition={{ delay: 0.4, duration: 0.6 }}
-                >
-                  01
-                </motion.span>
-                <h3 className="text-2xl font-bold">Agência de Uma Pessoa Só</h3>
+                <div className="relative">
+                  <motion.span 
+                    className="text-6xl font-black bg-gradient-to-br from-indigo-400 to-indigo-600 bg-clip-text text-transparent"
+                    whileInView={{ 
+                      scale: [1, 1.15, 1],
+                      rotate: [0, 10, 0]
+                    }}
+                    transition={{ delay: 0.5, duration: 0.8 }}
+                  >
+                    01
+                  </motion.span>
+                  {/* Lens flare effect */}
+                  <motion.div
+                    className="absolute -inset-4 bg-indigo-500/20 rounded-full blur-2xl will-change-transform"
+                    animate={{ 
+                      scale: [1, 1.5, 1],
+                      opacity: [0.3, 0.6, 0.3]
+                    }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold leading-tight">Agência de<br/>Uma Pessoa Só</h3>
+                </div>
               </motion.div>
               
               <motion.p 
-                className="text-slate-400 text-sm leading-relaxed"
-                initial={{ opacity: 0, y: 20 }}
+                className="text-slate-300 text-base leading-relaxed"
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.3, duration: 0.7 }}
+                transition={{ delay: 0.5, duration: 0.9 }}
               >
-                Roteiro, filmagem, edição, gestão de agenda, negociação de publis, responder DMs... O criador faz tudo sozinho.
+                Roteiro, filmagem, edição, gestão de agenda, negociação de publis, responder DMs... <span className="text-indigo-400 font-semibold">O criador faz tudo sozinho.</span>
               </motion.p>
               
+              {/* Card with depth - OPTIMIZED: removed heavy 3D transforms */}
               <motion.div 
-                className="relative h-56 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border border-white/10 overflow-hidden shadow-2xl shadow-indigo-900/20"
-                initial={{ scale: 0.9, rotateX: 15 }}
-                whileInView={{ scale: 1, rotateX: 0 }}
+                className="relative h-64 rounded-3xl overflow-hidden will-change-transform"
+                initial={{ scale: 0.9, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.4, duration: 0.8, type: "spring" }}
+                transition={{ delay: 0.6, duration: 1, type: "spring", stiffness: 80 }}
+                style={{ 
+                  boxShadow: '0 40px 80px -20px rgba(99, 102, 241, 0.4), 0 0 0 1px rgba(255,255,255,0.1)'
+                }}
               >
-                {/* Animated grid background */}
+                {/* Layered background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-950" />
+                
+                {/* Animated grid - OPTIMIZED: slower animation */}
                 <motion.div
-                  className="absolute inset-0 opacity-10"
+                  className="absolute inset-0 opacity-20"
                   style={{
-                    backgroundImage: 'linear-gradient(rgba(99, 102, 241, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.3) 1px, transparent 1px)',
-                    backgroundSize: '20px 20px'
+                    backgroundImage: 'linear-gradient(rgba(99, 102, 241, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.4) 1px, transparent 1px)',
+                    backgroundSize: '30px 30px'
                   }}
                   animate={{ 
-                    backgroundPosition: ['0px 0px', '20px 20px']
+                    backgroundPosition: ['0px 0px', '30px 30px']
                   }}
                   transition={{ 
-                    duration: 3, 
+                    duration: 6, 
                     repeat: Infinity,
                     ease: "linear"
                   }}
                 />
                 
-                <div className="absolute inset-0 flex flex-wrap gap-2 p-4 content-start">
+                {/* Task pills - OPTIMIZED: simpler animations */}
+                <div className="absolute inset-0 flex flex-wrap gap-3 p-6 content-start">
                   {["Roteiro", "Edição", "Agenda", "Publis", "DMs", "Vendas", "Analytics", "Criação"].map((task, i) => (
                     <motion.div
                       key={task}
-                      initial={{ scale: 0, rotate: -180, opacity: 0 }}
-                      whileInView={{ scale: 1, rotate: 0, opacity: 1 }}
+                      initial={{ scale: 0, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
                       transition={{ 
-                        delay: 0.5 + i * 0.1,
+                        delay: 0.8 + i * 0.08,
                         type: "spring",
                         stiffness: 200,
-                        damping: 15
+                        damping: 20
                       }}
                       whileHover={{ 
                         scale: 1.1,
-                        rotate: 5,
                         transition: { duration: 0.2 }
                       }}
                       viewport={{ once: true }}
-                      className="px-4 py-2 bg-indigo-600/20 border border-indigo-500/40 rounded-full text-xs text-indigo-300 font-medium backdrop-blur-sm shadow-lg shadow-indigo-900/30 cursor-pointer"
+                      className="relative px-4 py-2 bg-indigo-600/30 border border-indigo-400/50 rounded-full text-sm text-indigo-200 font-medium backdrop-blur-md cursor-pointer"
+                      style={{ 
+                        boxShadow: '0 8px 20px -8px rgba(99, 102, 241, 0.6), inset 0 1px 0 rgba(255,255,255,0.2)'
+                      }}
                     >
                       {task}
+                      {/* Inner glow */}
+                      <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent rounded-full" />
                     </motion.div>
                   ))}
                 </div>
+                
+                {/* Vignette overlay */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
               </motion.div>
             </motion.div>
 
-            {/* Step 2: Burnout Stat with dramatic reveal */}
+            {/* Step 2: Burnout Stat - DRAMATIC ZOOM & SHAKE */}
             <motion.div
-              initial={{ opacity: 0, y: 80 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              initial={{ opacity: 0, scale: 1.5, z: -600, rotateX: 30 }}
+              whileInView={{ opacity: 1, scale: 1, z: 0, rotateX: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ 
-                duration: 0.9,
+                duration: 1.6,
                 type: "spring",
-                stiffness: 60
+                stiffness: 45,
+                damping: 18
               }}
               className="space-y-6"
+              style={{ transformStyle: 'preserve-3d' }}
             >
+              {/* Scene number with warning glow - OPTIMIZED */}
               <motion.div 
-                className="flex items-center gap-4 mb-6"
-                initial={{ x: -50, opacity: 0 }}
+                className="flex items-center gap-4 mb-8"
+                initial={{ x: -100, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.2, duration: 0.7 }}
+                transition={{ delay: 0.3, duration: 1 }}
               >
-                <motion.span 
-                  className="text-5xl font-black text-red-500/40"
-                  whileInView={{ 
-                    scale: [1, 1.1, 1],
-                    rotate: [0, -5, 0]
-                  }}
-                  transition={{ delay: 0.4, duration: 0.6 }}
-                >
-                  02
-                </motion.span>
-                <h3 className="text-2xl font-bold">O Resultado é Previsível</h3>
+                <div className="relative">
+                  <motion.span 
+                    className="text-6xl font-black bg-gradient-to-br from-red-400 to-red-600 bg-clip-text text-transparent will-change-transform"
+                    animate={{ 
+                      scale: [1, 1.05, 1]
+                    }}
+                    transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
+                  >
+                    02
+                  </motion.span>
+                  {/* Pulsing red alert - OPTIMIZED */}
+                  <motion.div
+                    className="absolute -inset-4 bg-red-500/20 rounded-full blur-2xl will-change-transform"
+                    animate={{ 
+                      scale: [1, 1.6, 1],
+                      opacity: [0.2, 0.6, 0.2]
+                    }}
+                    transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
+                  />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold leading-tight">O Resultado é<br/>Previsível</h3>
+                </div>
               </motion.div>
               
               <motion.p 
-                className="text-slate-400 text-sm leading-relaxed"
-                initial={{ opacity: 0, y: 20 }}
+                className="text-slate-300 text-base leading-relaxed"
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.3, duration: 0.7 }}
+                transition={{ delay: 0.5, duration: 0.9 }}
               >
-                A sobrecarga leva ao esgotamento mental e criativo.
+                A sobrecarga leva ao <span className="text-red-400 font-semibold">esgotamento mental e criativo.</span>
               </motion.p>
               
+              {/* Dramatic stat reveal card - OPTIMIZED */}
               <motion.div 
-                className="relative h-72 rounded-2xl bg-gradient-to-br from-red-950/30 via-slate-950 to-slate-950 border border-red-500/20 flex flex-col items-center justify-center overflow-hidden shadow-2xl shadow-red-900/30"
-                initial={{ scale: 0.9, rotateX: 15 }}
-                whileInView={{ scale: 1, rotateX: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4, duration: 0.8, type: "spring" }}
+                className="relative h-80 rounded-3xl overflow-hidden will-change-transform"
+                initial={{ scale: 0.9, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ delay: 0.6, duration: 1, type: "spring", stiffness: 80, damping: 20 }}
+                style={{ 
+                  boxShadow: '0 50px 100px -20px rgba(248, 113, 113, 0.5), 0 0 0 1px rgba(248, 113, 113, 0.2)'
+                }}
               >
-                {/* Pulsing warning rings */}
+                {/* Dark red gradient background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-red-950/40 via-slate-950 to-black" />
+                
+                {/* Animated warning stripes - OPTIMIZED: slower */}
                 <motion.div
-                  className="absolute inset-0 rounded-2xl border-2 border-red-500/30"
+                  className="absolute inset-0 opacity-10 will-change-transform"
+                  style={{
+                    backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(248, 113, 113, 0.3) 40px, rgba(248, 113, 113, 0.3) 80px)',
+                  }}
                   animate={{ 
-                    scale: [1, 1.2, 1],
-                    opacity: [0.3, 0, 0.3]
+                    backgroundPosition: ['0px 0px', '80px 80px']
                   }}
                   transition={{ 
-                    duration: 3, 
+                    duration: 12, 
                     repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-                <motion.div
-                  className="absolute inset-0 rounded-2xl border-2 border-red-500/20"
-                  animate={{ 
-                    scale: [1, 1.4, 1],
-                    opacity: [0.2, 0, 0.2]
-                  }}
-                  transition={{ 
-                    duration: 3, 
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 0.5
+                    ease: "linear"
                   }}
                 />
                 
-                <Counter70 />
+                {/* Pulsing concentric warning rings - OPTIMIZED: 3→2 rings */}
+                {[0, 1].map((i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute inset-0 rounded-3xl border-2 border-red-500/30 will-change-transform"
+                    animate={{ 
+                      scale: [1, 1.3],
+                      opacity: [0.4, 0]
+                    }}
+                    transition={{ 
+                      duration: 2.4, 
+                      repeat: Infinity,
+                      delay: i * 1.2,
+                      ease: "linear"
+                    }}
+                  />
+                ))}
                 
-                <motion.p 
-                  className="mt-6 text-xs text-slate-400 text-center px-4 uppercase tracking-widest"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.8, duration: 0.6 }}
-                >
-                  dos creators já enfrentaram <span className="text-red-400 font-semibold">burnout</span>
-                </motion.p>
+                {/* Center content - OPTIMIZED: removed rotate animation */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 1, duration: 1, type: "spring", stiffness: 120, damping: 20 }}
+                  >
+                    <Counter70 />
+                  </motion.div>
+                  
+                  <motion.p 
+                    className="mt-8 text-sm text-slate-400 text-center px-6 uppercase tracking-[0.3em] font-semibold"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 1.5, duration: 0.8 }}
+                  >
+                    dos creators já enfrentaram{" "}
+                    <motion.span 
+                      className="block mt-2 text-red-400 text-lg will-change-transform"
+                      animate={{ 
+                        opacity: [1, 0.6, 1]
+                      }}
+                      transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
+                    >
+                      BURNOUT
+                    </motion.span>
+                  </motion.p>
+                </div>
+                
+                {/* Vignette */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.6)_100%)]" />
               </motion.div>
             </motion.div>
 
@@ -454,12 +696,11 @@ const Index = () => {
                 transition={{ delay: 0.2, duration: 0.7 }}
               >
                 <motion.span 
-                  className="text-5xl font-black text-amber-500/40"
-                  whileInView={{ 
-                    scale: [1, 1.1, 1],
-                    rotate: [0, 5, 0]
+                  className="text-5xl font-black text-amber-500/40 will-change-transform"
+                  animate={{ 
+                    scale: [1, 1.08, 1]
                   }}
-                  transition={{ delay: 0.4, duration: 0.6 }}
+                  transition={{ delay: 0.4, duration: 2.5, repeat: Infinity, ease: "linear" }}
                 >
                   03
                 </motion.span>
@@ -477,20 +718,20 @@ const Index = () => {
               </motion.p>
               
               <motion.div 
-                className="relative h-64 rounded-2xl bg-gradient-to-br from-amber-950/20 via-slate-950 to-slate-950 border border-amber-500/20 p-6 flex flex-col justify-center shadow-2xl shadow-amber-900/20 overflow-hidden"
-                initial={{ scale: 0.9, rotateX: 15 }}
-                whileInView={{ scale: 1, rotateX: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4, duration: 0.8, type: "spring" }}
+                className="relative h-64 rounded-2xl bg-gradient-to-br from-amber-950/20 via-slate-950 to-slate-950 border border-amber-500/20 p-6 flex flex-col justify-center shadow-2xl shadow-amber-900/20 overflow-hidden will-change-transform"
+                initial={{ scale: 0.95, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ delay: 0.4, duration: 0.8, type: "spring", stiffness: 100, damping: 20 }}
               >
-                {/* Scanline effect */}
+                {/* Scanline effect - OPTIMIZED: slower */}
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-500/5 to-transparent h-20"
+                  className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-500/5 to-transparent h-20 will-change-transform"
                   animate={{ 
                     y: ['0%', '400%']
                   }}
                   transition={{ 
-                    duration: 3, 
+                    duration: 4.5, 
                     repeat: Infinity,
                     ease: "linear"
                   }}
@@ -510,14 +751,15 @@ const Index = () => {
                     transition={{ delay: 0.6 }}
                   >
                     <motion.div 
-                      className="w-2.5 h-2.5 bg-green-500 rounded-full"
+                      className="w-2.5 h-2.5 bg-green-500 rounded-full will-change-transform"
                       animate={{ 
                         scale: [1, 1.3, 1],
                         opacity: [1, 0.5, 1]
                       }}
                       transition={{ 
-                        duration: 1.5, 
-                        repeat: Infinity
+                        duration: 2, 
+                        repeat: Infinity,
+                        ease: "linear"
                       }}
                     />
                     <span>IA genérica gerando roteiro...</span>
@@ -549,8 +791,9 @@ const Index = () => {
                     transition={{ delay: 1.2, duration: 0.5 }}
                   >
                     <motion.span
-                      animate={{ rotate: [0, 10, -10, 0] }}
-                      transition={{ duration: 0.5, delay: 1.5 }}
+                      className="will-change-transform"
+                      animate={{ rotate: [0, 8, -8, 0] }}
+                      transition={{ duration: 2, ease: "linear", repeat: Infinity }}
                     >
                       ❌
                     </motion.span>
@@ -580,12 +823,11 @@ const Index = () => {
                 transition={{ delay: 0.2, duration: 0.7 }}
               >
                 <motion.span 
-                  className="text-5xl font-black text-red-600/40"
-                  whileInView={{ 
-                    scale: [1, 1.1, 1],
-                    rotate: [0, -5, 0]
+                  className="text-5xl font-black text-red-600/40 will-change-transform"
+                  animate={{ 
+                    scale: [1, 1.08, 1]
                   }}
-                  transition={{ delay: 0.4, duration: 0.6 }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
                 >
                   04
                 </motion.span>
@@ -603,10 +845,11 @@ const Index = () => {
               </motion.p>
               
               <motion.div
-                initial={{ scale: 0.9, rotateX: 15 }}
-                whileInView={{ scale: 1, rotateX: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4, duration: 0.8, type: "spring" }}
+                initial={{ scale: 0.95, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ delay: 0.4, duration: 0.8, type: "spring", stiffness: 100, damping: 20 }}
+                className="will-change-transform"
               >
                 <GlitchHoverCard />
               </motion.div>
@@ -865,9 +1108,43 @@ const Index = () => {
       </section>
 
       {/* SECTION 4: THE SOLUTION (Fixed Phone com JS) */}
-      <section className="relative w-full bg-gradient-to-b from-slate-950 to-indigo-950">
+      <section ref={solutionRef as any} className="relative w-full bg-gradient-to-b from-slate-950 to-indigo-950 overflow-hidden">
+        {/* Parallax Background Image - Success/Solution */}
+        <motion.div 
+          className="absolute inset-0 z-0"
+          style={{ y: solutionBgY }}
+        >
+          <div 
+            className="absolute inset-0 bg-cover bg-center opacity-10 scale-110"
+            style={{
+              backgroundImage: 'url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=2000&q=80)',
+            }}
+          />
+          {/* Gradient overlay with brand colors */}
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/95 via-indigo-950/90 to-indigo-950" />
+        </motion.div>
+        
+        {/* Animated gradient orbs for depth */}
+        <motion.div
+          className="absolute top-1/4 left-1/3 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl z-[1]"
+          animate={{ 
+            x: [0, 60, 0],
+            y: [0, -40, 0],
+            scale: [1, 1.2, 1]
+          }}
+          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-indigo-500/25 rounded-full blur-3xl z-[1]"
+          animate={{ 
+            x: [0, -50, 0],
+            y: [0, 60, 0],
+            scale: [1, 1.3, 1]
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        />
         {/* MOBILE: Fixed com JavaScript */}
-        <div className="md:hidden px-6 py-20">
+        <div className="md:hidden px-6 py-20 relative z-10">
           {/* Title */}
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">
@@ -884,7 +1161,7 @@ const Index = () => {
         </div>
 
         {/* DESKTOP: Sticky Scroll */}
-        <div className="hidden md:block relative max-w-7xl mx-auto px-12 py-32">
+        <div className="hidden md:block relative max-w-7xl mx-auto px-12 py-32 z-10">
           <div className="grid lg:grid-cols-[1fr_480px_1fr] gap-8">
             {/* Left column */}
             <div className="space-y-[60vh]">
