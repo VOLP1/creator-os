@@ -92,7 +92,131 @@ const Index = () => {
         </div>
       </section>
 
-      {/* SECTION 2: THE MOVEMENT (Split Screen "Organic Tech") */}
+      {/* SECTION 2: THE SOLUTION (Fixed Phone com JS) */}
+      <section ref={solutionRef as any} className="relative w-full bg-gradient-to-b from-indigo-50 via-emerald-50 to-white overflow-hidden">
+        {/* Parallax Background Image - Success/Solution */}
+        <motion.div 
+          className="absolute inset-0 z-0"
+          style={{ y: solutionBgY }}
+        >
+          <div 
+            className="absolute inset-0 bg-cover bg-center opacity-12 scale-110"
+            style={{
+              backgroundImage: 'url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=2000&q=80)',
+            }}
+          />
+          {/* Gradient overlay with brand colors */}
+          <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/90 via-emerald-50/80 to-white/95" />
+        </motion.div>
+        
+        {/* Animated gradient orbs for depth */}
+        <motion.div
+          className="absolute top-1/4 left-1/3 w-96 h-96 bg-emerald-400/20 rounded-full blur-3xl z-[1]"
+          animate={{ 
+            x: [0, 60, 0],
+            y: [0, -40, 0],
+            scale: [1, 1.2, 1]
+          }}
+          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-indigo-400/25 rounded-full blur-3xl z-[1]"
+          animate={{ 
+            x: [0, -50, 0],
+            y: [0, 60, 0],
+            scale: [1, 1.3, 1]
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        />
+        {/* MOBILE: Fixed com JavaScript */}
+        <div className="md:hidden px-6 py-20 relative z-10">
+          {/* Title */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4 text-slate-900">
+              A Solução <span className="text-emerald-600">InfluIA</span>
+            </h2>
+            <p className="text-slate-600 text-lg">Seu copiloto de IA para criadores</p>
+          </div>
+
+          {/* Container com altura para scroll */}
+          <div style={{ height: '500vh', position: 'relative' }}>
+            {/* Phone will be fixed via Portal when scrolling */}
+            <FixedPhoneSection />
+          </div>
+        </div>
+
+        {/* DESKTOP: Sticky Scroll */}
+        <div className="hidden md:block relative max-w-7xl mx-auto px-12 py-32 z-10">
+          {/* Phone fixo no centro da tela */}
+          <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none">
+            <PhoneStickyDesktop />
+          </div>
+
+          {/* Cards que aparecem em sequência vertical SEM passar pelo telefone */}
+          <div className="space-y-[100vh] max-w-2xl mx-auto">
+            
+            {/* Card 1: Gestão de Agenda - ACIMA do telefone */}
+            <div className="min-h-screen flex items-start pt-20">
+              <motion.div 
+                initial={{ opacity: 0, y: 60 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                viewport={{ once: true, amount: 0.5 }} 
+                transition={{ duration: 0.8 }} 
+                className="bg-white border-2 border-indigo-200 rounded-3xl p-8 shadow-2xl shadow-indigo-200/50 w-full max-w-md mx-auto"
+              >
+                <div className="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-full mb-4">
+                  Recurso #1
+                </div>
+                <h3 className="text-3xl font-bold tracking-tight text-slate-900 mb-3">Gestão de Agenda</h3>
+                <p className="text-slate-600 text-lg leading-relaxed">
+                  Você pede, ela marca. A InfluIA gerencia sua agenda de forma inteligente, lembrando compromissos e otimizando seu tempo.
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Card 2: Inteligência Real - MEIO */}
+            <div className="min-h-screen flex items-center">
+              <motion.div 
+                initial={{ opacity: 0, y: 60 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                viewport={{ once: true, amount: 0.5 }} 
+                transition={{ duration: 0.8 }} 
+                className="bg-white border-2 border-indigo-200 rounded-3xl p-8 shadow-2xl shadow-indigo-200/50 w-full max-w-md mx-auto"
+              >
+                <div className="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-full mb-4">
+                  Recurso #2
+                </div>
+                <h3 className="text-3xl font-bold tracking-tight text-slate-900 mb-3">Inteligência Real</h3>
+                <p className="text-slate-600 text-lg leading-relaxed">
+                  Táticas validadas, não alucinações. Nossa IA é treinada com estratégias reais de criadores de sucesso.
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Card 3: CRM Automático - ABAIXO do telefone */}
+            <div className="min-h-screen flex items-end pb-20">
+              <motion.div 
+                initial={{ opacity: 0, y: 60 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                viewport={{ once: true, amount: 0.5 }} 
+                transition={{ duration: 0.8 }} 
+                className="bg-white border-2 border-emerald-200 rounded-3xl p-8 shadow-2xl shadow-emerald-200/50 w-full max-w-md mx-auto"
+              >
+                <div className="inline-block px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-full mb-4">
+                  Recurso #3
+                </div>
+                <h3 className="text-3xl font-bold tracking-tight text-slate-900 mb-3">CRM Automático</h3>
+                <p className="text-slate-600 text-lg leading-relaxed">
+                  Nunca mais perca um lead. A InfluIA organiza e acompanha automaticamente suas parcerias e oportunidades.
+                </p>
+              </motion.div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 3: THE MOVEMENT (Split Screen "Organic Tech") */}
       <section ref={movementRef as any} className="relative min-h-screen px-6 py-24 overflow-hidden bg-gradient-to-b from-slate-100 via-indigo-50 to-white">
         {/* Enhanced Parallax background */}
         <motion.div 
@@ -193,7 +317,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* SECTION 3: THE PROBLEM (ULTRA Cinematic Burnout Journey) */}
+      {/* SECTION 4: THE PROBLEM (ULTRA Cinematic Burnout Journey) */}
       <section ref={problemRef as any} className="relative w-full bg-gradient-to-b from-white via-rose-50 to-red-50 px-6 py-20 md:py-32 overflow-hidden will-change-transform" style={{ perspective: '1000px' }}>
         {/* Multi-layer Parallax Background */}
         <motion.div 
@@ -1110,98 +1234,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* SECTION 4: THE SOLUTION (Fixed Phone com JS) */}
-      <section ref={solutionRef as any} className="relative w-full bg-gradient-to-b from-indigo-50 via-emerald-50 to-white overflow-hidden">
-        {/* Parallax Background Image - Success/Solution */}
-        <motion.div 
-          className="absolute inset-0 z-0"
-          style={{ y: solutionBgY }}
-        >
-          <div 
-            className="absolute inset-0 bg-cover bg-center opacity-12 scale-110"
-            style={{
-              backgroundImage: 'url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=2000&q=80)',
-            }}
-          />
-          {/* Gradient overlay with brand colors */}
-          <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/90 via-emerald-50/80 to-white/95" />
-        </motion.div>
-        
-        {/* Animated gradient orbs for depth */}
-        <motion.div
-          className="absolute top-1/4 left-1/3 w-96 h-96 bg-emerald-400/20 rounded-full blur-3xl z-[1]"
-          animate={{ 
-            x: [0, 60, 0],
-            y: [0, -40, 0],
-            scale: [1, 1.2, 1]
-          }}
-          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-indigo-400/25 rounded-full blur-3xl z-[1]"
-          animate={{ 
-            x: [0, -50, 0],
-            y: [0, 60, 0],
-            scale: [1, 1.3, 1]
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        />
-        {/* MOBILE: Fixed com JavaScript */}
-        <div className="md:hidden px-6 py-20 relative z-10">
-          {/* Title */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 text-slate-900">
-              A Solução <span className="text-emerald-600">InfluIA</span>
-            </h2>
-            <p className="text-slate-600 text-lg">Seu copiloto de IA para criadores</p>
-          </div>
-
-          {/* Container com altura para scroll */}
-          <div style={{ height: '500vh', position: 'relative' }}>
-            {/* Phone will be fixed via Portal when scrolling */}
-            <FixedPhoneSection />
-          </div>
-        </div>
-
-        {/* DESKTOP: Sticky Scroll */}
-        <div className="hidden md:block relative max-w-7xl mx-auto px-12 py-32 z-10">
-          <div className="grid lg:grid-cols-[1fr_480px_1fr] gap-8">
-            {/* Left column */}
-            <div className="space-y-[60vh]">
-              <div className="min-h-[60vh] flex items-center">
-                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6 }} className="bg-white/80 backdrop-blur-xl border-2 border-indigo-200 rounded-2xl p-6 shadow-xl shadow-indigo-200/50 max-w-md ml-auto">
-                  <h3 className="text-2xl font-bold tracking-tight text-slate-900">Gestão de Agenda</h3>
-                  <p className="mt-2 text-slate-600">Você pede, ela marca.</p>
-                </motion.div>
-              </div>
-              <div className="min-h-[60vh] flex items-center">
-                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6 }} className="bg-white/80 backdrop-blur-xl border-2 border-indigo-200 rounded-2xl p-6 shadow-xl shadow-indigo-200/50 max-w-md ml-auto">
-                  <h3 className="text-2xl font-bold tracking-tight text-slate-900">Inteligência Real</h3>
-                  <p className="mt-2 text-slate-600">Táticas validadas, não alucinações.</p>
-                </motion.div>
-              </div>
-            </div>
-
-            {/* Sticky phone center */}
-            <div className="relative">
-              <div className="sticky top-24 flex justify-center">
-                <PhoneStickyDesktop />
-              </div>
-            </div>
-
-            {/* Right column */}
-            <div className="space-y-[60vh]">
-              <div className="min-h-[60vh] flex items-center">
-                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6 }} className="bg-white/80 backdrop-blur-xl border-2 border-emerald-200 rounded-2xl p-6 shadow-xl shadow-emerald-200/50 max-w-md mr-auto">
-                  <h3 className="text-2xl font-bold tracking-tight text-slate-900">CRM Automático</h3>
-                  <p className="mt-2 text-slate-600">Nunca mais perca um lead.</p>
-                </motion.div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* SECTION 5: THE APPEAL (Why Support?) */}
       <section className="relative min-h-[70vh] px-6 py-32 flex items-center justify-center overflow-hidden bg-gradient-to-b from-white via-amber-50 to-orange-50">
         <div className="absolute inset-0 bg-cover bg-center opacity-10" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1495616811223-4d98c6e9d869?auto=format&fit=crop&q=80')" }} />
@@ -1398,7 +1430,7 @@ const PhoneMobileSticky = ({ currentStep }: { currentStep: number }) => {
   const activeConvo = conversations[currentStep - 1] || conversations[0];
 
   return (
-    <div style={{ width: '340px', margin: '0 auto' }}>
+    <div style={{ width: '280px', margin: '0 auto' }}>
       <div className="relative w-full aspect-[9/19] rounded-[36px] bg-gradient-to-br from-slate-900 to-black border-4 border-slate-700 shadow-2xl shadow-indigo-500/30">
         {/* Notch */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-7 bg-black rounded-b-2xl z-20" />
@@ -1505,66 +1537,92 @@ const FixedPhoneSection = () => {
   const currentStep = scrollProgress < 0.33 ? 1 : scrollProgress < 0.66 ? 2 : 3;
 
   return (
-    <>
-      {/* Tall container for scrolling */}
-      <div ref={containerRef} style={{ height: '500vh', position: 'relative' }}>
-        {/* Cards that scroll */}
-        <div style={{ position: 'absolute', top: '80vh', left: 0, right: 0, zIndex: 10, padding: '0 1.5rem' }}>
-          <div style={{ marginBottom: '120vh' }}>
+    <div ref={containerRef} className="relative" style={{ height: '400vh' }}>
+      {/* Fixed phone - CENTRALIZADO E LEGÍVEL */}
+      <AnimatePresence>
+        {isFixed && (
+          <div
+            className="fixed z-10 pointer-events-none flex items-center justify-center"
+            style={{ 
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: '280px',
+              height: 'auto'
+            }}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.4 }}
+            >
+              <PhoneMobileSticky currentStep={currentStep} />
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Card 1 - EMBAIXO, MESMA POSIÇÃO DOS OUTROS */}
+      <AnimatePresence>
+        {isFixed && scrollProgress < 0.35 && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -30 }}
+            transition={{ duration: 0.5 }}
+            className="fixed bottom-[5%] left-0 right-0 px-6 z-30"
+          >
             <FeatureCardMobile
               icon={Brain}
               title="Potencialize Suas Ideias Criativas"
-              description="Você tem a ideia, a IA estrutura. Sugestões de ganchos, ângulos narrativos e técnicas de storytelling para turbinar seu conteúdo."
+              description="Você tem a ideia, a IA estrutura. Sugestões de ganchos e storytelling."
               step={1}
             />
-          </div>
-          
-          <div style={{ marginBottom: '120vh' }}>
-            <FeatureCardMobile
-              icon={Calendar}
-              title="Calendário Editorial Inteligente"
-              description="Planeje sua semana baseado em tendências, melhor timing e performance. A IA sugere, você decide."
-              step={2}
-            />
-          </div>
-
-          <div>
-            <FeatureCardMobile
-              icon={TrendingUp}
-              title="Organize Oportunidades de Publi"
-              description="Categorize ofertas de marcas, analise fit com seu nicho e priorize as melhores oportunidades comerciais."
-              step={3}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Fixed phone */}
-      <AnimatePresence>
-        {isFixed && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, x: '-50%', y: '-50%' }}
-            animate={{ opacity: 1, scale: 1, x: '-50%', y: '-50%' }}
-            exit={{ opacity: 0, scale: 0.8, x: '-50%', y: '-50%' }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            style={{
-              position: 'fixed',
-              top: '50%',
-              left: '50%',
-              zIndex: 0,
-              pointerEvents: 'none',
-              width: '90vw',
-              maxWidth: '380px',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}
-          >
-            <PhoneMobileSticky currentStep={currentStep} />
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+
+      {/* Card 2 - SEMPRE EMBAIXO */}
+      <AnimatePresence>
+        {isFixed && scrollProgress >= 0.32 && scrollProgress < 0.68 && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -30 }}
+            transition={{ duration: 0.5 }}
+            className="fixed bottom-[5%] left-0 right-0 px-6 z-30"
+          >
+            <FeatureCardMobile
+              icon={Calendar}
+              title="Calendário Editorial Inteligente"
+              description="Planeje baseado em tendências, timing e performance."
+              step={2}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Card 3 - SEMPRE EMBAIXO */}
+      <AnimatePresence>
+        {isFixed && scrollProgress >= 0.65 && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -30 }}
+            transition={{ duration: 0.5 }}
+            className="fixed bottom-[5%] left-0 right-0 px-6 z-30"
+          >
+            <FeatureCardMobile
+              icon={TrendingUp}
+              title="Organize Oportunidades de Publi"
+              description="Categorize ofertas e priorize as melhores oportunidades."
+              step={3}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 };
 
@@ -1604,14 +1662,14 @@ const FeatureCardMobile = ({ icon: Icon, title, description, step }: { icon: any
       transition={{ duration: 0.8, ease: "easeOut" }}
       className="w-full"
     >
-      <div className="bg-black/70 backdrop-blur-xl border-2 border-white/20 rounded-3xl p-8 shadow-[0_20px_70px_-20px_rgba(79,70,229,0.6)]">
+      <div className="bg-white/90 backdrop-blur-xl border-2 border-indigo-200 rounded-3xl p-8 shadow-lg shadow-indigo-200/50 hover:shadow-xl hover:shadow-indigo-300/50 transition-all duration-300">
         <div className="flex items-start gap-5">
           <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center flex-shrink-0 shadow-lg">
             <Icon className="h-7 w-7 text-white" />
           </div>
           <div>
-            <h3 className="text-2xl font-bold mb-3 text-white">{title}</h3>
-            <p className="text-slate-300 text-base leading-relaxed">{description}</p>
+            <h3 className="text-2xl font-bold mb-3 text-slate-900">{title}</h3>
+            <p className="text-slate-700 text-base leading-relaxed">{description}</p>
           </div>
         </div>
       </div>
