@@ -452,67 +452,122 @@ const ProblemStep3 = () => (
   </motion.div>
 );
 
-const ProblemStep4 = () => (
-  <motion.div
-    initial={{ opacity: 0, y: 80 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-80px" }}
-    transition={{ 
-      duration: 0.9,
-      type: "spring",
-      stiffness: 60
-    }}
-    className="space-y-6 px-6"
-  >
-    <motion.div 
-      className="flex items-center gap-4 mb-6"
-      initial={{ x: -50, opacity: 0 }}
-      whileInView={{ x: 0, opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ delay: 0.2, duration: 0.7 }}
-    >
-      <motion.span 
-        className="text-5xl font-black text-red-600/40 will-change-transform"
-        animate={{ 
-          scale: [1, 1.08, 1]
-        }}
-        transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
-      >
-        04
-      </motion.span>
-      <h3 className="text-2xl font-bold">A Consequência</h3>
-    </motion.div>
-    
-    <motion.p 
-      className="text-slate-400 text-sm leading-relaxed"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: 0.3, duration: 0.7 }}
-    >
-      Para quem cria: Fazer conteúdo se torna massante, pouco recompensador.
-    </motion.p>
+const ProblemStep4_1 = () => (
+  <div className="relative w-full h-full overflow-hidden">
+    {/* Background image - tela cheia */}
+    <div className="absolute inset-0">
+      {/* Foto de fundo - pessoa exausta/burnout */}
+      <img 
+        src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&q=80" 
+        alt="Burnout"
+        className="w-full h-full object-cover"
+      />
+      
+      {/* Overlay gradient escuro - bottom to top */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/30" />
+      
+      {/* Vignette */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
+    </div>
 
-    <motion.p 
-      className="text-slate-400 text-sm leading-relaxed"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: 0.3, duration: 0.7 }}
-    >
-      Para a audiência: Excesso de conteúdo genérico, superficial gera desinteresse e afastamento.
-    </motion.p>
-    
-    <motion.div
-      initial={{ scale: 0.95, opacity: 0 }}
-      whileInView={{ scale: 1, opacity: 1 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ delay: 0.4, duration: 0.8, type: "spring", stiffness: 100, damping: 20 }}
-      className="will-change-transform"
-    >
-      <GlitchHoverCard />
-    </motion.div>
-  </motion.div>
+    {/* Content - canto inferior esquerdo (estilo Netflix/cinema) */}
+    <div className="absolute bottom-20 left-8 right-8 z-10">
+      {/* Badge superior */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.3 }}
+        className="mb-4"
+      >
+        <span className="inline-block px-3 py-1 bg-red-600/80 backdrop-blur-md rounded text-[10px] font-bold text-white uppercase tracking-wider">
+          Para quem cria
+        </span>
+      </motion.div>
+
+      {/* Título principal */}
+      <motion.h3
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="text-4xl md:text-5xl font-black text-white mb-3 leading-[1.1] drop-shadow-2xl"
+      >
+        Burnout<br/>Criativo
+      </motion.h3>
+
+      {/* Descrição */}
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.7 }}
+        className="text-slate-200 text-sm leading-relaxed max-w-[320px] drop-shadow-lg"
+      >
+        Fazer conteúdo se torna massante e pouco recompensador. Rotina repetitiva sem inspiração.
+      </motion.p>
+    </div>
+
+    {/* Letterbox bars - efeito cinema */}
+    <div className="absolute top-0 left-0 right-0 h-16 bg-black/60 backdrop-blur-sm" />
+    <div className="absolute bottom-0 left-0 right-0 h-16 bg-black/60 backdrop-blur-sm" />
+  </div>
+);
+
+const ProblemStep4_2 = () => (
+  <div className="relative w-full h-full overflow-hidden">
+    {/* Background image - tela cheia */}
+    <div className="absolute inset-0">
+      {/* Foto de fundo - pessoa entediada no celular */}
+      <img 
+        src="https://images.unsplash.com/photo-1534670007418-fbb7f6cf32c3?w=800&q=80" 
+        alt="Audiência entediada"
+        className="w-full h-full object-cover"
+      />
+      
+      {/* Overlay gradient escuro - bottom to top */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/30" />
+      
+      {/* Vignette */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
+    </div>
+
+    {/* Content - canto inferior esquerdo (estilo Netflix/cinema) */}
+    <div className="absolute bottom-20 left-8 right-8 z-10">
+      {/* Badge superior */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.3 }}
+        className="mb-4"
+      >
+        <span className="inline-block px-3 py-1 bg-red-600/80 backdrop-blur-md rounded text-[10px] font-bold text-white uppercase tracking-wider">
+          Para a audiência
+        </span>
+      </motion.div>
+
+      {/* Título principal */}
+      <motion.h3
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="text-4xl md:text-5xl font-black text-white mb-3 leading-[1.1] drop-shadow-2xl"
+      >
+        Conteúdo<br/>Sem Graça
+      </motion.h3>
+
+      {/* Descrição */}
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.7 }}
+        className="text-slate-200 text-sm leading-relaxed max-w-[320px] drop-shadow-lg"
+      >
+        Excesso de conteúdo genérico e superficial gera desinteresse e afastamento da audiência.
+      </motion.p>
+    </div>
+
+    {/* Letterbox bars - efeito cinema */}
+    <div className="absolute top-0 left-0 right-0 h-16 bg-black/60 backdrop-blur-sm" />
+    <div className="absolute bottom-0 left-0 right-0 h-16 bg-black/60 backdrop-blur-sm" />
+  </div>
 );
 
 // Problem Cinematic Section - IGUAL À SEÇÃO DO TELEFONE
@@ -545,10 +600,10 @@ const ProblemCinematicSection = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative md:hidden" style={{ height: '500vh' }}>
+    <div ref={containerRef} className="relative md:hidden" style={{ height: '600vh' }}>
       {/* Step 1 */}
       <AnimatePresence>
-        {isFixed && scrollProgress < 0.25 && (
+        {isFixed && scrollProgress < 0.20 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -563,7 +618,7 @@ const ProblemCinematicSection = () => {
 
       {/* Step 2 */}
       <AnimatePresence>
-        {isFixed && scrollProgress >= 0.25 && scrollProgress < 0.50 && (
+        {isFixed && scrollProgress >= 0.20 && scrollProgress < 0.40 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -578,7 +633,7 @@ const ProblemCinematicSection = () => {
 
       {/* Step 3 */}
       <AnimatePresence>
-        {isFixed && scrollProgress >= 0.50 && scrollProgress < 0.75 && (
+        {isFixed && scrollProgress >= 0.40 && scrollProgress < 0.60 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -591,9 +646,9 @@ const ProblemCinematicSection = () => {
         )}
       </AnimatePresence>
 
-      {/* Step 4 */}
+      {/* Step 4.1 - Para quem cria */}
       <AnimatePresence>
-        {isFixed && scrollProgress >= 0.75 && (
+        {isFixed && scrollProgress >= 0.60 && scrollProgress < 0.80 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -601,7 +656,22 @@ const ProblemCinematicSection = () => {
             transition={{ duration: 0.4 }}
             className="fixed inset-0 z-[100] flex items-center justify-center px-6 bg-white"
           >
-            <ProblemStep4 />
+            <ProblemStep4_1 />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Step 4.2 - Para a audiência */}
+      <AnimatePresence>
+        {isFixed && scrollProgress >= 0.80 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center px-6 bg-white"
+          >
+            <ProblemStep4_2 />
           </motion.div>
         )}
       </AnimatePresence>
