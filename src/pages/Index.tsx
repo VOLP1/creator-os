@@ -85,7 +85,7 @@ const Index = () => {
               className="bg-indigo-600 hover:bg-indigo-700 text-white shadow-xl shadow-indigo-200/50 px-7 py-4 rounded-2xl border border-indigo-400"
               asChild
             >
-              <a href="#beta">Testar a Influ.IA (Beta)</a>
+              <a href="https://wa.me/556198483937" target="_blank" rel="noopener noreferrer" aria-label="Testar a InfluIA via WhatsApp">Testar a Influ.IA (Beta)</a>
             </Button>
             
           </motion.div>
@@ -1264,13 +1264,10 @@ const Index = () => {
         <div className="relative max-w-4xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="bg-white border-2 border-amber-200 rounded-3xl p-10 shadow-2xl shadow-amber-200/50">
             <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900">Quer apoiar com grandes valores e ter uma chance de ter parte da InfluIA?</h3>
-            <div className="mt-6 flex items-center gap-3">
-              <div className="h-11 w-11 rounded-2xl bg-emerald-100 border-2 border-emerald-300 flex items-center justify-center">
-                <MessageCircle className="w-6 h-6 text-emerald-700" />
-              </div>
-              <a href="tel:+5561981772703" className="text-lg font-semibold text-slate-900 hover:text-amber-600 transition">
-                Fale conosco: (61) 98177-2703
-              </a>
+            <div className="mt-6 flex justify-center">
+              <Button size="default" className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl px-6 py-3 shadow-md" asChild>
+                <a href="https://wa.me/5561981772703" target="_blank" rel="noopener noreferrer" aria-label="Fale conosco via WhatsApp">Fale conosco</a>
+              </Button>
             </div>
             <div className="mt-4 flex items-center gap-2 text-xs text-slate-500">
               <PhoneCall className="w-4 h-4" /> <span>Atendimento privado para conhecer a fundo planejamento e estratégias.</span>
