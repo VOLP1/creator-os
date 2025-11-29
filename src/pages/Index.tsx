@@ -4,6 +4,175 @@ import { Calendar, TrendingUp, Shield, Leaf, Brain, User, MessageCircle, PhoneCa
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { useRef, useState, useEffect } from "react";
 
+// Problem Steps Components
+const ProblemStep1 = () => (
+  <div className="w-full max-w-md mx-auto space-y-4">
+    <div className="flex items-center gap-3 mb-4">
+      <span className="text-5xl font-black bg-gradient-to-br from-indigo-400 to-indigo-600 bg-clip-text text-transparent">01</span>
+      <h3 className="text-xl font-bold">Uma Linha de Produção<br/>de Uma Pessoa Só</h3>
+    </div>
+    <p className="text-slate-700 text-sm">
+      Roteiros, filmagens, edição de vídeo, gestão de agendas, negociações... <span className="text-indigo-700 font-semibold">O criador faz tudo sozinho.</span>
+    </p>
+  </div>
+);
+
+const ProblemStep2 = () => (
+  <div className="w-full max-w-md mx-auto space-y-4">
+    <div className="flex items-center gap-3 mb-4">
+      <span className="text-5xl font-black bg-gradient-to-br from-red-400 to-red-600 bg-clip-text text-transparent">02</span>
+      <h3 className="text-xl font-bold">O Resultado é<br/>Previsível</h3>
+    </div>
+    <p className="text-slate-700 text-sm">
+      A sobrecarga leva ao <span className="text-red-700 font-semibold">esgotamento mental e criativo.</span>
+    </p>
+    <div className="text-center py-8">
+      <span className="text-6xl font-black bg-gradient-to-br from-red-600 to-red-400 bg-clip-text text-transparent">67%</span>
+      <p className="text-sm text-slate-700 font-semibold mt-2">dos criadores são afetados por problemas de saúde mental</p>
+    </div>
+  </div>
+);
+
+const ProblemStep3 = () => (
+  <div className="w-full max-w-md mx-auto space-y-3">
+    <div className="flex items-center gap-3 mb-3">
+      <span className="text-4xl font-black text-amber-500/60">03</span>
+      <h3 className="text-lg font-bold text-slate-900">O Atalho Perigoso</h3>
+    </div>
+    <p className="text-slate-700 text-xs">
+      Para economizar tempo, criadores usam IAs para trabalhar POR elas: <span className="text-amber-700 font-bold">Mas se a essência do criador é criar...</span>
+    </p>
+    <div className="bg-white border-2 border-slate-300 rounded-xl p-4 shadow-lg">
+      <div className="flex items-center justify-between mb-3">
+        <div>
+          <h4 className="text-sm font-bold text-slate-900">IA Genérica</h4>
+          <p className="text-[10px] text-slate-600">Gerando roteiro...</p>
+        </div>
+        <span className="text-[9px] font-mono text-amber-700 bg-amber-100 px-2 py-1 rounded">PROCESSING</span>
+      </div>
+      <div className="bg-slate-50 rounded p-2">
+        <p className="text-[10px] text-slate-700">"Olá pessoal, hoje vou mostrar 5 dicas para aumentar o engajamento..."</p>
+      </div>
+      <div className="mt-2 pt-2 border-t border-slate-200 flex items-start gap-2">
+        <div className="w-5 h-5 rounded bg-red-100 flex items-center justify-center flex-shrink-0">
+          <span className="text-red-600 font-bold text-xs">!</span>
+        </div>
+        <p className="text-[9px] text-slate-700">Conteúdo genérico, sem personalidade.</p>
+      </div>
+    </div>
+  </div>
+);
+
+const ProblemStep4 = () => (
+  <div className="w-full max-w-md mx-auto space-y-4">
+    <div className="flex items-center gap-3 mb-4">
+      <span className="text-5xl font-black bg-gradient-to-br from-red-400 to-red-600 bg-clip-text text-transparent">04</span>
+      <h3 className="text-xl font-bold">A Consequência</h3>
+    </div>
+    <p className="text-slate-700 text-sm">
+      Quando você <span className="text-red-700 font-semibold">terceiriza sua criatividade</span>, perde sua identidade.
+    </p>
+    <div className="text-center py-6">
+      <div className="text-4xl font-black text-red-600">💔</div>
+      <p className="text-sm text-slate-700 mt-2 font-semibold">Audiência percebe a falta de autenticidade</p>
+    </div>
+  </div>
+);
+
+// Problem Cinematic Section - IGUAL À SEÇÃO DO TELEFONE
+const ProblemCinematicSection = () => {
+  const [isFixed, setIsFixed] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+      
+      const rect = containerRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      const shouldBeFixed = rect.top <= 0 && rect.bottom >= windowHeight;
+      setIsFixed(shouldBeFixed);
+      
+      if (shouldBeFixed) {
+        const totalScrollHeight = rect.height - windowHeight;
+        const currentScroll = Math.abs(rect.top);
+        const progress = currentScroll / totalScrollHeight;
+        setScrollProgress(Math.min(Math.max(progress, 0), 1));
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <div ref={containerRef} className="relative md:hidden" style={{ height: '500vh' }}>
+      {/* Step 1 */}
+      <AnimatePresence>
+        {isFixed && scrollProgress < 0.25 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center px-6 bg-white"
+          >
+            <ProblemStep1 />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Step 2 */}
+      <AnimatePresence>
+        {isFixed && scrollProgress >= 0.25 && scrollProgress < 0.50 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center px-6 bg-white"
+          >
+            <ProblemStep2 />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Step 3 */}
+      <AnimatePresence>
+        {isFixed && scrollProgress >= 0.50 && scrollProgress < 0.75 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center px-6 bg-white"
+          >
+            <ProblemStep3 />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Step 4 */}
+      <AnimatePresence>
+        {isFixed && scrollProgress >= 0.75 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center px-6 bg-white"
+          >
+            <ProblemStep4 />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
 const Index = () => {
   
 
@@ -527,8 +696,8 @@ const Index = () => {
             </motion.p>
           </motion.div>
 
-          {/* MOBILE: Cinematic Story Cards - OPTIMIZED for performance */}
-          <div className="md:hidden space-y-32">
+          {/* MOBILE: Cinematic Story Cards - DESATIVADO TEMPORARIAMENTE */}
+          <div className="hidden">
             {/* Step 1: Multi-tasking Chaos - OPTIMIZED */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
@@ -1206,6 +1375,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* MOBILE ONLY: Problem Section com scroll fixo */}
+      <ProblemCinematicSection />
 
       {/* 4) Por que existe a InfluIA / A solução */}
       <section className="relative py-24 px-6">
