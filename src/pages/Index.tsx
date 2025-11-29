@@ -100,13 +100,13 @@ const Index = () => {
           style={{ y: solutionBgY }}
         >
           <div 
-            className="absolute inset-0 bg-cover bg-center opacity-12 scale-110"
+            className="absolute inset-0 bg-cover bg-center opacity-30 scale-110"
             style={{
               backgroundImage: 'url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=2000&q=80)',
             }}
           />
           {/* Gradient overlay with brand colors */}
-          <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/90 via-emerald-50/80 to-white/95" />
+          <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/50 via-emerald-50/40 to-white/60" />
         </motion.div>
         
         {/* Animated gradient orbs for depth */}
@@ -1662,7 +1662,7 @@ const FeatureCardMobile = ({ icon: Icon, title, description, step }: { icon: any
       transition={{ duration: 0.8, ease: "easeOut" }}
       className="w-full"
     >
-      <div className="bg-white/90 backdrop-blur-xl border-2 border-indigo-200 rounded-3xl p-8 shadow-lg shadow-indigo-200/50 hover:shadow-xl hover:shadow-indigo-300/50 transition-all duration-300">
+      <div className="bg-white/30 backdrop-blur-sm border-2 border-indigo-200 rounded-3xl p-8 shadow-lg shadow-indigo-200/50 hover:shadow-xl hover:shadow-indigo-300/50 transition-all duration-300">
         <div className="flex items-start gap-5">
           <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center flex-shrink-0 shadow-lg">
             <Icon className="h-7 w-7 text-white" />
