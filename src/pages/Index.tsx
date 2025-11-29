@@ -1209,28 +1209,97 @@ const Index = () => {
 
       {/* 4) Por que existe a InfluIA / A solução */}
       <section className="relative py-24 px-6">
-        <div className="max-w-5xl mx-auto">
-          <motion.h3 className="text-3xl font-bold mb-4 tracking-tight" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            Por que existe a InfluIA?
-          </motion.h3>
-          <p className="text-muted-foreground mb-6">A InfluIA poupa tempo onde ele deve ser poupado e devolve autonomia ao criador de conteúdo, promovendo conteúdos mais genuínos, com essência e valor.</p>
+          <div className="max-w-5xl mx-auto text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="text-5xl md:text-7xl font-black mb-4 leading-tight"
+          >
+            <motion.span
+              className="inline-block bg-gradient-to-r from-emerald-700 via-indigo-600 to-slate-900 bg-clip-text text-transparent"
+              animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+              style={{ backgroundSize: "200% auto" }}
+            >
+              A solução
+            </motion.span>
+            <br />
+            <motion.span
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, delay: 0.6 }}
+              className="text-4xl md:text-6xl font-extrabold leading-tight"
+            >
+              <motion.span
+                className="inline-block bg-gradient-to-r from-emerald-300 via-indigo-400 to-rose-400 bg-clip-text text-transparent drop-shadow-2xl"
+                animate={{ backgroundPosition: ['0% 50%', '100% 50%'] }}
+                transition={{ duration: 5, repeat: Infinity, ease: 'linear' }}
+                style={{ backgroundSize: '200% auto' }}
+              >
+                Influ.IA
+              </motion.span>
+            </motion.span>
+            </motion.h2>
+          <p className="text-muted-foreground mb-6 mx-auto max-w-3xl">A Influ.IA é a única ferramenta projetada para proteger o tempo e a essência do criador. Automatizamos a gestão exaustiva e o operacional burocrático, garantindo que o seu foco seja total na criação de conteúdo autêntico, genuíno e de alto valor.</p>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6 justify-items-center">
             {[
-              { icon: Calendar, title: "Agenda & Operação", description: "Gestão de agenda, produção e execução sem fricção." },
-              { icon: TrendingUp, title: "CRM & Parcerias", description: "Relacionamento e oportunidades organizadas em um só fluxo." },
-              { icon: Shield, title: "WhatsApp-first", description: "Tudo acontece onde o creator já está, sem mais um app." },
+              {
+                icon: Calendar,
+                title: "Agenda & Operação",
+                description:
+                  "Cuidamos de todos os prazos, tarefas e agendamentos. A Influ.IA gerencia o fluxo de trabalho para que você não perca o foco, garantindo que a rotina produtiva não mate sua criatividade.",
+                bg: "bg-gradient-to-br from-emerald-700 to-emerald-500",
+                iconColor: "text-emerald-100",
+              },
+              {
+                icon: TrendingUp,
+                title: "CRM & Parcerias",
+                description:
+                  "Chega de planilhas! Centralize o contato, o histórico e o follow-up de todas as suas parcerias e marcas em um lugar fácil de usar, maximizando suas oportunidades de monetização.",
+                bg: "bg-gradient-to-br from-indigo-600 to-violet-500",
+                iconColor: "text-indigo-100",
+              },
+              {
+                icon: Shield,
+                title: "WhatsApp-first",
+                description:
+                  "A Influ.IA funciona diretamente no WhatsApp. Sem a necessidade de baixar mais um aplicativo, você opera suas tarefas e recebe suporte no ambiente que já faz parte do seu dia, garantindo fricção zero na operação.",
+                bg: "bg-gradient-to-br from-teal-600 to-emerald-500",
+                iconColor: "text-teal-100",
+              },
+              {
+                icon: Brain,
+                title: "Inteligência Estratégica",
+                description:
+                  "Nossa inteligência artificial não cria conteúdo por você, ela cria com você. Ela usa dados de mercado e as melhores técnicas de engajamento para apoiar seu processo criativo, garantindo que suas ideias sejam autênticas, mas também estratégicas e atuais.",
+                bg: "bg-gradient-to-br from-violet-600 to-indigo-500",
+                iconColor: "text-violet-100",
+              },
             ].map((f, i) => (
-              <motion.div key={i} className="bg-slate-950/50 border border-white/10 rounded-2xl p-6" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-                <f.icon className="w-10 h-10 text-indigo-400 mb-4" />
-                <h4 className="text-xl font-semibold mb-2 tracking-tight">{f.title}</h4>
-                <p className="text-muted-foreground">{f.description}</p>
+              <motion.div
+                key={i}
+                className={`relative ${f.bg} border border-white/10 rounded-2xl p-6 max-w-sm text-center shadow-lg overflow-hidden will-change-transform`}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -10, scale: 1.03, rotateX: 4 }}
+                whileTap={{ scale: 0.995 }}
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 8 + i, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
+              >
+                {/* decorative blurred layer for depth */}
+                <div className={`absolute -inset-6 ${f.bg} opacity-25 blur-3xl -z-10`} />
+                <f.icon className={`w-10 h-10 mb-4 mx-auto ${f.iconColor}`} />
+                <h4 className="text-xl font-semibold mb-2 tracking-tight text-white">{f.title}</h4>
+                <p className="text-white/90">{f.description}</p>
               </motion.div>
             ))}
           </div>
-          <div className="mt-6">
-            <Button asChild><a href="/influia">Ver mais funcionalidades</a></Button>
-          </div>
+          
         </div>
       </section>
 
@@ -1251,9 +1320,7 @@ const Index = () => {
             <Button size="lg" className="bg-amber-500 hover:bg-amber-400 text-black font-semibold rounded-2xl shadow-[0_0_30px_rgba(251,191,36,0.5)]" asChild>
               <a href="https://benfeitoria.com" target="_blank" rel="noopener noreferrer">Apoiar na Benfeitoria</a>
             </Button>
-            <Button variant="outline" className="rounded-2xl border-white/20" asChild>
-              <a href="/apoie">Outras formas de apoiar</a>
-            </Button>
+            
           </motion.div>
         </div>
       </section>
