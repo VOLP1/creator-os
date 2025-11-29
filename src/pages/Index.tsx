@@ -358,16 +358,17 @@ const ProblemStep2 = () => {
 
 const ProblemStep3 = () => (
   <motion.div
-    initial={{ opacity: 0, y: 80 }}
+    initial={{ opacity: 0, y: 60 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-80px" }}
     transition={{ 
-      duration: 0.9,
+      duration: 1,
       type: "spring",
-      stiffness: 60
+      stiffness: 50
     }}
-    className="space-y-6 px-6"
+    className="space-y-5 px-6"
   >
+    {/* Header */}
     <motion.div 
       className="flex items-center gap-4 mb-6"
       initial={{ x: -50, opacity: 0 }}
@@ -375,111 +376,78 @@ const ProblemStep3 = () => (
       viewport={{ once: true }}
       transition={{ delay: 0.2, duration: 0.7 }}
     >
-      <motion.span 
-        className="text-5xl font-black text-amber-500/40 will-change-transform"
-        animate={{ 
-          scale: [1, 1.08, 1]
-        }}
-        transition={{ delay: 0.4, duration: 2.5, repeat: Infinity, ease: "linear" }}
-      >
+      <span className="text-5xl font-black bg-gradient-to-br from-orange-400 to-orange-600 bg-clip-text text-transparent">
         03
-      </motion.span>
+      </span>
       <h3 className="text-2xl font-bold">O Atalho Perigoso</h3>
     </motion.div>
     
+    {/* Subtitle */}
     <motion.p 
-      className="text-slate-400 text-sm leading-relaxed"
+      className="text-slate-600 text-sm leading-relaxed"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: 0.3, duration: 0.7 }}
     >
-      Para economizar tempo, criadores usam IAs para trabalhar POR elas: <span className="text-amber-400 font-medium">Mas se a essência do criador é criar...</span>
+      Para economizar tempo, criadores usam IAs para trabalhar <span className="text-orange-600 font-semibold">POR elas.</span>
+    </motion.p>
+
+    <motion.p 
+      className="text-slate-500 text-xs italic"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay: 0.5 }}
+    >
+      Mas se a essência do criador é criar...
     </motion.p>
     
+    {/* Card comparativo - ANTES/DEPOIS visual clean */}
     <motion.div 
-      className="relative h-64 rounded-2xl bg-gradient-to-br from-amber-950/20 via-slate-950 to-slate-950 border border-amber-500/20 p-6 flex flex-col justify-center shadow-2xl shadow-amber-900/20 overflow-hidden will-change-transform"
+      className="relative bg-gradient-to-br from-slate-50 to-white rounded-2xl border border-slate-200 p-5 overflow-hidden shadow-xl"
       initial={{ scale: 0.95, opacity: 0 }}
       whileInView={{ scale: 1, opacity: 1 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ delay: 0.4, duration: 0.8, type: "spring", stiffness: 100, damping: 20 }}
+      viewport={{ once: true }}
+      transition={{ delay: 0.4, duration: 0.8 }}
     >
-      {/* Scanline effect */}
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-500/5 to-transparent h-20 will-change-transform"
-        animate={{ 
-          y: ['0%', '400%']
-        }}
-        transition={{ 
-          duration: 4.5, 
-          repeat: Infinity,
-          ease: "linear"
-        }}
-      />
-      
-      <motion.div
-        initial={{ opacity: 0, x: -30 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.5, duration: 0.7 }}
-        className="space-y-4 relative z-10"
+      {/* Header do card */}
+      <div className="flex items-center gap-2 mb-4 pb-3 border-b border-slate-200">
+        <div className="w-2 h-2 rounded-full bg-orange-500" />
+        <span className="text-xs font-semibold text-slate-700 uppercase tracking-wide">IA Genérica</span>
+        <span className="ml-auto text-[10px] text-slate-500 font-mono">Gerando...</span>
+      </div>
+
+      {/* Conteúdo genérico gerado */}
+      <motion.div 
+        className="bg-white border border-slate-200 rounded-lg p-4 mb-3"
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6 }}
       >
-        <motion.div 
-          className="flex items-center gap-3 text-sm text-slate-400"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-        >
-          <motion.div 
-            className="w-2.5 h-2.5 bg-green-500 rounded-full will-change-transform"
-            animate={{ 
-              scale: [1, 1.3, 1],
-              opacity: [1, 0.5, 1]
-            }}
-            transition={{ 
-              duration: 2, 
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-          <span>IA genérica gerando roteiro...</span>
-        </motion.div>
-        
-        <motion.div 
-          className="bg-slate-900/80 border border-slate-800 rounded-xl p-4 text-xs text-slate-500 italic backdrop-blur-sm"
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-        >
-          <motion.span
-            initial={{ width: 0 }}
-            whileInView={{ width: "100%" }}
-            viewport={{ once: true }}
-            transition={{ delay: 1, duration: 2 }}
-            className="inline-block overflow-hidden whitespace-nowrap"
-          >
-            "Olá pessoal, hoje vou mostrar 5 dicas para aumentar o engajamento..."
-          </motion.span>
-        </motion.div>
-        
-        <motion.p 
-          className="text-xs text-red-400 mt-3 font-medium flex items-center gap-2"
-          initial={{ opacity: 0, x: -10 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 1.2, duration: 0.5 }}
-        >
-          <motion.span
-            className="will-change-transform"
-            animate={{ rotate: [0, 8, -8, 0] }}
-            transition={{ duration: 2, ease: "linear", repeat: Infinity }}
-          >
-            ❌
-          </motion.span>
-          Superficial. Sem alma. Genérico.
-        </motion.p>
+        <p className="text-xs text-slate-600 leading-relaxed">
+          "Olá pessoal, hoje vou mostrar 5 dicas para aumentar o engajamento..."
+        </p>
       </motion.div>
+
+      {/* Warning box */}
+      <motion.div
+        className="flex items-start gap-2 bg-orange-50 border border-orange-200 rounded-lg p-3"
+        initial={{ opacity: 0, x: -10 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.8 }}
+      >
+        <div className="w-5 h-5 rounded bg-orange-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <span className="text-white text-xs font-bold">!</span>
+        </div>
+        <div className="flex-1">
+          <p className="text-[11px] font-semibold text-orange-800 mb-1">Conteúdo genérico</p>
+          <p className="text-[10px] text-orange-700">Sem personalidade. Sem alma. Sem você.</p>
+        </div>
+      </motion.div>
+
+      {/* Decorative gradient overlay */}
+      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-orange-100/30 to-transparent rounded-full blur-2xl -z-10" />
     </motion.div>
   </motion.div>
 );
