@@ -4,129 +4,87 @@ import { Calendar, TrendingUp, Shield, Leaf, Brain, User, MessageCircle, PhoneCa
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { useRef, useState, useEffect } from "react";
 
-// Problem Steps Components - ESTRUTURA ORIGINAL COMPLETA
+// Problem Steps Components - VERSÃO CINEMATOGRÁFICA UNIFICADA
 const ProblemStep1 = () => (
-  <motion.div
-    initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
-    whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
-    viewport={{ once: true, margin: "-50px", amount: 0.3 }}
-    transition={{ 
-      duration: 1.2,
-      type: "spring",
-      stiffness: 60,
-      damping: 20
-    }}
-    className="space-y-6 px-6"
-  >
-    {/* Scene number with lens flare */}
-    <motion.div 
-      className="flex items-center gap-4 mb-8"
-      initial={{ x: -100, opacity: 0 }}
-      whileInView={{ x: 0, opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ delay: 0.3, duration: 1 }}
-    >
-      <div className="relative">
-        <motion.span 
-          className="text-6xl font-black bg-gradient-to-br from-indigo-400 to-indigo-600 bg-clip-text text-transparent"
-          whileInView={{ 
-            scale: [1, 1.15, 1],
-            rotate: [0, 10, 0]
-          }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-        >
-          01
-        </motion.span>
-        {/* Lens flare effect */}
-        <motion.div
-          className="absolute -inset-4 bg-indigo-500/20 rounded-full blur-2xl will-change-transform"
-          animate={{ 
-            scale: [1, 1.5, 1],
-            opacity: [0.3, 0.6, 0.3]
-          }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </div>
-      <div>
-        <h3 className="text-2xl font-bold leading-tight">Uma Linha de Produção<br/>de Uma Pessoa Só</h3>
-      </div>
-    </motion.div>
-    
-    <motion.p 
-      className="text-slate-700 text-base leading-relaxed"
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: 0.5, duration: 0.9 }}
-    >
-      Roteiros, filmagens, edição de vídeo, gestão de agendas, negociações... <span className="text-indigo-700 font-semibold">O criador faz tudo sozinho.</span>
-    </motion.p>
-    
-    {/* Card with depth */}
-    <motion.div 
-      className="relative h-64 rounded-3xl overflow-hidden will-change-transform"
-      initial={{ scale: 0.9, opacity: 0 }}
-      whileInView={{ scale: 1, opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ delay: 0.6, duration: 1, type: "spring", stiffness: 80 }}
-      style={{ 
-        boxShadow: '0 40px 80px -20px rgba(99, 102, 241, 0.4), 0 0 0 1px rgba(255,255,255,0.1)'
-      }}
-    >
-      {/* Layered background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-indigo-50 to-slate-100" />
-      
-      {/* Animated grid */}
-      <motion.div
-        className="absolute inset-0 opacity-20"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(99, 102, 241, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.4) 1px, transparent 1px)',
-          backgroundSize: '30px 30px'
-        }}
-        animate={{ 
-          backgroundPosition: ['0px 0px', '30px 30px']
-        }}
-        transition={{ 
-          duration: 6, 
-          repeat: Infinity,
-          ease: "linear"
-        }}
+  <div className="relative w-full h-full overflow-hidden">
+    {/* Background image - tela cheia */}
+    <div className="absolute inset-0">
+      <img 
+        src="https://images.unsplash.com/photo-1499482125586-91609c0b5fd4?w=1200&q=80" 
+        alt="Criador trabalhando"
+        className="w-full h-full object-cover"
       />
       
-      {/* Task pills */}
-      <div className="absolute inset-0 flex flex-wrap gap-3 p-6 content-start">
-        {["Roteiro", "Edição", "Agenda", "Publis", "DMs", "Vendas", "Analytics", "Criação"].map((task, i) => (
+      {/* Overlay gradient escuro */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/75 to-black/40" />
+      
+      {/* Vignette */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.5)_100%)]" />
+    </div>
+
+    {/* Content - canto inferior esquerdo (estilo cinema) */}
+    <div className="absolute bottom-20 left-8 right-8 z-10">
+      {/* Badge superior */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.3 }}
+        className="mb-4"
+      >
+        <span className="inline-block px-4 py-1.5 bg-indigo-600/90 backdrop-blur-md rounded-full text-xs font-bold text-white uppercase tracking-wider">
+          Capítulo 01
+        </span>
+      </motion.div>
+
+      {/* Título principal */}
+      <motion.h3
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="text-4xl md:text-6xl font-black text-white mb-4 leading-[1.1] drop-shadow-2xl"
+      >
+        Uma Linha de Produção<br/>de Uma Pessoa Só
+      </motion.h3>
+
+      {/* Descrição */}
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.7 }}
+        className="text-slate-100 text-base md:text-lg leading-relaxed max-w-[500px] drop-shadow-lg mb-6"
+      >
+        Roteiros, filmagens, edição de vídeo, gestão de agendas, negociações... <span className="text-indigo-300 font-semibold">O criador faz tudo sozinho.</span>
+      </motion.p>
+
+      {/* Task pills cinematográficos */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.9 }}
+        className="flex flex-wrap gap-2 max-w-[500px]"
+      >
+        {["Roteiro", "Edição", "Agenda", "Publis", "DMs", "Vendas"].map((task, i) => (
           <motion.div
             key={task}
             initial={{ scale: 0, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
+            animate={{ scale: 1, opacity: 1 }}
             transition={{ 
-              delay: 0.8 + i * 0.08,
+              delay: 1 + i * 0.1,
               type: "spring",
-              stiffness: 200,
-              damping: 20
+              stiffness: 200
             }}
-            whileHover={{ 
-              scale: 1.1,
-              transition: { duration: 0.2 }
-            }}
-            viewport={{ once: true }}
-            className="relative px-4 py-2 bg-indigo-100 border border-indigo-300 rounded-full text-sm text-indigo-800 font-medium backdrop-blur-md cursor-pointer shadow-sm"
-            style={{ 
-              boxShadow: '0 8px 20px -8px rgba(99, 102, 241, 0.6), inset 0 1px 0 rgba(255,255,255,0.2)'
-            }}
+            className="px-3 py-1 bg-white/20 backdrop-blur-md border border-white/30 rounded-full text-xs text-white font-medium"
           >
             {task}
-            {/* Inner glow */}
-            <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent rounded-full" />
           </motion.div>
         ))}
-      </div>
-      
-      {/* Vignette overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
-    </motion.div>
-  </motion.div>
+      </motion.div>
+    </div>
+
+    {/* Letterbox bars - efeito cinema */}
+    <div className="absolute top-0 left-0 right-0 h-16 bg-black/60 backdrop-blur-sm" />
+    <div className="absolute bottom-0 left-0 right-0 h-16 bg-black/60 backdrop-blur-sm" />
+  </div>
 );
 
 const ProblemStep2 = () => {
@@ -168,288 +126,188 @@ const ProblemStep2 = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentStat((prev) => (prev + 1) % stats.length);
-    }, 4500); // Troca a cada 4.5 segundos
+    }, 4500);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 1.5, z: -600, rotateX: 30 }}
-      whileInView={{ opacity: 1, scale: 1, z: 0, rotateX: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ 
-        duration: 1.6,
-        type: "spring",
-        stiffness: 45,
-        damping: 18
-      }}
-      className="space-y-6 px-6"
-      style={{ transformStyle: 'preserve-3d' }}
-    >
-      {/* Scene number with warning glow */}
-      <motion.div 
-        className="flex items-center gap-4 mb-8"
-        initial={{ x: -100, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.3, duration: 1 }}
-      >
-        <div className="relative">
-          <motion.span 
-            className="text-6xl font-black bg-gradient-to-br from-red-400 to-red-600 bg-clip-text text-transparent will-change-transform"
-            animate={{ 
-              scale: [1, 1.05, 1]
-            }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
+    <div className="relative w-full h-full overflow-hidden">
+      {/* Background image - tela cheia */}
+      <div className="absolute inset-0">
+        <img 
+          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&q=80" 
+          alt="Pessoa estressada"
+          className="w-full h-full object-cover"
+        />
+        
+        {/* Overlay gradient vermelho escuro */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-red-950/80 to-black/50" />
+        
+        {/* Vignette */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.6)_100%)]" />
+      </div>
+
+      {/* Content - canto inferior esquerdo */}
+      <div className="absolute bottom-20 left-8 right-8 z-10">
+        {/* Badge superior */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.3 }}
+          className="mb-4"
+        >
+          <span className="inline-block px-4 py-1.5 bg-red-600/90 backdrop-blur-md rounded-full text-xs font-bold text-white uppercase tracking-wider">
+            Capítulo 02
+          </span>
+        </motion.div>
+
+        {/* Título principal */}
+        <motion.h3
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="text-4xl md:text-6xl font-black text-white mb-4 leading-[1.1] drop-shadow-2xl"
+        >
+          O Resultado é<br/>Previsível
+        </motion.h3>
+
+        {/* Descrição */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7 }}
+          className="text-slate-100 text-base md:text-lg leading-relaxed max-w-[500px] drop-shadow-lg mb-6"
+        >
+          A sobrecarga leva ao <span className="text-red-300 font-semibold">esgotamento mental e criativo.</span>
+        </motion.p>
+
+        {/* Estatística rotativa - versão cinematográfica */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentStat}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+            className="bg-black/40 backdrop-blur-md border border-red-500/30 rounded-2xl p-6 max-w-[500px]"
           >
-            02
-          </motion.span>
-          {/* Pulsing red alert */}
-          <motion.div
-            className="absolute -inset-4 bg-red-500/20 rounded-full blur-2xl will-change-transform"
-            animate={{ 
-              scale: [1, 1.6, 1],
-              opacity: [0.2, 0.6, 0.2]
-            }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
-          />
-        </div>
-        <div>
-          <h3 className="text-2xl font-bold leading-tight">O Resultado é<br/>Previsível</h3>
-        </div>
-      </motion.div>
-      
-      <motion.p 
-        className="text-slate-700 text-base leading-relaxed"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.5, duration: 0.9 }}
-      >
-        A sobrecarga leva ao <span className="text-red-700 font-semibold">esgotamento mental e criativo.</span>
-      </motion.p>
-      
-      {/* Dramatic stat reveal card com rotação de estatísticas */}
-      <motion.div 
-        className="relative h-80 rounded-3xl overflow-hidden will-change-transform"
-        initial={{ scale: 0.9, opacity: 0 }}
-        whileInView={{ scale: 1, opacity: 1 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ delay: 0.6, duration: 1, type: "spring", stiffness: 80, damping: 20 }}
-        style={{ 
-          boxShadow: '0 50px 100px -20px rgba(248, 113, 113, 0.5), 0 0 0 1px rgba(248, 113, 113, 0.2)'
-        }}
-      >
-        {/* Dark red gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-red-100 via-rose-50 to-white" />
-        
-        {/* Animated warning stripes */}
+            <div className="text-6xl md:text-7xl font-black text-red-400 mb-3 drop-shadow-lg">
+              {stats[currentStat].number}
+            </div>
+            <p className="text-white text-sm md:text-base font-medium mb-3 leading-relaxed">
+              {stats[currentStat].text}
+            </p>
+            <div className="text-slate-400 text-xs">
+              <p className="font-semibold">{stats[currentStat].source}</p>
+              <p className="opacity-70">{stats[currentStat].org}</p>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Progress dots */}
         <motion.div
-          className="absolute inset-0 opacity-10 will-change-transform"
-          style={{
-            backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(248, 113, 113, 0.3) 40px, rgba(248, 113, 113, 0.3) 80px)',
-          }}
-          animate={{ 
-            backgroundPosition: ['0px 0px', '80px 80px']
-          }}
-          transition={{ 
-            duration: 12, 
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
-        
-        {/* Pulsing concentric warning rings */}
-        {[0, 1].map((i) => (
-          <motion.div
-            key={i}
-            className="absolute inset-0 rounded-3xl border-2 border-red-500/30 will-change-transform"
-            animate={{ 
-              scale: [1, 1.3],
-              opacity: [0.4, 0]
-            }}
-            transition={{ 
-              duration: 2.4, 
-              repeat: Infinity,
-              delay: i * 1.2,
-              ease: "linear"
-            }}
-          />
-        ))}
-        
-        {/* Content container com AnimatePresence para transições suaves */}
-        <div className="relative h-full flex flex-col items-center justify-center p-6 z-10">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentStat}
-              initial={{ opacity: 0, y: 30, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -30, scale: 0.95 }}
-              transition={{ 
-                duration: 0.7,
-                ease: [0.4, 0, 0.2, 1]
-              }}
-              className="flex flex-col items-center gap-4"
-            >
-              {/* Main stat with intense glow */}
-              <motion.div className="relative mb-2">
-                <motion.div
-                  className="absolute -inset-12 bg-red-500/20 rounded-full blur-3xl"
-                  animate={{ 
-                    opacity: [0.2, 0.4, 0.2]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                />
-                <span className="relative text-7xl md:text-8xl font-black bg-gradient-to-br from-red-600 to-red-400 bg-clip-text text-transparent">
-                  {stats[currentStat].number}
-                </span>
-              </motion.div>
-              
-              {/* Description */}
-              <p className="text-slate-700 text-center font-semibold text-base max-w-xs px-4">
-                {stats[currentStat].text}
-              </p>
-              
-              {/* Source tag - Estilo jornalístico mais sério */}
-              <div className="mt-3 text-center">
-                <div className="inline-flex flex-col items-center gap-0.5 px-5 py-2.5 bg-slate-900/5 border border-slate-300/40 rounded-md">
-                  <span className="text-[10px] font-semibold text-slate-600 uppercase tracking-wide">
-                    {stats[currentStat].source}
-                  </span>
-                  <span className="text-[9px] text-slate-500">
-                    {stats[currentStat].org}
-                  </span>
-                </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-          
-          {/* Indicadores de progresso - minimalista */}
-          <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-1.5 z-20">
-            {stats.map((_, index) => (
-              <div
-                key={index}
-                className={`h-1 rounded-full transition-all duration-500 ${
-                  index === currentStat 
-                    ? 'w-6 bg-red-600' 
-                    : 'w-1 bg-red-300/50'
-                }`}
-              />
-            ))}
-          </div>
-        </div>
-        
-        {/* Decorative elements - mais discretos */}
-        <motion.div
-          className="absolute top-6 right-6 w-10 h-10 border border-red-400/20 rounded-full"
-          animate={{ 
-            rotate: 360
-          }}
-          transition={{ 
-            duration: 25, 
-            repeat: Infinity, 
-            ease: "linear"
-          }}
-        />
-      </motion.div>
-    </motion.div>
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="flex gap-2 mt-6"
+        >
+          {stats.map((_, i) => (
+            <div
+              key={i}
+              className={`h-1 rounded-full transition-all duration-300 ${
+                i === currentStat ? 'w-8 bg-red-400' : 'w-1 bg-white/30'
+              }`}
+            />
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Letterbox bars */}
+      <div className="absolute top-0 left-0 right-0 h-16 bg-black/60 backdrop-blur-sm" />
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-black/60 backdrop-blur-sm" />
+    </div>
   );
 };
 
 const ProblemStep3 = () => (
-  <motion.div
-    initial={{ opacity: 0, y: 60 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-80px" }}
-    transition={{ 
-      duration: 1,
-      type: "spring",
-      stiffness: 50
-    }}
-    className="space-y-5 px-6"
-  >
-    {/* Header */}
-    <motion.div 
-      className="flex items-center gap-4 mb-6"
-      initial={{ x: -50, opacity: 0 }}
-      whileInView={{ x: 0, opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ delay: 0.2, duration: 0.7 }}
-    >
-      <span className="text-5xl font-black bg-gradient-to-br from-orange-400 to-orange-600 bg-clip-text text-transparent">
-        03
-      </span>
-      <h3 className="text-2xl font-bold">O Atalho Perigoso</h3>
-    </motion.div>
-    
-    {/* Subtitle */}
-    <motion.p 
-      className="text-slate-600 text-sm leading-relaxed"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: 0.3, duration: 0.7 }}
-    >
-      Para economizar tempo, criadores usam IAs para trabalhar <span className="text-orange-600 font-semibold">POR elas.</span>
-    </motion.p>
+  <div className="relative w-full h-full overflow-hidden">
+    {/* Background image - tela cheia */}
+    <div className="absolute inset-0">
+      <img 
+        src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=1200&q=80" 
+        alt="IA no celular"
+        className="w-full h-full object-cover"
+      />
+      
+      {/* Overlay gradient laranja escuro */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-orange-950/80 to-black/50" />
+      
+      {/* Vignette */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.5)_100%)]" />
+    </div>
 
-    <motion.p 
-      className="text-slate-500 text-xs italic"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ delay: 0.5 }}
-    >
-      Mas se a essência do criador é criar...
-    </motion.p>
-    
-    {/* Card comparativo - ANTES/DEPOIS visual clean */}
-    <motion.div 
-      className="relative bg-gradient-to-br from-slate-50 to-white rounded-2xl border border-slate-200 p-5 overflow-hidden shadow-xl"
-      initial={{ scale: 0.95, opacity: 0 }}
-      whileInView={{ scale: 1, opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ delay: 0.4, duration: 0.8 }}
-    >
-      {/* Header do card */}
-      <div className="flex items-center gap-2 mb-4 pb-3 border-b border-slate-200">
-        <div className="w-2 h-2 rounded-full bg-orange-500" />
-        <span className="text-xs font-semibold text-slate-700 uppercase tracking-wide">IA Genérica</span>
-        <span className="ml-auto text-[10px] text-slate-500 font-mono">Gerando...</span>
-      </div>
-
-      {/* Conteúdo genérico gerado */}
-      <motion.div 
-        className="bg-white border border-slate-200 rounded-lg p-4 mb-3"
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
-      >
-        <p className="text-xs text-slate-600 leading-relaxed">
-          "Olá pessoal, hoje vou mostrar 5 dicas para aumentar o engajamento..."
-        </p>
-      </motion.div>
-
-      {/* Warning box */}
+    {/* Content - canto inferior esquerdo */}
+    <div className="absolute bottom-20 left-8 right-8 z-10">
+      {/* Badge superior */}
       <motion.div
-        className="flex items-start gap-2 bg-orange-50 border border-orange-200 rounded-lg p-3"
-        initial={{ opacity: 0, x: -10 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.8 }}
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.3 }}
+        className="mb-4"
       >
-        <div className="w-5 h-5 rounded bg-orange-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-          <span className="text-white text-xs font-bold">!</span>
-        </div>
-        <div className="flex-1">
-          <p className="text-[11px] font-semibold text-orange-800 mb-1">Conteúdo genérico</p>
-          <p className="text-[10px] text-orange-700">Sem personalidade. Sem alma. Sem você.</p>
-        </div>
+        <span className="inline-block px-4 py-1.5 bg-orange-600/90 backdrop-blur-md rounded-full text-xs font-bold text-white uppercase tracking-wider">
+          Capítulo 03
+        </span>
       </motion.div>
 
-      {/* Decorative gradient overlay */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-orange-100/30 to-transparent rounded-full blur-2xl -z-10" />
-    </motion.div>
-  </motion.div>
+      {/* Título principal */}
+      <motion.h3
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="text-4xl md:text-6xl font-black text-white mb-4 leading-[1.1] drop-shadow-2xl"
+      >
+        O Atalho<br/>Perigoso
+      </motion.h3>
+
+      {/* Descrição */}
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.7 }}
+        className="text-slate-100 text-base md:text-lg leading-relaxed max-w-[500px] drop-shadow-lg mb-6"
+      >
+        Para economizar tempo, criadores usam IAs para trabalhar <span className="text-orange-300 font-semibold">POR elas.</span>
+      </motion.p>
+
+      {/* Warning box cinematográfico */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.9 }}
+        className="bg-black/40 backdrop-blur-md border border-orange-500/30 rounded-2xl p-6 max-w-[500px]"
+      >
+        <div className="flex items-start gap-4">
+          <div className="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center flex-shrink-0">
+            <span className="text-white text-2xl font-bold">!</span>
+          </div>
+          <div className="flex-1">
+            <p className="text-white text-sm font-semibold mb-2">Conteúdo genérico detectado</p>
+            <p className="text-slate-300 text-xs leading-relaxed mb-3">
+              "Olá pessoal, hoje vou mostrar 5 dicas para aumentar o engajamento..."
+            </p>
+            <p className="text-orange-400 text-xs font-medium">
+              Sem personalidade. Sem alma. Sem você.
+            </p>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+
+    {/* Letterbox bars */}
+    <div className="absolute top-0 left-0 right-0 h-16 bg-black/60 backdrop-blur-sm" />
+    <div className="absolute bottom-0 left-0 right-0 h-16 bg-black/60 backdrop-blur-sm" />
+  </div>
 );
 
 const ProblemStep4_1 = () => (
@@ -479,8 +337,8 @@ const ProblemStep4_1 = () => (
         transition={{ delay: 0.3 }}
         className="mb-4"
       >
-        <span className="inline-block px-3 py-1 bg-red-600/80 backdrop-blur-md rounded text-[10px] font-bold text-white uppercase tracking-wider">
-          Para quem cria
+        <span className="inline-block px-4 py-1.5 bg-red-600/90 backdrop-blur-md rounded-full text-xs font-bold text-white uppercase tracking-wider">
+          Capítulo 04
         </span>
       </motion.div>
 
@@ -538,8 +396,8 @@ const ProblemStep4_2 = () => (
         transition={{ delay: 0.3 }}
         className="mb-4"
       >
-        <span className="inline-block px-3 py-1 bg-red-600/80 backdrop-blur-md rounded text-[10px] font-bold text-white uppercase tracking-wider">
-          Para a audiência
+        <span className="inline-block px-4 py-1.5 bg-red-600/90 backdrop-blur-md rounded-full text-xs font-bold text-white uppercase tracking-wider">
+          Capítulo 04
         </span>
       </motion.div>
 
@@ -2360,7 +2218,7 @@ const FeatureCardMobile = ({ icon: Icon, title, description, step }: { icon: any
       transition={{ duration: 0.8, ease: "easeOut" }}
       className="w-full"
     >
-      <div className="bg-white/30 backdrop-blur-sm border-2 border-indigo-200 rounded-3xl p-8 shadow-lg shadow-indigo-200/50 hover:shadow-xl hover:shadow-indigo-300/50 transition-all duration-300">
+      <div className="bg-white/95 backdrop-blur-md border-2 border-indigo-200 rounded-3xl p-8 shadow-lg shadow-indigo-200/50 hover:shadow-xl hover:shadow-indigo-300/50 transition-all duration-300">
         <div className="flex items-start gap-5">
           <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center flex-shrink-0 shadow-lg">
             <Icon className="h-7 w-7 text-white" />
