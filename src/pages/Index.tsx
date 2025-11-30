@@ -555,74 +555,8 @@ const Index = () => {
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-100 text-slate-900 overflow-hidden">
-      {/* SECTION 1: THE HERO (Parallax "Neural Roots") */}
-      <section ref={heroRef as any} className="relative h-screen flex items-center justify-center px-6 overflow-hidden">
-        {/* Parallax background with scale */}
-        <motion.div 
-          style={{ y: heroBgY, scale: heroBgScale }} 
-          className="absolute inset-0 will-change-transform"
-        >
-          <div
-            className="absolute inset-0 bg-cover bg-center opacity-20"
-            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1763661478581-54cff2574c9a?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/40 via-white/60 to-slate-50/80" />
-        </motion.div>
-
-        {/* Content */}
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.05 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-100 border border-indigo-200 text-sm text-indigo-700 shadow-lg shadow-indigo-100/50"
-          >
-            <Leaf className="w-4 h-4 text-emerald-600" />
-            <span>Uma iniciativa +Creator</span>
-          </motion.div>
-
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="mt-4 text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-800 bg-clip-text text-transparent"
-          >
-            Uma ferramenta para criar conteúdo com performance e propósito
-          </motion.h1>
-
-          {/* Subheadline */}
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-4 text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl mx-auto font-medium"
-          >
-            A InfluIA é sua ferramenta para economizar tempo e ter mais resultados na criação de conteúdo
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.45 }}
-            className="mt-8 flex flex-wrap items-center justify-center gap-3"
-          >
-            <Button
-              size="lg"
-              className="bg-indigo-600 hover:bg-indigo-700 text-white shadow-xl shadow-indigo-200/50 px-7 py-4 rounded-2xl border border-indigo-400"
-              asChild
-            >
-              <a href="https://wa.me/556198483937" target="_blank" rel="noopener noreferrer" aria-label="Testar a InfluIA via WhatsApp">Testar a Influ.IA (Beta)</a>
-            </Button>
-            
-          </motion.div>
-        </div>
-      </section>
-
-      {/* SECTION 2: THE SOLUTION (Fixed Phone com JS) */}
-      <section ref={solutionRef as any} className="relative w-full bg-gradient-to-b from-indigo-50 via-emerald-50 to-white overflow-hidden">
+      {/* SECTION 1 + 2 COMBINADAS: HERO COM TELEFONE */}
+      <section ref={solutionRef as any} className="relative bg-gradient-to-b from-indigo-50 via-emerald-50 to-white">
         {/* Parallax Background Image - Success/Solution */}
         <motion.div 
           className="absolute inset-0 z-0"
@@ -657,95 +591,86 @@ const Index = () => {
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
-        {/* MOBILE: Fixed com JavaScript */}
-        <div className="md:hidden px-6 py-20 relative z-10">
-          {/* Title */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 text-slate-900">
-              A Solução <span className="text-emerald-600">InfluIA</span>
-            </h2>
-            <p className="text-slate-600 text-lg">Seu copiloto de IA para criadores</p>
-          </div>
 
-          {/* Container com altura para scroll */}
-          <div style={{ height: '500vh', position: 'relative' }}>
-            {/* Phone will be fixed via Portal when scrolling */}
-            <FixedPhoneSection />
+        {/* HERO - Primeira tela */}
+        <div ref={heroRef as any} className="relative h-screen flex items-center justify-center px-6 overflow-visible z-10">
+          {/* Parallax background with scale */}
+          <motion.div 
+            style={{ y: heroBgY, scale: heroBgScale }} 
+            className="absolute inset-0 will-change-transform"
+          >
+            <div
+              className="absolute inset-0 bg-cover bg-center opacity-20"
+              style={{ backgroundImage: "url('https://images.unsplash.com/photo-1763661478581-54cff2574c9a?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/40 via-white/60 to-slate-50/80" />
+          </motion.div>
+
+          {/* Content */}
+          <div className="relative z-10 max-w-4xl mx-auto text-center">
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.05 }}
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-100 border border-indigo-200 text-sm text-indigo-700 shadow-lg shadow-indigo-100/50"
+            >
+              <Leaf className="w-4 h-4 text-emerald-600" />
+              <span>Uma iniciativa +Creator</span>
+            </motion.div>
+
+            {/* Headline */}
+            <motion.h1
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.15 }}
+              className="mt-4 text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-800 bg-clip-text text-transparent"
+            >
+              Uma ferramenta para criar conteúdo com performance e propósito
+            </motion.h1>
+
+            {/* Subheadline */}
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-4 text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl mx-auto font-medium"
+            >
+              A InfluIA é sua ferramenta para economizar tempo e ter mais resultados na criação de conteúdo
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.45 }}
+              className="mt-8 flex flex-wrap items-center justify-center gap-3"
+            >
+              <Button
+                size="lg"
+                className="bg-indigo-600 hover:bg-indigo-700 text-white shadow-xl shadow-indigo-200/50 px-7 py-4 rounded-2xl border border-indigo-400"
+                asChild
+              >
+                <a href="https://wa.me/556198483937" target="_blank" rel="noopener noreferrer" aria-label="Testar a InfluIA via WhatsApp">Testar a Influ.IA (Beta)</a>
+              </Button>
+              
+            </motion.div>
           </div>
+        </div>
+
+        {/* TELEFONE - Começa visível na parte inferior da home (preview) */}
+        {/* MOBILE: Fixed com JavaScript */}
+        <div className="md:hidden relative z-20">
+          <FixedPhoneSection />
         </div>
 
         {/* DESKTOP: Sticky Scroll */}
-        <div className="hidden md:block relative max-w-7xl mx-auto px-12 py-32 z-10">
-          {/* Phone fixo no centro da tela */}
-          <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none">
-            <PhoneStickyDesktop />
-          </div>
-
-          {/* Cards que aparecem em sequência vertical SEM passar pelo telefone */}
-          <div className="space-y-[100vh] max-w-2xl mx-auto">
-            
-            {/* Card 1: Gestão de Agenda - ACIMA do telefone */}
-            <div className="min-h-screen flex items-start pt-20">
-              <motion.div 
-                initial={{ opacity: 0, y: 60 }} 
-                whileInView={{ opacity: 1, y: 0 }} 
-                viewport={{ once: true, amount: 0.5 }} 
-                transition={{ duration: 0.8 }} 
-                className="bg-white border-2 border-indigo-200 rounded-3xl p-8 shadow-2xl shadow-indigo-200/50 w-full max-w-md mx-auto"
-              >
-                <div className="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-full mb-4">
-                  Recurso #1
-                </div>
-                <h3 className="text-3xl font-bold tracking-tight text-slate-900 mb-3">Gestão de Agenda</h3>
-                <p className="text-slate-600 text-lg leading-relaxed">
-                  Você pede, ela marca. A InfluIA gerencia sua agenda de forma inteligente, lembrando compromissos e otimizando seu tempo.
-                </p>
-              </motion.div>
-            </div>
-
-            {/* Card 2: Inteligência Real - MEIO */}
-            <div className="min-h-screen flex items-center">
-              <motion.div 
-                initial={{ opacity: 0, y: 60 }} 
-                whileInView={{ opacity: 1, y: 0 }} 
-                viewport={{ once: true, amount: 0.5 }} 
-                transition={{ duration: 0.8 }} 
-                className="bg-white border-2 border-indigo-200 rounded-3xl p-8 shadow-2xl shadow-indigo-200/50 w-full max-w-md mx-auto"
-              >
-                <div className="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-full mb-4">
-                  Recurso #2
-                </div>
-                <h3 className="text-3xl font-bold tracking-tight text-slate-900 mb-3">Inteligência Real</h3>
-                <p className="text-slate-600 text-lg leading-relaxed">
-                  Táticas validadas, não alucinações. Nossa IA é treinada com estratégias reais de criadores de sucesso.
-                </p>
-              </motion.div>
-            </div>
-
-            {/* Card 3: CRM Automático - ABAIXO do telefone */}
-            <div className="min-h-screen flex items-end pb-20">
-              <motion.div 
-                initial={{ opacity: 0, y: 60 }} 
-                whileInView={{ opacity: 1, y: 0 }} 
-                viewport={{ once: true, amount: 0.5 }} 
-                transition={{ duration: 0.8 }} 
-                className="bg-white border-2 border-emerald-200 rounded-3xl p-8 shadow-2xl shadow-emerald-200/50 w-full max-w-md mx-auto"
-              >
-                <div className="inline-block px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-full mb-4">
-                  Recurso #3
-                </div>
-                <h3 className="text-3xl font-bold tracking-tight text-slate-900 mb-3">CRM Automático</h3>
-                <p className="text-slate-600 text-lg leading-relaxed">
-                  Nunca mais perca um lead. A InfluIA organiza e acompanha automaticamente suas parcerias e oportunidades.
-                </p>
-              </motion.div>
-            </div>
-
-          </div>
+        <div className="hidden md:block relative z-20">
+          <PhoneStickyDesktopWithScroll />
         </div>
       </section>
 
-      {/* SECTION 4: THE PROBLEM (ULTRA Cinematic Burnout Journey) */}
+      {/* SECTION 3: THE PROBLEM (ULTRA Cinematic Burnout Journey) */}
       <section ref={problemRef as any} className="relative w-full bg-gradient-to-b from-white via-rose-50 to-red-50 px-6 py-20 md:py-32 overflow-hidden will-change-transform" style={{ perspective: '1000px' }}>
         {/* Multi-layer Parallax Background */}
         <motion.div 
@@ -1881,8 +1806,8 @@ export default Index;
 const PhoneStickyDesktop = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start center", "end center"] });
-  // Map progress to step visibility (fade in and STAY)
-  const step1Opacity = useTransform(scrollYProgress, [0.0, 0.2], [0, 1]);
+  // Map progress to step visibility (INICIA VISÍVEL)
+  const step1Opacity = useTransform(scrollYProgress, [0.0, 0.2], [1, 1]);
   const step2Opacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
   const step3Opacity = useTransform(scrollYProgress, [0.4, 0.6], [0, 1]);
 
@@ -1928,6 +1853,134 @@ const PhoneStickyDesktop = () => {
             <div className="h-11 bg-white/5 border border-white/10 rounded-xl" />
           </div>
         </div>
+      </div>
+    </div>
+  );
+};
+
+// Desktop wrapper com scroll que move o telefone de baixo para cima
+const PhoneStickyDesktopWithScroll = () => {
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+      
+      const rect = containerRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // Calcula progress desde quando a seção começa a aparecer
+      const sectionStart = windowHeight;
+      const sectionScrolled = sectionStart - rect.top;
+      const totalHeight = rect.height;
+      
+      const progress = Math.max(0, sectionScrolled) / totalHeight;
+      setScrollProgress(Math.min(Math.max(progress, 0), 1));
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Interpolação suave para desktop - sobe IMEDIATAMENTE
+  const getPhonePosition = () => {
+    if (scrollProgress < 0.15) {
+      const bottomProgress = scrollProgress / 0.15;
+      const bottomValue = -55 + (bottomProgress * 105);
+      
+      if (bottomValue < 50) {
+        return { bottom: `${bottomValue}%`, top: undefined };
+      } else {
+        return { bottom: undefined, top: '50%' };
+      }
+    }
+    return { bottom: undefined, top: '50%' };
+  };
+  
+  const phonePos = getPhonePosition();
+  
+  // Opacity: desaparece no final da seção
+  const phoneOpacity = scrollProgress > 0.85 ? Math.max(0, 1 - ((scrollProgress - 0.85) / 0.15)) : 1;
+
+  return (
+    <div ref={containerRef} className="relative" style={{ height: '400vh' }}>
+      {/* Phone - SOBE GRADUALMENTE e DESAPARECE NO FINAL */}
+      <div
+        className="fixed z-50 pointer-events-none flex items-center justify-center"
+        style={{ 
+          bottom: phonePos.bottom,
+          top: phonePos.top,
+          left: '50%',
+          transform: phonePos.top ? 'translate(-50%, -50%)' : 'translateX(-50%)',
+          opacity: phoneOpacity,
+          transition: 'bottom 0.1s linear, top 0.1s linear, opacity 0.3s ease-out'
+        }}
+      >
+        <PhoneStickyDesktop />
+      </div>
+
+      {/* Cards que aparecem em sequência vertical */}
+      <div className="absolute inset-0 space-y-[100vh] max-w-2xl mx-auto px-12">
+        
+        {/* Card 1: Gestão de Agenda */}
+        <div className="min-h-screen flex items-start pt-20">
+          <motion.div 
+            initial={{ opacity: 0, y: 60 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true, amount: 0.5 }} 
+            transition={{ duration: 0.8 }} 
+            className="bg-white border-2 border-indigo-200 rounded-3xl p-8 shadow-2xl shadow-indigo-200/50 w-full max-w-md mx-auto"
+          >
+            <div className="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-full mb-4">
+              Recurso #1
+            </div>
+            <h3 className="text-3xl font-bold tracking-tight text-slate-900 mb-3">Gestão de Agenda</h3>
+            <p className="text-slate-600 text-lg leading-relaxed">
+              Você pede, ela marca. A InfluIA gerencia sua agenda de forma inteligente, lembrando compromissos e otimizando seu tempo.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Card 2: Inteligência Real */}
+        <div className="min-h-screen flex items-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 60 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true, amount: 0.5 }} 
+            transition={{ duration: 0.8 }} 
+            className="bg-white border-2 border-indigo-200 rounded-3xl p-8 shadow-2xl shadow-indigo-200/50 w-full max-w-md mx-auto"
+          >
+            <div className="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-full mb-4">
+              Recurso #2
+            </div>
+            <h3 className="text-3xl font-bold tracking-tight text-slate-900 mb-3">Inteligência Real</h3>
+            <p className="text-slate-600 text-lg leading-relaxed">
+              Táticas validadas, não alucinações. Nossa IA é treinada com estratégias reais de criadores de sucesso.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Card 3: CRM Automático */}
+        <div className="min-h-screen flex items-end pb-20">
+          <motion.div 
+            initial={{ opacity: 0, y: 60 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true, amount: 0.5 }} 
+            transition={{ duration: 0.8 }} 
+            className="bg-white border-2 border-emerald-200 rounded-3xl p-8 shadow-2xl shadow-emerald-200/50 w-full max-w-md mx-auto"
+          >
+            <div className="inline-block px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-full mb-4">
+              Recurso #3
+            </div>
+            <h3 className="text-3xl font-bold tracking-tight text-slate-900 mb-3">CRM Automático</h3>
+            <p className="text-slate-600 text-lg leading-relaxed">
+              Nunca mais perca um lead. A InfluIA organiza e acompanha automaticamente suas parcerias e oportunidades.
+            </p>
+          </motion.div>
+        </div>
+
       </div>
     </div>
   );
@@ -2032,7 +2085,6 @@ const PhoneMobileSticky = ({ currentStep }: { currentStep: number }) => {
 
 // Fixed phone section with cards
 const FixedPhoneSection = () => {
-  const [isFixed, setIsFixed] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -2043,16 +2095,15 @@ const FixedPhoneSection = () => {
       const rect = containerRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       
-      // Check if section is in viewport
-      const shouldBeFixed = rect.top <= 0 && rect.bottom >= windowHeight;
-      setIsFixed(shouldBeFixed);
+      // Calcula o progress baseado em quando a seção COMEÇA a aparecer
+      // Quando rect.top = windowHeight (seção no fundo), progress = 0
+      // Quando rect.top = 0 (seção no topo), progress aumenta
+      const sectionStart = windowHeight; // Quando a seção aparece no bottom da tela
+      const sectionScrolled = sectionStart - rect.top; // Quanto já scrollou da seção
+      const totalHeight = rect.height;
       
-      if (shouldBeFixed) {
-        const totalScrollHeight = rect.height - windowHeight;
-        const currentScroll = Math.abs(rect.top);
-        const progress = currentScroll / totalScrollHeight;
-        setScrollProgress(Math.min(Math.max(progress, 0), 1));
-      }
+      const progress = Math.max(0, sectionScrolled) / totalHeight;
+      setScrollProgress(Math.min(Math.max(progress, 0), 1));
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -2061,37 +2112,50 @@ const FixedPhoneSection = () => {
   }, []);
 
   const currentStep = scrollProgress < 0.33 ? 1 : scrollProgress < 0.66 ? 2 : 3;
+  
+  // Telefone sobe IMEDIATAMENTE quando começar a scrollar a seção
+  // scrollProgress 0 -> 0.15: telefone sobe de bottom -60% até top 50%
+  const getPhonePosition = () => {
+    if (scrollProgress < 0.15) {
+      const bottomProgress = scrollProgress / 0.15; // 0 a 1
+      const bottomValue = -60 + (bottomProgress * 110); // -60% até 50%
+      
+      if (bottomValue < 50) {
+        return { bottom: `${bottomValue}%`, top: undefined };
+      } else {
+        return { bottom: undefined, top: '50%' };
+      }
+    }
+    return { bottom: undefined, top: '50%' };
+  };
+  
+  const phonePos = getPhonePosition();
+  
+  // Opacity: desaparece no final da seção
+  const phoneOpacity = scrollProgress > 0.85 ? Math.max(0, 1 - ((scrollProgress - 0.85) / 0.15)) : 1;
 
   return (
-    <div ref={containerRef} className="relative" style={{ height: '400vh' }}>
-      {/* Fixed phone - CENTRALIZADO E LEGÍVEL */}
-      <AnimatePresence>
-        {isFixed && (
-          <div
-            className="fixed z-10 pointer-events-none flex items-center justify-center"
-            style={{ 
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: '280px',
-              height: 'auto'
-            }}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.4 }}
-            >
-              <PhoneMobileSticky currentStep={currentStep} />
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+    <div ref={containerRef} className="relative" style={{ height: '500vh' }}>
+      {/* Fixed phone - SOBE GRADUALMENTE e DESAPARECE NO FINAL */}
+      <div
+        className="fixed z-10 pointer-events-none flex items-center justify-center"
+        style={{ 
+          bottom: phonePos.bottom,
+          top: phonePos.top,
+          left: '50%',
+          transform: phonePos.top ? 'translate(-50%, -50%)' : 'translateX(-50%)',
+          width: '280px',
+          height: 'auto',
+          opacity: phoneOpacity,
+          transition: 'bottom 0.1s linear, top 0.1s linear, opacity 0.3s ease-out'
+        }}
+      >
+        <PhoneMobileSticky currentStep={currentStep} />
+      </div>
 
       {/* Card 1 - EMBAIXO, MESMA POSIÇÃO DOS OUTROS */}
       <AnimatePresence>
-        {isFixed && scrollProgress < 0.35 && (
+        {scrollProgress >= 0.15 && scrollProgress < 0.35 && scrollProgress < 0.85 && (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -2111,7 +2175,7 @@ const FixedPhoneSection = () => {
 
       {/* Card 2 - SEMPRE EMBAIXO */}
       <AnimatePresence>
-        {isFixed && scrollProgress >= 0.32 && scrollProgress < 0.68 && (
+        {scrollProgress >= 0.35 && scrollProgress < 0.68 && scrollProgress < 0.85 && (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -2131,13 +2195,13 @@ const FixedPhoneSection = () => {
 
       {/* Card 3 - SEMPRE EMBAIXO */}
       <AnimatePresence>
-        {isFixed && scrollProgress >= 0.65 && (
+        {scrollProgress >= 0.68 && scrollProgress < 0.85 && (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -30 }}
             transition={{ duration: 0.5 }}
-            className="fixed bottom-[5%] left-0 right-0 px-6 z-30"
+            className="fixed bottom-[10%] left-0 right-0 px-6 z-30"
           >
             <FeatureCardMobile
               icon={TrendingUp}
