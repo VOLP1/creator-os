@@ -687,10 +687,6 @@ const Index = () => {
   const heroBgY = useTransform(heroScroll, [0, 1], [0, -100]);
   const heroBgScale = useTransform(heroScroll, [0, 1], [1, 1.2]);
 
-  const movementRef = useRef<HTMLElement | null>(null);
-  const { scrollYProgress: movementScroll } = useScroll({ target: movementRef, offset: ["start end", "end start"] });
-  const movementBgY = useTransform(movementScroll, [0, 1], [100, -100]);
-
   const problemRef = useRef<HTMLElement | null>(null);
   const { scrollYProgress: problemScroll } = useScroll({ target: problemRef, offset: ["start end", "end start"] });
   const problemBgY = useTransform(problemScroll, [0, 1], [100, -100]);
@@ -888,107 +884,6 @@ const Index = () => {
             </div>
 
           </div>
-        </div>
-      </section>
-
-      {/* SECTION 3: THE MOVEMENT (Split Screen "Organic Tech") */}
-      <section ref={movementRef as any} className="relative min-h-screen px-6 py-24 overflow-hidden bg-gradient-to-b from-slate-100 via-indigo-50 to-white">
-        {/* Enhanced Parallax background */}
-        <motion.div 
-          style={{ y: movementBgY }} 
-          className="absolute inset-0 will-change-transform"
-        >
-          <div
-            className="absolute inset-0 bg-cover bg-center scale-110 opacity-15"
-            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1533240332313-0db49b459ad6?auto=format&fit=crop&q=80&w=2000')" }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-indigo-100/60 via-slate-50/80 to-white/90" />
-        </motion.div>
-        
-        {/* Floating particles for depth */}
-        <motion.div
-          className="absolute top-32 left-1/4 w-72 h-72 bg-emerald-400/20 rounded-full blur-3xl z-[1]"
-          animate={{ 
-            x: [0, 80, 0],
-            y: [0, 60, 0],
-            scale: [1, 1.3, 1]
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-32 right-1/3 w-80 h-80 bg-indigo-400/15 rounded-full blur-3xl z-[1]"
-          animate={{ 
-            x: [0, -60, 0],
-            y: [0, -40, 0],
-            scale: [1, 1.2, 1]
-          }}
-          transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
-        />
-        
-        <div className="relative z-10 max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-start">
-          {/* Left: Sticky Text */}
-          <div className="md:sticky md:top-24">
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="text-xs tracking-[0.2em] font-semibold text-indigo-600"
-            >
-              O CONTEXTO
-            </motion.span>
-            <motion.h2
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="mt-3 text-3xl md:text-5xl font-bold tracking-tight text-slate-900"
-            >
-              Regenerar as redes para salvar quem cria.
-            </motion.h2>
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="mt-6 space-y-4 text-slate-600"
-            >
-              <p>A internet adoeceu. O que era para ser um espaço de expressão virou uma linha de montagem de ansiedade.</p>
-              <p>
-                A <strong className="text-slate-900">+Creator</strong> não é uma empresa, é um movimento. Nossa missão é garantir um futuro com mais saúde mental para jovens e criadores.
-              </p>
-              <p>
-                A Influ.IA não nasceu em uma sala de reunião focada em lucro. Ela surge como a ferramenta técnica necessária para quebrar o ciclo de exaustão que o sistema impõe.
-              </p>
-            </motion.div>
-            <div className="mt-6"><Button asChild variant="outline" className="border-2 border-slate-300 text-slate-700 hover:bg-slate-100"><a href="/o-movimento">Saiba mais</a></Button></div>
-          </div>
-
-          {/* Right: Visual Concept */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: 24 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative h-[60vh] md:h-[70vh]"
-          >
-            {/* Floating organic-tech sculpture */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="relative w-full max-w-md aspect-square">
-                {/* Leaf veins / circuit */}
-                <div className="absolute inset-6 rounded-[40%] bg-[conic-gradient(from_180deg_at_50%_50%,rgba(16,185,129,0.3),transparent_60%,rgba(99,102,241,0.35))] blur-sm" />
-                {/* Inner glow */}
-                <div className="absolute inset-12 rounded-[40%] bg-[radial-gradient(circle_at_50%_40%,rgba(99,102,241,0.4),transparent_60%)]" />
-                {/* Subtle float */}
-                <motion.div
-                  initial={{ y: 0 }}
-                  animate={{ y: [-6, 6, -6] }}
-                  transition={{ duration: 6, repeat: Infinity }}
-                  className="absolute -inset-2 rounded-[40%] border-2 border-indigo-300/30"
-                />
-              </div>
-            </div>
-          </motion.div>
         </div>
       </section>
 
