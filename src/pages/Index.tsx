@@ -1885,99 +1885,160 @@ const Index = () => {
       {/* MOBILE ONLY: Problem Section com scroll fixo */}
       <ProblemCinematicSection />
 
-      {/* 4) Por que existe a InfluIA / A solução */}
-      <section className="relative py-24 px-6">
-          <div className="max-w-5xl mx-auto text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="text-5xl md:text-7xl font-black mb-4 leading-tight"
-          >
-            <motion.span
-              className="inline-block bg-gradient-to-r from-emerald-700 via-indigo-600 to-slate-900 bg-clip-text text-transparent"
-              animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-              style={{ backgroundSize: "200% auto" }}
-            >
-              A solução
-            </motion.span>
-            <br />
-            <motion.span
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+      {/* 4) A Solução InfluIA - REMODELADA CINEMATOGRÁFICA */}
+      <section className="relative min-h-screen py-32 px-6 overflow-hidden bg-gradient-to-b from-white via-emerald-50/30 to-white">
+        {/* Background elements */}
+        <div className="absolute inset-0 opacity-[0.02]" style={{
+          backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(16, 185, 129, 0.15) 1px, transparent 0)',
+          backgroundSize: '40px 40px'
+        }} />
+        
+        {/* Glow effects */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl" />
+
+        <div className="relative max-w-6xl mx-auto">
+          {/* Header cinematográfico */}
+          <div className="text-center mb-20">
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.9, delay: 0.6 }}
-              className="text-4xl md:text-6xl font-extrabold leading-tight"
+              transition={{ duration: 0.8 }}
+              className="mb-6"
             >
+              <span className="inline-block px-4 py-2 bg-emerald-100 border border-emerald-300 rounded-full text-xs uppercase tracking-[0.3em] text-emerald-700 font-semibold">
+                Capítulo IV
+              </span>
+            </motion.div>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="text-5xl md:text-7xl font-black mb-6 leading-tight"
+            >
+              <span className="inline-block bg-gradient-to-r from-slate-900 via-emerald-600 to-indigo-700 bg-clip-text text-transparent">
+                A Solução
+              </span>
+              <br />
               <motion.span
-                className="inline-block bg-gradient-to-r from-emerald-300 via-indigo-400 to-rose-400 bg-clip-text text-transparent drop-shadow-2xl"
-                animate={{ backgroundPosition: ['0% 50%', '100% 50%'] }}
-                transition={{ duration: 5, repeat: Infinity, ease: 'linear' }}
+                className="inline-block bg-gradient-to-r from-emerald-400 via-indigo-500 to-rose-400 bg-clip-text text-transparent"
+                animate={{ 
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+                }}
+                transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
                 style={{ backgroundSize: '200% auto' }}
               >
                 Influ.IA
               </motion.span>
-            </motion.span>
             </motion.h2>
-          <p className="text-muted-foreground mb-6 mx-auto max-w-3xl">A Influ.IA é a única ferramenta projetada para proteger o tempo e a essência do criador. Automatizamos a gestão exaustiva e o operacional burocrático, garantindo que o seu foco seja total na criação de conteúdo autêntico, genuíno e de alto valor.</p>
 
-          <div className="grid md:grid-cols-3 gap-6 justify-items-center">
+            <motion.div
+              initial={{ opacity: 0, scaleX: 0 }}
+              whileInView={{ opacity: 1, scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.4 }}
+              className="w-32 h-1 bg-gradient-to-r from-emerald-500 to-indigo-500 mx-auto mb-8 rounded-full"
+            />
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed"
+            >
+              A única ferramenta projetada para <span className="font-semibold text-emerald-700">proteger o tempo e a essência</span> do criador.
+              Automatizamos o operacional para que seu foco seja total na criação autêntica.
+            </motion.p>
+          </div>
+
+          {/* Cards de funcionalidades - Grid cinematográfico */}
+          <div className="grid md:grid-cols-2 gap-6 mb-16">
             {[
               {
                 icon: Calendar,
                 title: "Agenda & Operação",
-                description:
-                  "Cuidamos de todos os prazos, tarefas e agendamentos. A Influ.IA gerencia o fluxo de trabalho para que você não perca o foco, garantindo que a rotina produtiva não mate sua criatividade.",
-                bg: "bg-gradient-to-br from-emerald-700 to-emerald-500",
-                iconColor: "text-emerald-100",
+                description: "Cuidamos de todos os prazos, tarefas e agendamentos. A Influ.IA gerencia o fluxo de trabalho para que você não perca o foco.",
+                gradient: "from-emerald-600 to-emerald-400",
+                bgGlow: "bg-emerald-500/20",
               },
               {
                 icon: TrendingUp,
                 title: "CRM & Parcerias",
-                description:
-                  "Chega de planilhas! Centralize o contato, o histórico e o follow-up de todas as suas parcerias e marcas em um lugar fácil de usar, maximizando suas oportunidades de monetização.",
-                bg: "bg-gradient-to-br from-indigo-600 to-violet-500",
-                iconColor: "text-indigo-100",
+                description: "Centralize o contato, histórico e follow-up de todas as suas parcerias em um lugar fácil, maximizando oportunidades.",
+                gradient: "from-indigo-600 to-violet-400",
+                bgGlow: "bg-indigo-500/20",
               },
               {
                 icon: Shield,
                 title: "WhatsApp-first",
-                description:
-                  "A Influ.IA funciona diretamente no WhatsApp. Sem a necessidade de baixar mais um aplicativo, você opera suas tarefas e recebe suporte no ambiente que já faz parte do seu dia, garantindo fricção zero na operação.",
-                bg: "bg-gradient-to-br from-teal-600 to-emerald-500",
-                iconColor: "text-teal-100",
+                description: "Funciona diretamente no WhatsApp. Sem baixar apps, opera no ambiente que já faz parte do seu dia. Fricção zero.",
+                gradient: "from-teal-600 to-emerald-400",
+                bgGlow: "bg-teal-500/20",
               },
               {
                 icon: Brain,
                 title: "Inteligência Estratégica",
-                description:
-                  "Nossa inteligência artificial não cria conteúdo por você, ela cria com você. Ela usa dados de mercado e as melhores técnicas de engajamento para apoiar seu processo criativo, garantindo que suas ideias sejam autênticas, mas também estratégicas e atuais.",
-                bg: "bg-gradient-to-br from-violet-600 to-indigo-500",
-                iconColor: "text-violet-100",
+                description: "Nossa IA não cria por você, cria com você. Usa dados de mercado para apoiar seu processo criativo com autenticidade.",
+                gradient: "from-violet-600 to-indigo-400",
+                bgGlow: "bg-violet-500/20",
               },
-            ].map((f, i) => (
+            ].map((feature, i) => (
               <motion.div
                 key={i}
-                className={`relative ${f.bg} border border-white/10 rounded-2xl p-6 max-w-sm text-center shadow-lg overflow-hidden will-change-transform`}
-                initial={{ opacity: 0, y: 18 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -10, scale: 1.03, rotateX: 4 }}
-                whileTap={{ scale: 0.995 }}
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 8 + i, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ 
+                  duration: 0.7, 
+                  delay: i * 0.15,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                className="group relative"
               >
-                {/* decorative blurred layer for depth */}
-                <div className={`absolute -inset-6 ${f.bg} opacity-25 blur-3xl -z-10`} />
-                <f.icon className={`w-10 h-10 mb-4 mx-auto ${f.iconColor}`} />
-                <h4 className="text-xl font-semibold mb-2 tracking-tight text-white">{f.title}</h4>
-                <p className="text-white/90">{f.description}</p>
+                {/* Card */}
+                <div className="relative h-full bg-white border border-slate-200 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden">
+                  {/* Gradient glow on hover */}
+                  <div className={`absolute -inset-1 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 -z-10`} />
+                  
+                  {/* Icon com gradiente */}
+                  <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br ${feature.gradient} mb-6 shadow-lg`}>
+                    <feature.icon className="w-7 h-7 text-white" />
+                  </div>
+
+                  {/* Título */}
+                  <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-slate-900 group-hover:to-emerald-600 transition-all duration-300">
+                    {feature.title}
+                  </h3>
+
+                  {/* Descrição */}
+                  <p className="text-slate-600 leading-relaxed">
+                    {feature.description}
+                  </p>
+
+                  {/* Decorative corner */}
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-slate-50 to-transparent rounded-bl-[100px] opacity-50" />
+                </div>
               </motion.div>
             ))}
           </div>
-          
+
+          {/* CTA Final da seção */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center pt-8"
+          >
+            <p className="text-slate-500 text-sm italic mb-6">
+              Tecnologia que serve à essência, não a substitui
+            </p>
+          </motion.div>
         </div>
       </section>
 
