@@ -10,7 +10,7 @@ const ProblemStep1 = () => (
     {/* Background image - tela cheia */}
     <div className="absolute inset-0">
       <img 
-        src="https://images.unsplash.com/photo-1499482125586-91609c0b5fd4?w=1200&q=80" 
+        src="/images/criadorfaztudo.webp" 
         alt="Criador trabalhando"
         className="w-full h-full object-cover"
       />
@@ -135,7 +135,7 @@ const ProblemStep2 = () => {
       {/* Background image - tela cheia */}
       <div className="absolute inset-0">
         <img 
-          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&q=80" 
+          src="/images/o-resultado.webp" 
           alt="Pessoa estressada"
           className="w-full h-full object-cover"
         />
@@ -316,7 +316,7 @@ const ProblemStep4_1 = () => (
     <div className="absolute inset-0">
       {/* Foto de fundo - pessoa exausta/burnout */}
       <img 
-        src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&q=80" 
+        src="/images/burnoutcriativo.webp"  
         alt="Burnout"
         className="w-full h-full object-cover"
       />
@@ -375,7 +375,7 @@ const ProblemStep4_2 = () => (
     <div className="absolute inset-0">
       {/* Foto de fundo - pessoa entediada no celular */}
       <img 
-        src="https://images.unsplash.com/photo-1534670007418-fbb7f6cf32c3?w=800&q=80" 
+        src="/images/semgraca1.webp" 
         alt="Audiência entediada"
         className="w-full h-full object-cover"
       />
@@ -564,7 +564,7 @@ const Index = () => {
         >
           <div
             className="absolute inset-0 bg-cover bg-center opacity-20"
-            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1763661478581-54cff2574c9a?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
+            style={{ backgroundImage: "url('/images/front1.webp')" }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/40 via-white/60 to-slate-50/80" />
         </motion.div>
