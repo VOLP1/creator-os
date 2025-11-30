@@ -864,91 +864,61 @@ const Index = () => {
         />
 
         <div className="relative max-w-5xl mx-auto z-10">
-          {/* Cinematic Title Sequence - OPTIMIZED */}
+          {/* Cinematic Title Sequence - MINIMALISTA E ELEGANTE */}
           <motion.div
-            initial={{ opacity: 0, scale: 1.3, rotateX: -25 }}
-            whileInView={{ opacity: 1, scale: 1, rotateX: 0 }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ 
-              duration: 1.8,
-              type: "spring",
-              stiffness: 40,
-              damping: 15
+              duration: 1.2,
+              ease: [0.4, 0, 0.2, 1]
             }}
-            className="text-center mb-32"
+            className="text-center mb-20 md:mb-32"
           >
-            {/* Subtitle fade in */}
+            {/* Badge estilo cinema */}
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.4 }}
-              className="mb-6"
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mb-8"
             >
-              <span className="inline-block px-4 py-1.5 bg-red-100 border border-red-300 rounded-full text-xs uppercase tracking-[0.3em] text-red-700 font-semibold shadow-lg">
+              <span className="inline-block px-6 py-2 bg-gradient-to-r from-indigo-600/10 via-red-600/10 to-orange-600/10 border border-slate-200 rounded-full text-xs uppercase tracking-[0.3em] text-slate-700 font-bold shadow-lg">
                 Capítulo III
               </span>
             </motion.div>
 
-            {/* Main title with cinematic reveal - OPTIMIZED */}
+            {/* Título principal - estilo cinematográfico minimalista */}
             <motion.h2
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 1.4, delay: 0.6, type: "spring", stiffness: 50 }}
-              className="text-5xl md:text-7xl font-black mb-6 leading-tight"
+              transition={{ duration: 1, delay: 0.4 }}
+              className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-[1.1]"
             >
-              <motion.span
-                className="inline-block bg-gradient-to-r from-slate-900 via-red-700 to-indigo-800 bg-clip-text text-transparent"
-                animate={{ 
-                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
-                }}
-                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                style={{ backgroundSize: '200% auto' }}
-              >
+              <span className="block text-slate-900">
                 O Problema
-              </motion.span>
-              <br />
-              <motion.span
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 0.6, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, delay: 1 }}
-                className="text-4xl md:text-5xl text-slate-500 font-light"
-              >
+              </span>
+              <span className="block text-slate-400 text-4xl md:text-5xl lg:text-6xl font-light mt-2">
                 que Ninguém Vê
-              </motion.span>
+              </span>
             </motion.h2>
 
-            {/* Animated divider line */}
-            <div className="relative w-full max-w-md mx-auto h-px my-8 overflow-hidden">
-              <motion.div
-                initial={{ scaleX: 0, opacity: 0 }}
-                whileInView={{ scaleX: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.2, delay: 1.2 }}
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-indigo-400 to-red-400"
-              />
-              <motion.div
-                animate={{ 
-                  x: ['-100%', '200%']
-                }}
-                transition={{ 
-                  duration: 3, 
-                  repeat: Infinity,
-                  ease: "linear",
-                  repeatDelay: 2
-                }}
-                className="absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/80 to-transparent opacity-70"
-              />
-            </div>
+            {/* Linha divisória minimalista */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.6 }}
+              className="w-24 h-1 bg-gradient-to-r from-indigo-500 via-red-500 to-orange-500 mx-auto mb-6 rounded-full"
+            />
 
-            {/* Tagline - OPTIMIZED */}
+            {/* Tagline */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 1.2, delay: 1.4 }}
+              transition={{ duration: 1, delay: 0.8 }}
               className="text-lg md:text-2xl text-slate-600 font-light italic max-w-2xl mx-auto"
             >
               "A rotina exaustiva do criador de conteúdo"
