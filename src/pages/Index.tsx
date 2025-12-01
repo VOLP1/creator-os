@@ -428,27 +428,37 @@ const ProblemStep4_2 = () => (
   </div>
 );
 
-// Problem Cinematic Section - IGUAL À SEÇÃO DO TELEFONE
+// Problem Cinematic Section - COM SCROLL SUAVE IGUAL AO TELEFONE
 const ProblemCinematicSection = () => {
   const [isFixed, setIsFixed] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      if (!containerRef.current) return;
-      
-      const rect = containerRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      
-      const shouldBeFixed = rect.top <= 0 && rect.bottom >= windowHeight;
-      setIsFixed(shouldBeFixed);
-      
-      if (shouldBeFixed) {
-        const totalScrollHeight = rect.height - windowHeight;
-        const currentScroll = Math.abs(rect.top);
-        const progress = currentScroll / totalScrollHeight;
-        setScrollProgress(Math.min(Math.max(progress, 0), 1));
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          if (!containerRef.current) return;
+          
+          const rect = containerRef.current.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+          
+          // Calcula scroll progress igual à seção do telefone
+          const sectionStart = windowHeight;
+          const sectionScrolled = sectionStart - rect.top;
+          const totalHeight = rect.height;
+          const progress = Math.max(0, sectionScrolled) / totalHeight;
+          setScrollProgress(Math.min(Math.max(progress, 0), 1));
+          
+          // isFixed quando o topo da seção alcançou o topo da viewport
+          const shouldBeFixed = rect.top <= 0 && rect.bottom >= windowHeight;
+          setIsFixed(shouldBeFixed);
+          
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
@@ -457,31 +467,47 @@ const ProblemCinematicSection = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  return (
-    <div ref={containerRef} className="relative md:hidden" style={{ height: '600vh' }}>
-      {/* Step 1 */}
-      <AnimatePresence>
-        {isFixed && scrollProgress < 0.20 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center px-6 bg-white"
-          >
-            <ProblemStep1 />
-          </motion.div>
-        )}
-      </AnimatePresence>
+  // Calcula posição do Capítulo 1 - sobe de baixo até ficar fixo no topo
+  const getStep1Transform = () => {
+    // AJUSTE AQUI: Aumente o valor 0.15 para DIMINUIR a velocidade de subida
+    // 0.10 = muito rápido | 0.15 = médio | 0.20 = devagar | 0.25 = muito devagar
+    const RISE_DURATION = 0.15; // <-- AJUSTE ESTE VALOR
+    
+    if (scrollProgress < RISE_DURATION) {
+      // Durante os primeiros X% do scroll, sobe de baixo (100vh) até o topo (0)
+      const riseProgress = scrollProgress / RISE_DURATION;
+      const translateY = 100 - (riseProgress * 100); // 100vh -> 0vh
+      return `translateY(${translateY}vh)`;
+    }
+    // Depois de X%, fica fixo no topo (0)
+    return 'translateY(0vh)';
+  };
 
-      {/* Step 2 */}
+  return (
+    <div ref={containerRef} className="relative" style={{ height: '600vh' }}>
+      {/* Step 1 - SOBE de baixo junto com o scroll até ficar fixo - FICA ATÉ 30% */}
+      {scrollProgress < 0.30 && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center px-6 bg-white transition-transform duration-100 ease-linear"
+          style={{
+            transform: getStep1Transform()
+          }}
+        >
+          <ProblemStep1 />
+        </div>
+      )}
+
+      {/* Step 2 - FADE + ZOOM dramático (burnout/resultado previsível) - COMEÇA EM 30% */}
       <AnimatePresence>
-        {isFixed && scrollProgress >= 0.20 && scrollProgress < 0.40 && (
+        {isFixed && scrollProgress >= 0.30 && scrollProgress < 0.50 && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
+            initial={{ opacity: 0, scale: 1.3 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ 
+              duration: 0.8, 
+              ease: [0.4, 0, 0.2, 1] // easeInOutCubic
+            }}
             className="fixed inset-0 z-[100] flex items-center justify-center px-6 bg-white"
           >
             <ProblemStep2 />
@@ -489,29 +515,47 @@ const ProblemCinematicSection = () => {
         )}
       </AnimatePresence>
 
-      {/* Step 3 */}
+      {/* Step 3 - SLIDE DA DIREITA + ROTAÇÃO (atalho perigoso) - COMEÇA EM 50% */}
       <AnimatePresence>
-        {isFixed && scrollProgress >= 0.40 && scrollProgress < 0.60 && (
+        {isFixed && scrollProgress >= 0.50 && scrollProgress < 0.70 && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
+            initial={{ x: '100%', rotateY: -15 }}
+            animate={{ x: 0, rotateY: 0 }}
+            exit={{ x: '-100%', opacity: 0 }}
+            transition={{ 
+              duration: 0.7, 
+              ease: [0.22, 1, 0.36, 1] // easeOutExpo
+            }}
             className="fixed inset-0 z-[100] flex items-center justify-center px-6 bg-white"
+            style={{ perspective: '1000px' }}
           >
             <ProblemStep3 />
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Step 4.1 - Para quem cria */}
+      {/* Step 4.1 - GLITCH EFFECT (burnout criativo) - COMEÇA EM 70% */}
       <AnimatePresence>
-        {isFixed && scrollProgress >= 0.60 && scrollProgress < 0.80 && (
+        {isFixed && scrollProgress >= 0.70 && scrollProgress < 0.85 && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
+            initial={{ 
+              x: [0, -10, 10, -10, 0],
+              opacity: 0,
+              filter: 'blur(10px)'
+            }}
+            animate={{ 
+              x: 0,
+              opacity: 1,
+              filter: 'blur(0px)'
+            }}
+            exit={{ 
+              opacity: 0,
+              filter: 'blur(20px)'
+            }}
+            transition={{ 
+              duration: 0.5,
+              ease: 'easeOut'
+            }}
             className="fixed inset-0 z-[100] flex items-center justify-center px-6 bg-white"
           >
             <ProblemStep4_1 />
@@ -519,14 +563,25 @@ const ProblemCinematicSection = () => {
         )}
       </AnimatePresence>
 
-      {/* Step 4.2 - Para a audiência */}
+      {/* Step 4.2 - FADE LENTO COM BLUR (conteúdo sem graça) - COMEÇA EM 85% */}
       <AnimatePresence>
-        {isFixed && scrollProgress >= 0.80 && (
+        {isFixed && scrollProgress >= 0.85 && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ 
+              opacity: 0,
+              filter: 'blur(40px)',
+              scale: 0.95
+            }}
+            animate={{ 
+              opacity: 1,
+              filter: 'blur(0px)',
+              scale: 1
+            }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
+            transition={{ 
+              duration: 1,
+              ease: 'easeOut'
+            }}
             className="fixed inset-0 z-[100] flex items-center justify-center px-6 bg-white"
           >
             <ProblemStep4_2 />
@@ -626,7 +681,7 @@ const Index = () => {
               transition={{ duration: 0.7, delay: 0.15 }}
               className="mt-4 text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-800 bg-clip-text text-transparent"
             >
-              Uma ferramenta para criar conteúdo com performance e propósito
+              Resultados Sem Abrir Mão de Propósito
             </motion.h1>
 
             {/* Subheadline */}
@@ -808,9 +863,7 @@ const Index = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="mb-8"
             >
-              <span className="inline-block px-6 py-2 bg-gradient-to-r from-indigo-600/10 via-red-600/10 to-orange-600/10 border border-slate-200 rounded-full text-xs uppercase tracking-[0.3em] text-slate-700 font-bold shadow-lg">
-                Capítulo III
-              </span>
+              
             </motion.div>
 
             {/* Título principal - estilo cinematográfico minimalista */}
@@ -1530,8 +1583,10 @@ const Index = () => {
         </div>
       </section>
 
-      {/* MOBILE ONLY: Problem Section com scroll fixo */}
-      <ProblemCinematicSection />
+      {/* MOBILE ONLY: Problem Section com scroll fixo - SEM espaço em branco inicial */}
+      <div className="md:hidden">
+        <ProblemCinematicSection />
+      </div>
 
       {/* 4) A Solução InfluIA - REMODELADA CINEMATOGRÁFICA */}
       <section className="relative min-h-screen py-32 px-6 overflow-hidden bg-gradient-to-b from-white via-emerald-50/30 to-white">
@@ -1555,9 +1610,7 @@ const Index = () => {
               transition={{ duration: 0.8 }}
               className="mb-6"
             >
-              <span className="inline-block px-4 py-2 bg-emerald-100 border border-emerald-300 rounded-full text-xs uppercase tracking-[0.3em] text-emerald-700 font-semibold">
-                Capítulo IV
-              </span>
+              
             </motion.div>
 
             <motion.h2
@@ -2087,23 +2140,53 @@ const PhoneMobileSticky = ({ currentStep }: { currentStep: number }) => {
 const FixedPhoneSection = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const phoneRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!containerRef.current) return;
+      if (!containerRef.current || !phoneRef.current) return;
       
-      const rect = containerRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      
-      // Calcula o progress baseado em quando a seção COMEÇA a aparecer
-      // Quando rect.top = windowHeight (seção no fundo), progress = 0
-      // Quando rect.top = 0 (seção no topo), progress aumenta
-      const sectionStart = windowHeight; // Quando a seção aparece no bottom da tela
-      const sectionScrolled = sectionStart - rect.top; // Quanto já scrollou da seção
-      const totalHeight = rect.height;
-      
-      const progress = Math.max(0, sectionScrolled) / totalHeight;
-      setScrollProgress(Math.min(Math.max(progress, 0), 1));
+      requestAnimationFrame(() => {
+        if (!containerRef.current || !phoneRef.current) return;
+        
+        const rect = containerRef.current.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        const sectionStart = windowHeight;
+        const sectionScrolled = sectionStart - rect.top;
+        const totalHeight = rect.height;
+        
+        const progress = Math.max(0, Math.min(1, Math.max(0, sectionScrolled) / totalHeight));
+        
+        // Atualiza scrollProgress apenas para os cards (menos frequente)
+        setScrollProgress(progress);
+        
+        // Atualiza posição do telefone via CSS (super fluido, sem re-render)
+        const phone = phoneRef.current;
+        
+        if (progress < 0.15) {
+          const bottomProgress = progress / 0.15;
+          const bottomValue = -60 + (bottomProgress * 110);
+          
+          if (bottomValue < 50) {
+            phone.style.bottom = `${bottomValue}%`;
+            phone.style.top = 'auto';
+            phone.style.transform = 'translateX(-50%)';
+          } else {
+            phone.style.bottom = 'auto';
+            phone.style.top = '50%';
+            phone.style.transform = 'translate(-50%, -50%)';
+          }
+        } else {
+          phone.style.bottom = 'auto';
+          phone.style.top = '50%';
+          phone.style.transform = 'translate(-50%, -50%)';
+        }
+        
+        // Opacity: desaparece no final da seção
+        const phoneOpacity = progress > 0.85 ? Math.max(0, 1 - ((progress - 0.85) / 0.15)) : 1;
+        phone.style.opacity = phoneOpacity.toString();
+      });
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -2112,42 +2195,18 @@ const FixedPhoneSection = () => {
   }, []);
 
   const currentStep = scrollProgress < 0.33 ? 1 : scrollProgress < 0.66 ? 2 : 3;
-  
-  // Telefone sobe IMEDIATAMENTE quando começar a scrollar a seção
-  // scrollProgress 0 -> 0.15: telefone sobe de bottom -60% até top 50%
-  const getPhonePosition = () => {
-    if (scrollProgress < 0.15) {
-      const bottomProgress = scrollProgress / 0.15; // 0 a 1
-      const bottomValue = -60 + (bottomProgress * 110); // -60% até 50%
-      
-      if (bottomValue < 50) {
-        return { bottom: `${bottomValue}%`, top: undefined };
-      } else {
-        return { bottom: undefined, top: '50%' };
-      }
-    }
-    return { bottom: undefined, top: '50%' };
-  };
-  
-  const phonePos = getPhonePosition();
-  
-  // Opacity: desaparece no final da seção
-  const phoneOpacity = scrollProgress > 0.85 ? Math.max(0, 1 - ((scrollProgress - 0.85) / 0.15)) : 1;
 
   return (
     <div ref={containerRef} className="relative" style={{ height: '500vh' }}>
-      {/* Fixed phone - SOBE GRADUALMENTE e DESAPARECE NO FINAL */}
+      {/* Fixed phone - SUPER FLUIDO COM MANIPULAÇÃO DIRETA DO DOM */}
       <div
+        ref={phoneRef}
         className="fixed z-10 pointer-events-none flex items-center justify-center"
         style={{ 
-          bottom: phonePos.bottom,
-          top: phonePos.top,
           left: '50%',
-          transform: phonePos.top ? 'translate(-50%, -50%)' : 'translateX(-50%)',
           width: '280px',
           height: 'auto',
-          opacity: phoneOpacity,
-          transition: 'bottom 0.1s linear, top 0.1s linear, opacity 0.3s ease-out'
+          willChange: 'transform, opacity'
         }}
       >
         <PhoneMobileSticky currentStep={currentStep} />
