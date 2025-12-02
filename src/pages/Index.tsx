@@ -832,91 +832,6 @@ const Index = () => {
             transition={{ duration: 6, repeat: Infinity }}
           />
         </motion.div>
-        
-        {/* Cinematic Film Grain - OPTIMIZED: slower refresh */}
-        <motion.div
-          animate={{ 
-            opacity: [0.02, 0.04, 0.02],
-          }}
-          transition={{ 
-            duration: 0.3, 
-            repeat: Infinity,
-          }}
-          className="pointer-events-none absolute inset-0 z-[1] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGQ9Ik0wIDBoMzAwdjMwMEgweiIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=')] opacity-30 mix-blend-overlay" 
-        />
-        
-        {/* Volumetric light rays - OPTIMIZED: reduced to 2, lighter colors */}
-        <motion.div
-          className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-indigo-400/15 to-transparent z-[1]"
-          animate={{ 
-            opacity: [0.1, 0.25, 0.1],
-            x: [-100, 100, -100]
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-        />
-        <motion.div
-          className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-rose-400/12 to-transparent z-[1]"
-          animate={{ 
-            opacity: [0.1, 0.2, 0.1],
-            x: [100, -100, 100]
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-        />
-
-        {/* Depth layers - OPTIMIZED: reduced from 12 to 6 particles */}
-        {[...Array(6)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-red-400/30 rounded-full z-[2]"
-            style={{ 
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              filter: `blur(${Math.random() * 2}px)`
-            }}
-            animate={{ 
-              y: [0, -100 - Math.random() * 200, 0],
-              x: [0, (Math.random() - 0.5) * 100, 0],
-              opacity: [0, 0.3, 0],
-              scale: [0, 1, 0]
-            }}
-            transition={{ 
-              duration: 8 + Math.random() * 10,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-              ease: "linear"
-            }}
-          />
-        ))}
-
-        {/* Atmospheric fog layers - OPTIMIZED: added will-change */}
-        <motion.div
-          className="absolute top-1/4 -left-40 w-[600px] h-[600px] bg-indigo-300/15 rounded-full blur-[100px] z-[2] will-change-transform"
-          animate={{ 
-            x: [-100, 150, -100],
-            y: [0, 80, 0],
-            scale: [1, 1.3, 1],
-            opacity: [0.08, 0.15, 0.08]
-          }}
-          transition={{ 
-            duration: 20, 
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 -right-40 w-[500px] h-[500px] bg-rose-300/12 rounded-full blur-[120px] z-[2] will-change-transform"
-          animate={{ 
-            x: [100, -150, 100],
-            y: [0, -100, 0],
-            scale: [1, 1.4, 1],
-            opacity: [0.06, 0.12, 0.06]
-          }}
-          transition={{ 
-            duration: 25, 
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
 
         <div className="relative max-w-5xl mx-auto z-10">
           {/* Cinematic Title Sequence - MINIMALISTA E ELEGANTE */}
@@ -980,47 +895,26 @@ const Index = () => {
 
           {/* MOBILE: Cinematic Story Cards - DESATIVADO TEMPORARIAMENTE */}
           <div className="hidden">
-            {/* Step 1: Multi-tasking Chaos - OPTIMIZED */}
+            {/* Step 1: Multi-tasking Chaos - SIMPLIFICADO */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
-              whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
-              viewport={{ once: true, margin: "-50px", amount: 0.3 }}
-              transition={{ 
-                duration: 1.2,
-                type: "spring",
-                stiffness: 60,
-                damping: 20
-              }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
               className="space-y-6"
             >
-              {/* Scene number with lens flare - OPTIMIZED */}
+              {/* Scene number - SIMPLIFICADO */}
               <motion.div 
                 className="flex items-center gap-4 mb-8"
-                initial={{ x: -100, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.3, duration: 1 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
               >
                 <div className="relative">
-                  <motion.span 
-                    className="text-6xl font-black bg-gradient-to-br from-indigo-400 to-indigo-600 bg-clip-text text-transparent"
-                    whileInView={{ 
-                      scale: [1, 1.15, 1],
-                      rotate: [0, 10, 0]
-                    }}
-                    transition={{ delay: 0.5, duration: 0.8 }}
-                  >
+                  <span className="text-6xl font-black bg-gradient-to-br from-indigo-400 to-indigo-600 bg-clip-text text-transparent">
                     01
-                  </motion.span>
-                  {/* Lens flare effect */}
-                  <motion.div
-                    className="absolute -inset-4 bg-indigo-500/20 rounded-full blur-2xl will-change-transform"
-                    animate={{ 
-                      scale: [1, 1.5, 1],
-                      opacity: [0.3, 0.6, 0.3]
-                    }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  />
+                  </span>
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold leading-tight">Uma Linha de Produção<br/>de Uma Pessoa Só</h3>
@@ -1037,38 +931,15 @@ const Index = () => {
                 Roteiros, filmagens, edição de vídeo, gestão de agendas, negociações... <span className="text-indigo-700 font-semibold">O criador faz tudo sozinho.</span>
               </motion.p>
               
-              {/* Card with depth - OPTIMIZED: removed heavy 3D transforms */}
+              {/* Card - SIMPLIFICADO */}
               <motion.div 
-                className="relative h-64 rounded-3xl overflow-hidden will-change-transform"
-                initial={{ scale: 0.9, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
+                className="relative h-64 rounded-3xl overflow-hidden bg-gradient-to-br from-white via-indigo-50 to-slate-100 border-2 border-indigo-200"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.6, duration: 1, type: "spring", stiffness: 80 }}
-                style={{ 
-                  boxShadow: '0 40px 80px -20px rgba(99, 102, 241, 0.4), 0 0 0 1px rgba(255,255,255,0.1)'
-                }}
+                transition={{ delay: 0.4, duration: 0.8 }}
               >
-                {/* Layered background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white via-indigo-50 to-slate-100" />
-                
-                {/* Animated grid - OPTIMIZED: slower animation */}
-                <motion.div
-                  className="absolute inset-0 opacity-20"
-                  style={{
-                    backgroundImage: 'linear-gradient(rgba(99, 102, 241, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.4) 1px, transparent 1px)',
-                    backgroundSize: '30px 30px'
-                  }}
-                  animate={{ 
-                    backgroundPosition: ['0px 0px', '30px 30px']
-                  }}
-                  transition={{ 
-                    duration: 6, 
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                />
-                
-                {/* Task pills - OPTIMIZED: simpler animations */}
+                {/* Task pills - SIMPLIFICADO */}
                 <div className="absolute inset-0 flex flex-wrap gap-3 p-6 content-start">
                   {["Roteiro", "Edição", "Agenda", "Publis", "DMs", "Vendas", "Analytics", "Criação"].map((task, i) => (
                     <motion.div
@@ -1076,74 +947,39 @@ const Index = () => {
                       initial={{ scale: 0, opacity: 0 }}
                       whileInView={{ scale: 1, opacity: 1 }}
                       transition={{ 
-                        delay: 0.8 + i * 0.08,
-                        type: "spring",
-                        stiffness: 200,
-                        damping: 20
-                      }}
-                      whileHover={{ 
-                        scale: 1.1,
-                        transition: { duration: 0.2 }
+                        delay: 0.6 + i * 0.05,
+                        duration: 0.3
                       }}
                       viewport={{ once: true }}
-                      className="relative px-4 py-2 bg-indigo-100 border border-indigo-300 rounded-full text-sm text-indigo-800 font-medium backdrop-blur-md cursor-pointer shadow-sm"
-                      style={{ 
-                        boxShadow: '0 8px 20px -8px rgba(99, 102, 241, 0.6), inset 0 1px 0 rgba(255,255,255,0.2)'
-                      }}
+                      className="px-4 py-2 bg-indigo-100 border border-indigo-300 rounded-full text-sm text-indigo-800 font-medium"
                     >
                       {task}
-                      {/* Inner glow */}
-                      <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent rounded-full" />
                     </motion.div>
                   ))}
                 </div>
-                
-                {/* Vignette overlay */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
               </motion.div>
             </motion.div>
 
-            {/* Step 2: Burnout Stat - DRAMATIC ZOOM & SHAKE */}
+            {/* Step 2: Burnout Stat - SIMPLIFICADO */}
             <motion.div
-              initial={{ opacity: 0, scale: 1.5, z: -600, rotateX: 30 }}
-              whileInView={{ opacity: 1, scale: 1, z: 0, rotateX: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ 
-                duration: 1.6,
-                type: "spring",
-                stiffness: 45,
-                damping: 18
-              }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
               className="space-y-6"
-              style={{ transformStyle: 'preserve-3d' }}
             >
-              {/* Scene number with warning glow - OPTIMIZED */}
+              {/* Scene number - SIMPLIFICADO */}
               <motion.div 
                 className="flex items-center gap-4 mb-8"
-                initial={{ x: -100, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.3, duration: 1 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
               >
                 <div className="relative">
-                  <motion.span 
-                    className="text-6xl font-black bg-gradient-to-br from-red-400 to-red-600 bg-clip-text text-transparent will-change-transform"
-                    animate={{ 
-                      scale: [1, 1.05, 1]
-                    }}
-                    transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
-                  >
+                  <span className="text-6xl font-black bg-gradient-to-br from-red-400 to-red-600 bg-clip-text text-transparent">
                     02
-                  </motion.span>
-                  {/* Pulsing red alert - OPTIMIZED */}
-                  <motion.div
-                    className="absolute -inset-4 bg-red-500/20 rounded-full blur-2xl will-change-transform"
-                    animate={{ 
-                      scale: [1, 1.6, 1],
-                      opacity: [0.2, 0.6, 0.2]
-                    }}
-                    transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
-                  />
+                  </span>
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold leading-tight">O Resultado é<br/>Previsível</h3>
@@ -1160,118 +996,57 @@ const Index = () => {
                 A sobrecarga leva ao <span className="text-red-700 font-semibold">esgotamento mental e criativo.</span>
               </motion.p>
               
-              {/* Dramatic stat reveal card - OPTIMIZED */}
+              {/* Stat card - SIMPLIFICADO */}
               <motion.div 
-                className="relative h-80 rounded-3xl overflow-hidden will-change-transform"
-                initial={{ scale: 0.9, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ delay: 0.6, duration: 1, type: "spring", stiffness: 80, damping: 20 }}
-                style={{ 
-                  boxShadow: '0 50px 100px -20px rgba(248, 113, 113, 0.5), 0 0 0 1px rgba(248, 113, 113, 0.2)'
-                }}
+                className="relative h-80 rounded-3xl overflow-hidden bg-gradient-to-br from-red-50 via-rose-50 to-white border-2 border-red-200"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.8 }}
               >
-                {/* Dark red gradient background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-red-100 via-rose-50 to-white" />
-                
-                {/* Animated warning stripes - OPTIMIZED: slower */}
-                <motion.div
-                  className="absolute inset-0 opacity-10 will-change-transform"
-                  style={{
-                    backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(248, 113, 113, 0.3) 40px, rgba(248, 113, 113, 0.3) 80px)',
-                  }}
-                  animate={{ 
-                    backgroundPosition: ['0px 0px', '80px 80px']
-                  }}
-                  transition={{ 
-                    duration: 12, 
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                />
-                
-                {/* Pulsing concentric warning rings - OPTIMIZED: 3→2 rings */}
-                {[0, 1].map((i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute inset-0 rounded-3xl border-2 border-red-500/30 will-change-transform"
-                    animate={{ 
-                      scale: [1, 1.3],
-                      opacity: [0.4, 0]
-                    }}
-                    transition={{ 
-                      duration: 2.4, 
-                      repeat: Infinity,
-                      delay: i * 1.2,
-                      ease: "linear"
-                    }}
-                  />
-                ))}
-                
-                {/* Center content - OPTIMIZED: removed rotate animation */}
+                {/* Center content */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                   <motion.div
-                    initial={{ scale: 0, opacity: 0 }}
+                    initial={{ scale: 0.8, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 1, duration: 1, type: "spring", stiffness: 120, damping: 20 }}
+                    transition={{ delay: 0.6, duration: 0.6 }}
                   >
                     <Counter70 />
                   </motion.div>
                   
                   <motion.p 
                     className="mt-8 text-sm text-slate-700 text-center px-6 uppercase tracking-[0.3em] font-semibold"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 1.5, duration: 0.8 }}
+                    transition={{ delay: 0.8, duration: 0.6 }}
                   >
                     dos creators já enfrentaram{" "}
-                    <motion.span 
-                      className="block mt-2 text-red-400 text-lg will-change-transform"
-                      animate={{ 
-                        opacity: [1, 0.6, 1]
-                      }}
-                      transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
-                    >
+                    <span className="block mt-2 text-red-600 text-lg">
                       BURNOUT
-                    </motion.span>
+                    </span>
                   </motion.p>
                 </div>
-                
-                {/* Vignette */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.6)_100%)]" />
               </motion.div>
             </motion.div>
 
-            {/* Step 3: The Shortcut with typing animation */}
+            {/* Step 3: The Shortcut - SIMPLIFICADO */}
             <motion.div
-              initial={{ opacity: 0, y: 80 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ 
-                duration: 0.9,
-                type: "spring",
-                stiffness: 60
-              }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
               className="space-y-6"
             >
               <motion.div 
                 className="flex items-center gap-4 mb-6"
-                initial={{ x: -50, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.2, duration: 0.7 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
               >
-                <motion.span 
-                  className="text-5xl font-black text-amber-500/40 will-change-transform"
-                  animate={{ 
-                    scale: [1, 1.08, 1]
-                  }}
-                  transition={{ delay: 0.4, duration: 2.5, repeat: Infinity, ease: "linear" }}
-                >
-                  03
-                </motion.span>
+                <span className="text-5xl font-black text-amber-500/60">03</span>
                 <h3 className="text-2xl font-bold">O Atalho Perigoso</h3>
               </motion.div>
               
@@ -1286,24 +1061,12 @@ const Index = () => {
               </motion.p>
               
               <motion.div 
-                className="relative h-64 rounded-2xl bg-gradient-to-br from-amber-950/20 via-slate-950 to-slate-950 border border-amber-500/20 p-6 flex flex-col justify-center shadow-2xl shadow-amber-900/20 overflow-hidden will-change-transform"
-                initial={{ scale: 0.95, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ delay: 0.4, duration: 0.8, type: "spring", stiffness: 100, damping: 20 }}
+                className="relative h-64 rounded-2xl bg-gradient-to-br from-amber-950/20 via-slate-950 to-slate-950 border border-amber-500/20 p-6 flex flex-col justify-center overflow-hidden"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.8 }}
               >
-                {/* Scanline effect - OPTIMIZED: slower */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-500/5 to-transparent h-20 will-change-transform"
-                  animate={{ 
-                    y: ['0%', '400%']
-                  }}
-                  transition={{ 
-                    duration: 4.5, 
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                />
                 
                 <motion.div
                   initial={{ opacity: 0, x: -30 }}
@@ -1371,34 +1134,22 @@ const Index = () => {
               </motion.div>
             </motion.div>
 
-            {/* Step 4: The Consequence with dramatic entrance */}
+            {/* Step 4: The Consequence - SIMPLIFICADO */}
             <motion.div
-              initial={{ opacity: 0, y: 80 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ 
-                duration: 0.9,
-                type: "spring",
-                stiffness: 60
-              }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
               className="space-y-6"
             >
               <motion.div 
                 className="flex items-center gap-4 mb-6"
-                initial={{ x: -50, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.2, duration: 0.7 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
               >
-                <motion.span 
-                  className="text-5xl font-black text-red-600/40 will-change-transform"
-                  animate={{ 
-                    scale: [1, 1.08, 1]
-                  }}
-                  transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
-                >
-                  04
-                </motion.span>
+                <span className="text-5xl font-black text-red-600/60">04</span>
                 <h3 className="text-2xl font-bold">A Consequência</h3>
               </motion.div>
               
@@ -1423,11 +1174,10 @@ const Index = () => {
               </motion.p>
               
               <motion.div
-                initial={{ scale: 0.95, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ delay: 0.4, duration: 0.8, type: "spring", stiffness: 100, damping: 20 }}
-                className="will-change-transform"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.8 }}
               >
                 <GlitchHoverCard />
               </motion.div>
