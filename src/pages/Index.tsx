@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Calendar, TrendingUp, Shield, Leaf, Brain, User, MessageCircle, PhoneCall } from "lucide-react";
+import { Calendar, TrendingUp, Shield, Brain, User, MessageCircle, PhoneCall } from "lucide-react";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { useRef, useState, useEffect } from "react";
 
@@ -739,7 +739,6 @@ const Index = () => {
               transition={{ duration: 0.6, delay: 0.05 }}
               className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-100 border border-indigo-200 text-sm text-indigo-700 shadow-lg shadow-indigo-100/50"
             >
-              <Leaf className="w-4 h-4 text-emerald-600" />
               <span>Uma iniciativa +Creator</span>
             </motion.div>
 
@@ -1183,234 +1182,29 @@ const Index = () => {
               </motion.div>
             </motion.div>
           </div>
-
-          {/* DESKTOP: Enhanced Cinematic Layout */}
-          <div className="hidden md:block">
-            <motion.div 
-              className="text-center mb-24"
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.2 }}
-            >
-              <motion.h3
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, delay: 0.2 }}
-                className="text-3xl text-slate-400 mb-16 font-light"
-              >
-                A Agência de Uma Pessoa Só.
-              </motion.h3>
-
-              <div className="relative inline-block">
-                {/* Desktop orbit with enhanced animations */}
-                <div className="absolute -inset-40 -z-10">
-                  <motion.div 
-                    className="absolute inset-0 rounded-full border border-white/10"
-                    animate={{ 
-                      scale: [1, 1.05, 1],
-                      opacity: [0.1, 0.2, 0.1]
-                    }}
-                    transition={{ 
-                      duration: 4, 
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  />
-                  
-                  {[
-                    { label: "Roteiro", angle: 0, color: "indigo" },
-                    { label: "Edição", angle: 90, color: "purple" },
-                    { label: "Directs", angle: 180, color: "pink" },
-                    { label: "Publi", angle: 270, color: "blue" },
-                  ].map((p, i) => (
-                    <motion.div
-                      key={i}
-                      className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                      style={{ transformOrigin: "0 0" }}
-                    >
-                      <motion.div
-                        className="translate-x-[240px]"
-                        style={{ transform: `translateX(240px) rotate(${p.angle}deg)` }}
-                        whileHover={{ scale: 1.2 }}
-                      >
-                        <motion.div 
-                          className={`backdrop-blur-xl bg-white/8 border border-${p.color}-500/30 rounded-full px-4 py-2 text-sm text-slate-300 shadow-[0_0_24px_rgba(99,102,241,0.3)] cursor-pointer`}
-                          animate={{ 
-                            y: [0, -5, 0],
-                            boxShadow: [
-                              "0 0 24px rgba(99,102,241,0.3)",
-                              "0 0 32px rgba(99,102,241,0.5)",
-                              "0 0 24px rgba(99,102,241,0.3)"
-                            ]
-                          }}
-                          transition={{ 
-                            duration: 2, 
-                            repeat: Infinity,
-                            delay: i * 0.2
-                          }}
-                        >
-                          {p.label}
-                        </motion.div>
-                      </motion.div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                <div className="absolute inset-0 -z-5 bg-[radial-gradient(circle_at_center,transparent_20%,#050505_80%)]" />
-
-                <motion.div 
-                  className="relative z-10"
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ 
-                    duration: 1,
-                    delay: 0.5,
-                    type: "spring",
-                    stiffness: 100
-                  }}
-                >
-                  <Counter70 />
-                </motion.div>
-                
-                <motion.p 
-                  className="relative z-10 mt-6 text-sm uppercase tracking-[0.3em] text-slate-400"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.8, duration: 0.8 }}
-                >
-                  dos Creators já enfrentaram{" "}
-                  <motion.span 
-                    className="text-red-400 font-semibold"
-                    animate={{ 
-                      textShadow: [
-                        "0 0 10px rgba(248, 113, 113, 0.5)",
-                        "0 0 20px rgba(248, 113, 113, 0.8)",
-                        "0 0 10px rgba(248, 113, 113, 0.5)"
-                      ]
-                    }}
-                    transition={{ 
-                      duration: 2, 
-                      repeat: Infinity
-                    }}
-                  >
-                    Burnout
-                  </motion.span>
-                  .
-                </motion.p>
-              </div>
-            </motion.div>
-
-            {/* Enhanced Glitch Separator */}
-            <div className="relative mt-32 mb-20 h-16">
-              <div className="absolute inset-0 [background:repeating-linear-gradient(90deg,#111_0_12px,#181818_12px_24px)]" />
-              <motion.div
-                initial={{ clipPath: "polygon(0 60%, 15% 55%, 30% 62%, 50% 50%, 70% 58%, 85% 52%, 100% 60%, 100% 100%, 0 100%)" }}
-                animate={{ clipPath: [
-                  "polygon(0 60%, 15% 55%, 30% 62%, 50% 50%, 70% 58%, 85% 52%, 100% 60%, 100% 100%, 0 100%)",
-                  "polygon(0 62%, 14% 57%, 32% 64%, 49% 52%, 71% 60%, 86% 54%, 100% 62%, 100% 100%, 0 100%)",
-                  "polygon(0 60%, 15% 55%, 30% 62%, 50% 50%, 70% 58%, 85% 52%, 100% 60%, 100% 100%, 0 100%)"
-                ] }}
-                transition={{ duration: 3, repeat: Infinity }}
-                className="absolute inset-0 bg-gradient-to-r from-red-600/40 via-indigo-600/30 to-transparent mix-blend-screen" 
-              />
-              
-              {/* Floating particles */}
-              {[...Array(5)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-1 h-1 bg-white/40 rounded-full"
-                  style={{ 
-                    left: `${20 + i * 15}%`,
-                    top: '50%'
-                  }}
-                  animate={{ 
-                    y: [-20, 20, -20],
-                    opacity: [0.2, 0.6, 0.2]
-                  }}
-                  transition={{ 
-                    duration: 2 + i * 0.3,
-                    repeat: Infinity,
-                    delay: i * 0.2
-                  }}
-                />
-              ))}
-            </div>
-
-            {/* Enhanced Glitch Card Section */}
-            <motion.div 
-              className="grid md:grid-cols-2 gap-12 items-center"
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1 }}
-            >
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.9, delay: 0.2 }}
-              >
-                <motion.h3
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8 }}
-                  className="text-4xl md:text-5xl font-bold tracking-tight mb-6 bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent"
-                >
-                  O Atalho que Mata a Arte.
-                </motion.h3>
-                
-                <motion.div
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                  className="h-1 w-24 bg-gradient-to-r from-red-500 to-amber-500 rounded-full mb-6"
-                />
-                
-                <motion.p
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.7, delay: 0.4 }}
-                  className="text-slate-400 text-lg leading-relaxed max-w-xl"
-                >
-                  Na busca por tempo, economiza-se na alma. Roteiros genéricos geram um feed{" "}
-                  <motion.span 
-                    className="text-red-400 font-semibold"
-                    whileHover={{ 
-                      scale: 1.05,
-                      textShadow: "0 0 10px rgba(248, 113, 113, 0.8)"
-                    }}
-                  >
-                    tóxico
-                  </motion.span>
-                  , superficial — o criador perde sua essência.
-                </motion.p>
-              </motion.div>
-              
-              <motion.div
-                initial={{ opacity: 0, x: 50, rotateY: -15 }}
-                whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.9, delay: 0.3 }}
-              >
-                <GlitchHoverCard />
-              </motion.div>
-            </motion.div>
-          </div>
         </div>
       </section>
 
-      {/* MOBILE ONLY: Problem Section com cards simples e claros */}
-      <div className="md:hidden px-6 py-12">
-        <SimpleProblemCards />
+      {/* Problem Section com cards simples e claros - VISÍVEL EM TODAS AS TELAS */}
+      <div className="px-6 py-12 bg-gradient-to-b from-white via-rose-50/30 to-white">
+        <div className="max-w-6xl mx-auto">
+          {/* Título da seção */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+              O Problema
+            </h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              A rotina exaustiva do criador de conteúdo
+            </p>
+          </motion.div>
+          
+          <SimpleProblemCards />
+        </div>
       </div>
 
       {/* 4) A Solução InfluIA - ESTILO NOTEBOOKLM: CLEAN & SIMPLES */}
