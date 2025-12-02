@@ -1413,131 +1413,83 @@ const Index = () => {
         <SimpleProblemCards />
       </div>
 
-      {/* 4) A Solução InfluIA - REMODELADA CINEMATOGRÁFICA */}
-      <section className="relative min-h-screen py-32 px-6 overflow-hidden bg-gradient-to-b from-white via-emerald-50/30 to-white">
-        {/* Background elements */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{
-          backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(16, 185, 129, 0.15) 1px, transparent 0)',
+      {/* 4) A Solução InfluIA - ESTILO NOTEBOOKLM: CLEAN & SIMPLES */}
+      <section className="relative min-h-screen py-32 px-6 bg-white">
+        {/* Simple grid pattern background */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(99, 102, 241, 0.3) 1px, transparent 0)',
           backgroundSize: '40px 40px'
         }} />
-        
-        {/* Glow effects */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl" />
 
         <div className="relative max-w-6xl mx-auto">
-          {/* Header cinematográfico */}
+          {/* Header simples - estilo NotebookLM */}
           <div className="text-center mb-20">
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="mb-6"
-            >
-              
-            </motion.div>
-
             <motion.h2
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="text-5xl md:text-7xl font-black mb-6 leading-tight"
+              transition={{ duration: 0.6 }}
+              className="text-4xl md:text-5xl font-bold mb-4 text-slate-900"
             >
-              <span className="inline-block bg-gradient-to-r from-slate-900 via-emerald-600 to-indigo-700 bg-clip-text text-transparent">
-                A Solução
-              </span>
-              <br />
-              <motion.span
-                className="inline-block bg-gradient-to-r from-emerald-400 via-indigo-500 to-rose-400 bg-clip-text text-transparent"
-                animate={{ 
-                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
-                }}
-                transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                style={{ backgroundSize: '200% auto' }}
-              >
-                Influ.IA
-              </motion.span>
+              A Solução <span className="text-indigo-600">Influ.IA</span>
             </motion.h2>
-
-            <motion.div
-              initial={{ opacity: 0, scaleX: 0 }}
-              whileInView={{ opacity: 1, scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.4 }}
-              className="w-32 h-1 bg-gradient-to-r from-emerald-500 to-indigo-500 mx-auto mb-8 rounded-full"
-            />
 
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed"
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-lg text-slate-600 max-w-3xl mx-auto"
             >
-              A única ferramenta projetada para <span className="font-semibold text-emerald-700">proteger o tempo e a essência</span> do criador.
-              Automatizamos o operacional para que seu foco seja total na criação autêntica.
+              A única ferramenta projetada para proteger o tempo e a essência do criador.
             </motion.p>
           </div>
 
-          {/* Cards de funcionalidades - Grid cinematográfico */}
+          {/* Cards de funcionalidades - ESTILO NOTEBOOKLM: CLEAN */}
           <div className="grid md:grid-cols-2 gap-6 mb-16">
             {[
               {
                 icon: Calendar,
                 title: "Agenda & Operação",
-                description: "Cuidamos de todos os prazos, tarefas e agendamentos. A Influ.IA gerencia o fluxo de trabalho para que você não perca o foco.",
-                gradient: "from-emerald-600 to-emerald-400",
-                bgGlow: "bg-emerald-500/20",
+                description: "Cuidamos de todos os prazos, tarefas e agendamentos.",
+                color: "emerald"
               },
               {
                 icon: TrendingUp,
                 title: "CRM & Parcerias",
-                description: "Centralize o contato, histórico e follow-up de todas as suas parcerias em um lugar fácil, maximizando oportunidades.",
-                gradient: "from-indigo-600 to-violet-400",
-                bgGlow: "bg-indigo-500/20",
+                description: "Centralize o contato e histórico de todas as suas parcerias.",
+                color: "indigo"
               },
               {
                 icon: Shield,
                 title: "WhatsApp-first",
-                description: "Funciona diretamente no WhatsApp. Sem baixar apps, opera no ambiente que já faz parte do seu dia. Fricção zero.",
-                gradient: "from-teal-600 to-emerald-400",
-                bgGlow: "bg-teal-500/20",
+                description: "Funciona diretamente no WhatsApp. Fricção zero.",
+                color: "teal"
               },
               {
                 icon: Brain,
                 title: "Inteligência Estratégica",
-                description: "Nossa IA não cria por você, cria com você. Usa dados de mercado para apoiar seu processo criativo com autenticidade.",
-                gradient: "from-violet-600 to-indigo-400",
-                bgGlow: "bg-violet-500/20",
+                description: "Nossa IA não cria por você, cria com você.",
+                color: "violet"
               },
             ].map((feature, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ 
-                  duration: 0.7, 
-                  delay: i * 0.15,
-                  type: "spring",
-                  stiffness: 100
-                }}
-                className="group relative"
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group"
               >
-                {/* Card */}
-                <div className="relative h-full bg-white border border-slate-200 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden">
-                  {/* Gradient glow on hover */}
-                  <div className={`absolute -inset-1 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 -z-10`} />
-                  
-                  {/* Icon com gradiente */}
-                  <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br ${feature.gradient} mb-6 shadow-lg`}>
-                    <feature.icon className="w-7 h-7 text-white" />
+                {/* Card simples - sem glows excessivos */}
+                <div className="h-full bg-white border border-slate-200 rounded-xl p-6 hover:border-indigo-300 hover:shadow-md transition-all duration-300">
+                  {/* Icon simples */}
+                  <div className={`inline-flex items-center justify-center w-12 h-12 rounded-lg bg-${feature.color}-100 mb-4`}>
+                    <feature.icon className={`w-6 h-6 text-${feature.color}-600`} />
                   </div>
 
                   {/* Título */}
-                  <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-slate-900 group-hover:to-emerald-600 transition-all duration-300">
+                  <h3 className="text-xl font-bold text-slate-900 mb-2">
                     {feature.title}
                   </h3>
 
@@ -1545,9 +1497,6 @@ const Index = () => {
                   <p className="text-slate-600 leading-relaxed">
                     {feature.description}
                   </p>
-
-                  {/* Decorative corner */}
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-slate-50 to-transparent rounded-bl-[100px] opacity-50" />
                 </div>
               </motion.div>
             ))}
@@ -1568,54 +1517,76 @@ const Index = () => {
         </div>
       </section>
 
-      {/* SECTION 5: THE APPEAL (Why Support?) */}
-      <section className="relative min-h-[70vh] px-6 py-32 flex items-center justify-center overflow-hidden bg-gradient-to-b from-white via-amber-50 to-orange-50">
-        <div className="absolute inset-0 bg-cover bg-center opacity-10" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1495616811223-4d98c6e9d869?auto=format&fit=crop&q=80')" }} />
-        <div className="absolute inset-0 bg-gradient-to-t from-orange-50/80 via-amber-50/60 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-[180px] bg-[radial-gradient(circle_at_bottom,rgba(251,191,36,0.25),transparent_70%)]" />
+      {/* SECTION 5: THE APPEAL (Why Support?) - SIMPLIFICADO */}
+      <section className="relative px-6 py-32 bg-gradient-to-b from-white to-amber-50">
         <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <motion.h2 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-900">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true }} 
+            transition={{ duration: 0.6 }} 
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-6"
+          >
             Não é sobre um app. É sobre o futuro da mente dos jovens.
           </motion.h2>
-          <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.15 }} className="mt-8 text-lg md:text-xl text-slate-300 leading-relaxed">
+          <motion.p 
+            initial={{ opacity: 0 }} 
+            whileInView={{ opacity: 1 }} 
+            viewport={{ once: true }} 
+            transition={{ duration: 0.6, delay: 0.2 }} 
+            className="text-lg text-slate-600 leading-relaxed mb-10"
+          >
             Contribuir para a Influ.IA é votar em uma internet onde a tecnologia serve à saúde mental, não à exaustão.
-            Apoiando a InfluIA você se torna parte de um movimento que luta para devolver propósito e saúde aos criadores.
           </motion.p>
-          <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.3 }} className="mt-10 flex flex-wrap justify-center gap-4">
-            <Button size="lg" className="bg-amber-500 hover:bg-amber-400 text-black font-semibold rounded-2xl shadow-[0_0_30px_rgba(251,191,36,0.5)]" asChild>
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true }} 
+            transition={{ duration: 0.6, delay: 0.3 }} 
+            className="flex flex-wrap justify-center gap-4"
+          >
+            <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-xl" asChild>
               <a href="https://benfeitoria.com" target="_blank" rel="noopener noreferrer">Apoiar na Benfeitoria</a>
             </Button>
-            
           </motion.div>
         </div>
       </section>
 
-      {/* SECTION 6: THE VIP CONTACT (Angel Investor) */}
-      <section className="relative px-6 py-24 bg-gradient-to-b from-orange-50 to-slate-50">
-        <div className="absolute inset-x-0 bottom-0 h-[160px] bg-[radial-gradient(circle_at_bottom,rgba(251,191,36,0.15),transparent_75%)]" />
+      {/* SECTION 6: THE VIP CONTACT - SIMPLIFICADO */}
+      <section className="relative px-6 py-24 bg-gradient-to-b from-amber-50 to-slate-50">
         <div className="relative max-w-4xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="bg-white border-2 border-amber-200 rounded-3xl p-10 shadow-2xl shadow-amber-200/50">
-            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900">Quer apoiar com grandes valores e ter uma chance de ter parte da InfluIA?</h3>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true }} 
+            transition={{ duration: 0.6 }} 
+            className="bg-white border-2 border-amber-200 rounded-2xl p-8 shadow-lg"
+          >
+            <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-4">
+              Quer apoiar com grandes valores e ter uma chance de ter parte da InfluIA?
+            </h3>
             <div className="mt-6 flex justify-center">
-              <Button size="default" className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl px-6 py-3 shadow-md" asChild>
+              <Button size="default" className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl px-6 py-3" asChild>
                 <a href="https://wa.me/5561981772703" target="_blank" rel="noopener noreferrer" aria-label="Fale conosco via WhatsApp">Fale conosco</a>
               </Button>
             </div>
-            <div className="mt-4 flex items-center gap-2 text-xs text-slate-500">
-              <PhoneCall className="w-4 h-4" /> <span>Atendimento privado para conhecer a fundo planejamento e estratégias.</span>
-            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* SECTION 7: EDUCATIONAL FAQ (Accordion) */}
+      {/* SECTION 7: EDUCATIONAL FAQ - SIMPLIFICADO */}
       <section className="relative px-6 py-32 bg-slate-50">
-        <div className="absolute inset-x-0 bottom-0 h-[140px] bg-[radial-gradient(circle_at_bottom,rgba(99,102,241,0.15),transparent_70%)]" />
         <div className="relative max-w-5xl mx-auto">
-          <motion.h3 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-3xl md:text-5xl font-bold tracking-tight text-center mb-12 text-slate-900">
-            Perguntas Frequentes & Conceitos
+          <motion.h3 
+            initial={{ opacity: 0, y: 20 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true }} 
+            transition={{ duration: 0.6 }} 
+            className="text-3xl md:text-4xl font-bold text-center mb-12 text-slate-900"
+          >
+            Perguntas Frequentes
           </motion.h3>
-          <div className="bg-white border-2 border-indigo-200 rounded-3xl p-6 md:p-10 shadow-2xl shadow-indigo-200/40">
+          <div className="bg-white border border-slate-200 rounded-2xl p-6 md:p-10 shadow-md">
             <Accordion type="single" collapsible className="space-y-2">
               <AccordionItem value="item-1" className="border-slate-200 rounded-xl px-4">
                 <AccordionTrigger className="text-slate-900">Quem somos?</AccordionTrigger>
@@ -1658,19 +1629,28 @@ const Index = () => {
         </div>
       </section>
 
-      {/* SECTION 8: FOOTER & FINAL CTA */}
-      <footer className="relative px-6 py-32 text-center overflow-hidden bg-gradient-to-b from-slate-50 via-amber-50 to-orange-100">
-        <div className="absolute inset-x-0 bottom-0 h-[220px] bg-[radial-gradient(circle_at_bottom,rgba(251,191,36,0.3),transparent_75%)]" />
+      {/* SECTION 8: FOOTER & FINAL CTA - SIMPLIFICADO */}
+      <footer className="relative px-6 py-32 text-center bg-gradient-to-b from-slate-50 to-amber-50">
         <div className="relative z-10 max-w-4xl mx-auto">
-          <motion.h2 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-10 text-slate-900">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true }} 
+            transition={{ duration: 0.6 }} 
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 text-slate-900"
+          >
             Faça parte da Regeneração.
           </motion.h2>
-          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.15 }} className="flex flex-col items-center gap-5">
-            <Button size="lg" className="relative bg-amber-500 hover:bg-amber-600 text-black font-semibold rounded-2xl px-10 py-5 shadow-2xl shadow-amber-300/60">
-              <span className="absolute inset-0 rounded-2xl bg-amber-400/30" aria-hidden />
+          <motion.div 
+            initial={{ opacity: 0 }} 
+            whileInView={{ opacity: 1 }} 
+            viewport={{ once: true }} 
+            transition={{ duration: 0.6, delay: 0.2 }} 
+            className="flex flex-col items-center gap-5"
+          >
+            <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-xl px-10 py-5" asChild>
               <a href="https://benfeitoria.com" target="_blank" rel="noopener noreferrer">Apoiar na Benfeitoria</a>
             </Button>
-            <a href="#beta-form" className="text-slate-700 text-sm underline decoration-amber-500/60 hover:decoration-amber-500 font-medium">Formulário Beta</a>
           </motion.div>
           <p className="mt-12 text-xs text-slate-500">© 2025 Influ.IA - Uma empresa Singular.</p>
         </div>
