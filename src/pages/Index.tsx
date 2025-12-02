@@ -310,21 +310,31 @@ const ProblemStep3 = () => (
   </div>
 );
 
-const ProblemStep4_1 = () => (
+const ProblemStep4 = () => (
   <div className="relative w-full h-full overflow-hidden">
-    {/* Background image - tela cheia */}
-    <div className="absolute inset-0">
-      {/* Foto de fundo - pessoa exausta/burnout */}
-      <img 
-        src="/images/burnoutcriativo.webp"  
-        alt="Burnout"
-        className="w-full h-full object-cover"
-      />
+    {/* Background image - tela cheia - SPLIT SCREEN */}
+    <div className="absolute inset-0 flex">
+      {/* Left half - Burnout */}
+      <div className="relative w-1/2">
+        <img 
+          src="/images/burnoutcriativo.webp"  
+          alt="Burnout"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/30" />
+      </div>
       
-      {/* Overlay gradient escuro - bottom to top */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/30" />
+      {/* Right half - Audiência entediada */}
+      <div className="relative w-1/2">
+        <img 
+          src="/images/semgraca1.webp" 
+          alt="Audiência entediada"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/30" />
+      </div>
       
-      {/* Vignette */}
+      {/* Vignette geral */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
     </div>
 
@@ -349,77 +359,23 @@ const ProblemStep4_1 = () => (
         transition={{ delay: 0.5 }}
         className="text-4xl md:text-5xl font-black text-white mb-3 leading-[1.1] drop-shadow-2xl"
       >
-        Burnout<br/>Criativo
+        As<br/>Consequências
       </motion.h3>
 
       {/* Descrição */}
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.7 }}
-        className="text-slate-200 text-sm leading-relaxed max-w-[320px] drop-shadow-lg"
-      >
-        Fazer conteúdo se torna massante e pouco recompensador. Rotina repetitiva sem inspiração.
-      </motion.p>
-    </div>
-
-    {/* Letterbox bars - efeito cinema */}
-    <div className="absolute top-0 left-0 right-0 h-16 bg-black/60 backdrop-blur-sm" />
-    <div className="absolute bottom-0 left-0 right-0 h-16 bg-black/60 backdrop-blur-sm" />
-  </div>
-);
-
-const ProblemStep4_2 = () => (
-  <div className="relative w-full h-full overflow-hidden">
-    {/* Background image - tela cheia */}
-    <div className="absolute inset-0">
-      {/* Foto de fundo - pessoa entediada no celular */}
-      <img 
-        src="/images/semgraca1.webp" 
-        alt="Audiência entediada"
-        className="w-full h-full object-cover"
-      />
-      
-      {/* Overlay gradient escuro - bottom to top */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/30" />
-      
-      {/* Vignette */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
-    </div>
-
-    {/* Content - canto inferior esquerdo (estilo Netflix/cinema) */}
-    <div className="absolute bottom-20 left-8 right-8 z-10">
-      {/* Badge superior */}
       <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.3 }}
-        className="mb-4"
-      >
-        <span className="inline-block px-4 py-1.5 bg-red-600/90 backdrop-blur-md rounded-full text-xs font-bold text-white uppercase tracking-wider">
-          Capítulo 04
-        </span>
-      </motion.div>
-
-      {/* Título principal */}
-      <motion.h3
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-        className="text-4xl md:text-5xl font-black text-white mb-3 leading-[1.1] drop-shadow-2xl"
-      >
-        Conteúdo<br/>Sem Graça
-      </motion.h3>
-
-      {/* Descrição */}
-      <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.7 }}
-        className="text-slate-200 text-sm leading-relaxed max-w-[320px] drop-shadow-lg"
+        className="space-y-3 max-w-[420px]"
       >
-        Excesso de conteúdo genérico e superficial gera desinteresse e afastamento da audiência.
-      </motion.p>
+        <p className="text-slate-200 text-sm leading-relaxed drop-shadow-lg">
+          <span className="text-red-300 font-semibold">Para o criador:</span> Burnout criativo. Fazer conteúdo se torna massante e pouco recompensador.
+        </p>
+        <p className="text-slate-200 text-sm leading-relaxed drop-shadow-lg">
+          <span className="text-red-300 font-semibold">Para a audiência:</span> Conteúdo genérico gera desinteresse e afastamento.
+        </p>
+      </motion.div>
     </div>
 
     {/* Letterbox bars - efeito cinema */}
@@ -427,6 +383,155 @@ const ProblemStep4_2 = () => (
     <div className="absolute bottom-0 left-0 right-0 h-16 bg-black/60 backdrop-blur-sm" />
   </div>
 );
+
+// Simple Problem Cards for Mobile - ESTÁTICO E CLARO
+const SimpleProblemCards = () => {
+  const problems = [
+    {
+      number: "01",
+      title: "Uma Linha de Produção de Uma Pessoa Só",
+      description: "Roteiros, filmagens, edição de vídeo, gestão de agendas, negociações... O criador faz tudo sozinho.",
+      image: "/images/criadorfaztudo.webp",
+      color: "indigo",
+      tasks: ["Roteiro", "Edição", "Agenda", "Publis", "DMs", "Vendas"]
+    },
+    {
+      number: "02",
+      title: "O Resultado é Previsível",
+      description: "A sobrecarga leva ao esgotamento mental e criativo.",
+      image: "/images/o-resultado.webp",
+      color: "red",
+      stat: "70%",
+      statText: "dos criadores já enfrentaram burnout"
+    },
+    {
+      number: "03",
+      title: "O Atalho Perigoso",
+      description: "Para economizar tempo, criadores usam IAs para trabalhar POR elas.",
+      image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=1200&q=80",
+      color: "orange",
+      warning: "Conteúdo genérico detectado",
+      warningText: "Sem personalidade. Sem alma. Sem você."
+    },
+    {
+      number: "04",
+      title: "As Consequências",
+      description: "Para o criador: Burnout criativo. Para a audiência: Conteúdo sem graça que afasta.",
+      image: "/images/burnoutcriativo.webp",
+      color: "red",
+      dual: true
+    }
+  ];
+
+  const colorMap: Record<string, { badge: string; border: string; text: string }> = {
+    indigo: { badge: "bg-indigo-600", border: "border-indigo-200", text: "text-indigo-600" },
+    red: { badge: "bg-red-600", border: "border-red-200", text: "text-red-600" },
+    orange: { badge: "bg-orange-600", border: "border-orange-200", text: "text-orange-600" }
+  };
+
+  return (
+    <div className="space-y-8 pb-16">
+      {problems.map((problem, i) => {
+        const colors = colorMap[problem.color];
+        
+        return (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: i * 0.1 }}
+            className={`bg-white border-2 ${colors.border} rounded-3xl overflow-hidden shadow-lg`}
+          >
+            {/* Image */}
+            <div className="relative h-48 overflow-hidden">
+              <img 
+                src={problem.image} 
+                alt={problem.title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              
+              {/* Badge */}
+              <div className="absolute top-4 left-4">
+                <span className={`inline-block px-3 py-1 ${colors.badge} rounded-full text-xs font-bold text-white uppercase tracking-wider`}>
+                  Capítulo {problem.number}
+                </span>
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="p-6">
+              <h3 className="text-2xl font-bold text-slate-900 mb-3">
+                {problem.title}
+              </h3>
+              <p className="text-slate-600 leading-relaxed mb-4">
+                {problem.description}
+              </p>
+
+              {/* Tasks pills */}
+              {problem.tasks && (
+                <div className="flex flex-wrap gap-2">
+                  {problem.tasks.map((task, j) => (
+                    <span
+                      key={j}
+                      className={`px-3 py-1 ${colors.badge} bg-opacity-10 ${colors.text} rounded-full text-xs font-medium`}
+                    >
+                      {task}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              {/* Stat */}
+              {problem.stat && (
+                <div className={`mt-4 p-4 bg-gradient-to-br from-${problem.color}-50 to-white rounded-xl border ${colors.border}`}>
+                  <div className={`text-5xl font-black ${colors.text} mb-2`}>
+                    {problem.stat}
+                  </div>
+                  <p className="text-sm text-slate-700 font-medium">
+                    {problem.statText}
+                  </p>
+                </div>
+              )}
+
+              {/* Warning */}
+              {problem.warning && (
+                <div className="mt-4 p-4 bg-orange-50 border border-orange-200 rounded-xl">
+                  <p className="text-sm font-semibold text-orange-900 mb-1">
+                    ⚠️ {problem.warning}
+                  </p>
+                  <p className="text-xs text-orange-700">
+                    {problem.warningText}
+                  </p>
+                </div>
+              )}
+            </div>
+          </motion.div>
+        );
+      })}
+
+      {/* Scroll indicator - MAIS VISÍVEL */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+        className="text-center py-12"
+      >
+        <div className="inline-flex flex-col items-center gap-3 px-6 py-4 bg-gradient-to-br from-indigo-50 to-emerald-50 rounded-2xl border-2 border-indigo-200 shadow-lg">
+          <p className="text-slate-700 text-base font-semibold">Continue scrollando para ver mais</p>
+          <motion.div
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            className="text-4xl text-indigo-600"
+          >
+            ↓
+          </motion.div>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
 
 // Problem Cinematic Section - COM SCROLL SUAVE IGUAL AO TELEFONE
 const ProblemCinematicSection = () => {
@@ -534,9 +639,9 @@ const ProblemCinematicSection = () => {
         )}
       </AnimatePresence>
 
-      {/* Step 4.1 - GLITCH EFFECT (burnout criativo) - COMEÇA EM 70% */}
+      {/* Step 4 - GLITCH EFFECT (As Consequências - Unificado) - COMEÇA EM 70% */}
       <AnimatePresence>
-        {isFixed && scrollProgress >= 0.70 && scrollProgress < 0.85 && (
+        {isFixed && scrollProgress >= 0.70 && (
           <motion.div
             initial={{ 
               x: [0, -10, 10, -10, 0],
@@ -558,33 +663,7 @@ const ProblemCinematicSection = () => {
             }}
             className="fixed inset-0 z-[100] flex items-center justify-center px-6 bg-white"
           >
-            <ProblemStep4_1 />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Step 4.2 - FADE LENTO COM BLUR (conteúdo sem graça) - COMEÇA EM 85% */}
-      <AnimatePresence>
-        {isFixed && scrollProgress >= 0.85 && (
-          <motion.div
-            initial={{ 
-              opacity: 0,
-              filter: 'blur(40px)',
-              scale: 0.95
-            }}
-            animate={{ 
-              opacity: 1,
-              filter: 'blur(0px)',
-              scale: 1
-            }}
-            exit={{ opacity: 0 }}
-            transition={{ 
-              duration: 1,
-              ease: 'easeOut'
-            }}
-            className="fixed inset-0 z-[100] flex items-center justify-center px-6 bg-white"
-          >
-            <ProblemStep4_2 />
+            <ProblemStep4 />
           </motion.div>
         )}
       </AnimatePresence>
@@ -593,13 +672,6 @@ const ProblemCinematicSection = () => {
 };
 
 const Index = () => {
-  
-
-  const heroRef = useRef<HTMLElement | null>(null);
-  const { scrollYProgress: heroScroll } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const heroBgY = useTransform(heroScroll, [0, 1], [0, -100]);
-  const heroBgScale = useTransform(heroScroll, [0, 1], [1, 1.2]);
-
   const problemRef = useRef<HTMLElement | null>(null);
   const { scrollYProgress: problemScroll } = useScroll({ target: problemRef, offset: ["start end", "end start"] });
   const problemBgY = useTransform(problemScroll, [0, 1], [100, -100]);
@@ -647,19 +719,16 @@ const Index = () => {
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        {/* HERO - Primeira tela */}
-        <div ref={heroRef as any} className="relative h-screen flex items-center justify-center px-6 overflow-visible z-10">
-          {/* Parallax background with scale */}
-          <motion.div 
-            style={{ y: heroBgY, scale: heroBgScale }} 
-            className="absolute inset-0 will-change-transform"
-          >
+        {/* HERO - Primeira tela - SIMPLIFICADO */}
+        <div className="relative h-screen flex items-center justify-center px-6 overflow-visible z-10">
+          {/* Simple background - sem parallax complexo */}
+          <div className="absolute inset-0">
             <div
               className="absolute inset-0 bg-cover bg-center opacity-20"
               style={{ backgroundImage: "url('/images/front1.webp')" }}
             />
             <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/40 via-white/60 to-slate-50/80" />
-          </motion.div>
+          </div>
 
           {/* Content */}
           <div className="relative z-10 max-w-4xl mx-auto text-center">
@@ -714,9 +783,15 @@ const Index = () => {
         </div>
 
         {/* TELEFONE - Começa visível na parte inferior da home (preview) */}
-        {/* MOBILE: Fixed com JavaScript */}
-        <div className="md:hidden relative z-20">
-          <FixedPhoneSection />
+        {/* MOBILE: Telefone com Swipe Horizontal */}
+        <div className="md:hidden relative z-20 bg-white py-12">
+          <div className="text-center mb-8 px-6">
+            <h2 className="text-3xl font-bold text-slate-900 mb-3">A Solução</h2>
+            <p className="text-slate-600">
+              Veja como a InfluIA facilita seu dia a dia
+            </p>
+          </div>
+          <PhoneMobileSwipeable />
         </div>
 
         {/* DESKTOP: Sticky Scroll */}
@@ -1583,9 +1658,9 @@ const Index = () => {
         </div>
       </section>
 
-      {/* MOBILE ONLY: Problem Section com scroll fixo - SEM espaço em branco inicial */}
-      <div className="md:hidden">
-        <ProblemCinematicSection />
+      {/* MOBILE ONLY: Problem Section com cards simples e claros */}
+      <div className="md:hidden px-6 py-12">
+        <SimpleProblemCards />
       </div>
 
       {/* 4) A Solução InfluIA - REMODELADA CINEMATOGRÁFICA */}
@@ -2132,6 +2207,168 @@ const PhoneMobileSticky = ({ currentStep }: { currentStep: number }) => {
         {/* Power button */}
         <div className="absolute right-0 top-24 w-1 h-12 bg-slate-700 rounded-l-sm" />
       </div>
+    </div>
+  );
+};
+
+// Mobile phone with HORIZONTAL SWIPE for features
+const PhoneMobileSwipeable = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  
+  const features = [
+    {
+      title: "Gestão de Agenda",
+      user: "Marca uma reunião com a Singular amanhã às 14h.",
+      ai: "Feito! Convite enviado e CRM atualizado. Bloqueie sua tarde para preparação.",
+      color: "emerald"
+    },
+    {
+      title: "Inteligência Criativa",
+      user: "Quero falar sobre burnout criativo. Me ajuda a estruturar?",
+      ai: "Que tal começar com sua experiência pessoal? Use storytelling + dados de pesquisa. Gancho: 'Acordo às 6h mas não crio nada até as 14h'",
+      color: "indigo"
+    },
+    {
+      title: "CRM Automático",
+      user: "Organiza as marcas que ofereceram publi esse mês.",
+      ai: "3 marcas tech (R$ 5-8k), 2 lifestyle (R$ 3k), 1 saúde (R$ 10k). Melhor fit: marca tech alinhada com seu nicho.",
+      color: "violet"
+    }
+  ];
+
+  const currentFeature = features[currentSlide];
+
+  return (
+    <div className="relative w-full max-w-sm mx-auto px-4 py-12">
+      {/* Title above phone */}
+      <motion.div 
+        key={currentSlide}
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="text-center mb-6"
+      >
+        <h3 className="text-2xl font-bold text-slate-900">{currentFeature.title}</h3>
+      </motion.div>
+
+      {/* Phone mockup - FIXED NO CENTRO */}
+      <div className="relative w-full max-w-[280px] mx-auto">
+        <div className="relative aspect-[9/19] rounded-[36px] bg-gradient-to-br from-slate-900 to-black border-4 border-slate-700 shadow-2xl">
+          {/* Notch */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-7 bg-black rounded-b-2xl z-20" />
+          
+          {/* Screen */}
+          <div className="absolute inset-3 rounded-[28px] bg-slate-950 overflow-hidden flex flex-col">
+            {/* Header */}
+            <div className="h-16 px-4 flex items-center gap-3 border-b border-slate-800 bg-slate-900/50 backdrop-blur-sm shrink-0">
+              <div className={`h-10 w-10 rounded-full bg-gradient-to-br from-${currentFeature.color}-400 to-${currentFeature.color}-600 flex items-center justify-center shrink-0`}>
+                <Brain className="h-5 w-5 text-white" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-white">Influ.IA</p>
+                <p className="text-xs text-emerald-400">● online</p>
+              </div>
+            </div>
+
+            {/* Chat body - SWIPEABLE */}
+            <div className="flex-1 p-4 space-y-3 overflow-hidden min-h-0">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentSlide}
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -100 }}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-3"
+                >
+                  {/* User message */}
+                  <div className="flex justify-end">
+                    <div className="max-w-[80%] bg-indigo-600 text-white px-4 py-3 rounded-2xl rounded-br-md text-sm font-medium shadow-lg">
+                      {currentFeature.user}
+                    </div>
+                  </div>
+
+                  {/* AI response */}
+                  <div className="flex justify-start">
+                    <div className="max-w-[80%] bg-blue-600 text-white px-4 py-3 rounded-2xl rounded-bl-md text-sm font-medium shadow-lg">
+                      {currentFeature.ai}
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Input bar */}
+            <div className="p-3 border-t border-slate-800 bg-slate-900/50 backdrop-blur-sm shrink-0">
+              <div className="h-11 bg-slate-800 border border-slate-700 rounded-xl flex items-center px-4">
+                <MessageCircle className="h-4 w-4 text-slate-500" />
+              </div>
+            </div>
+          </div>
+
+          {/* Power button */}
+          <div className="absolute right-0 top-24 w-1 h-12 bg-slate-700 rounded-l-sm" />
+        </div>
+      </div>
+
+      {/* Swipe dots indicator */}
+      <div className="flex justify-center gap-2 mt-8">
+        {features.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrentSlide(i)}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              i === currentSlide 
+                ? 'w-8 bg-indigo-600' 
+                : 'w-2 bg-slate-300 hover:bg-slate-400'
+            }`}
+            aria-label={`Ver funcionalidade ${i + 1}`}
+          />
+        ))}
+      </div>
+
+      {/* Swipe instruction */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5 }}
+        className="text-center mt-6"
+      >
+        <p className="text-sm text-slate-500">
+          ← Deslize ou clique nas bolinhas →
+        </p>
+      </motion.div>
+
+      {/* Navigation buttons (visible touch targets) */}
+      <div className="flex justify-between mt-4">
+        <button
+          onClick={() => setCurrentSlide((prev) => (prev > 0 ? prev - 1 : features.length - 1))}
+          className="px-4 py-2 bg-white border-2 border-slate-200 rounded-xl text-slate-700 font-medium hover:border-indigo-300 hover:text-indigo-600 transition-colors"
+        >
+          ← Anterior
+        </button>
+        <button
+          onClick={() => setCurrentSlide((prev) => (prev < features.length - 1 ? prev + 1 : 0))}
+          className="px-4 py-2 bg-indigo-600 text-white rounded-xl font-medium hover:bg-indigo-700 transition-colors"
+        >
+          Próximo →
+        </button>
+      </div>
+
+      {/* Feature description below */}
+      <motion.div
+        key={`desc-${currentSlide}`}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.2 }}
+        className="mt-8 text-center"
+      >
+        <p className="text-slate-600 leading-relaxed">
+          {currentSlide === 0 && "A InfluIA gerencia sua agenda de forma inteligente, lembrando compromissos e otimizando seu tempo."}
+          {currentSlide === 1 && "Táticas validadas, não alucinações. Nossa IA é treinada com estratégias reais de criadores de sucesso."}
+          {currentSlide === 2 && "Nunca mais perca um lead. A InfluIA organiza e acompanha automaticamente suas parcerias e oportunidades."}
+        </p>
+      </motion.div>
     </div>
   );
 };
