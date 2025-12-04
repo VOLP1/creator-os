@@ -781,21 +781,64 @@ const Index = () => {
           </div>
         </div>
 
-        {/* TELEFONE - Começa visível na parte inferior da home (preview) */}
-        {/* MOBILE: Telefone com Swipe Horizontal */}
-        <div className="md:hidden relative z-20 bg-white py-12">
+        {/* SEÇÃO SOLUÇÃO - TELEFONE COM FUNCIONALIDADES */}
+        <div className="relative z-20 bg-white py-12">
           <div className="text-center mb-8 px-6">
-            <h2 className="text-3xl font-bold text-slate-900 mb-3">A Solução</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">A Solução</h2>
             <p className="text-slate-600">
               Veja como a InfluIA facilita seu dia a dia
             </p>
           </div>
-          <PhoneMobileSwipeable />
-        </div>
-
-        {/* DESKTOP: Sticky Scroll */}
-        <div className="hidden md:block relative z-20">
-          <PhoneStickyDesktopWithScroll />
+          
+          {/* MOBILE: Telefone com Swipe Horizontal */}
+          <div className="md:hidden">
+            <PhoneMobileSwipeable />
+          </div>
+          
+          {/* DESKTOP: Cards de funcionalidades simples */}
+          <div className="hidden md:block max-w-6xl mx-auto px-6">
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                {
+                  icon: Calendar,
+                  title: "Gestão de Agenda",
+                  description: "A InfluIA gerencia sua agenda de forma inteligente, lembrando compromissos e otimizando seu tempo.",
+                  color: "emerald"
+                },
+                {
+                  icon: Brain,
+                  title: "Inteligência Criativa",
+                  description: "Táticas validadas, não alucinações. Nossa IA é treinada com estratégias reais de criadores de sucesso.",
+                  color: "indigo"
+                },
+                {
+                  icon: TrendingUp,
+                  title: "CRM Automático",
+                  description: "Nunca mais perca um lead. A InfluIA organiza e acompanha automaticamente suas parcerias e oportunidades.",
+                  color: "violet"
+                }
+              ].map((feature, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className="bg-white border border-slate-200 rounded-xl p-6 hover:border-indigo-300 hover:shadow-md transition-all"
+                >
+                  <div className={`inline-flex items-center justify-center w-12 h-12 rounded-lg bg-${feature.color}-100 mb-4`}>
+                    <feature.icon className={`w-6 h-6 text-${feature.color}-600`} />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-slate-600 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
