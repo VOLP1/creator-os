@@ -672,10 +672,6 @@ const ProblemCinematicSection = () => {
 };
 
 const Index = () => {
-  const problemRef = useRef<HTMLElement | null>(null);
-  const { scrollYProgress: problemScroll } = useScroll({ target: problemRef, offset: ["start end", "end start"] });
-  const problemBgY = useTransform(problemScroll, [0, 1], [100, -100]);
-
   const solutionRef = useRef<HTMLElement | null>(null);
   const { scrollYProgress: solutionScroll } = useScroll({ target: solutionRef, offset: ["start end", "end start"] });
   const solutionBgY = useTransform(solutionScroll, [0, 1], [100, -100]);
